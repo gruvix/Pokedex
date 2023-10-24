@@ -18,5 +18,8 @@
   "homepage": "https://github.com/gruvix/Pokedex#readme",
   "dependencies": {
     "node": "^21.0.0"
+  },
+  "devDependencies": {
+    "cypress": "^13.3.2"
   }
 }
