@@ -21,7 +21,9 @@
     "node": "^21.0.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.25",
     "cypress": "^13.3.2",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "jquery": "^3.7.1"
   }
 }

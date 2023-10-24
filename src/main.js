@@ -1,3 +1,5 @@
+/// <reference types="jquery" />
+
 //1. Construir un pokedex
 // a.buscar por id
 // b.buscar por tipo
