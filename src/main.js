@@ -1,3 +1,27 @@
+//1. Construir un pokedex
+// a.buscar por id
+// b.buscar por tipo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/
 // listar pokemons y poder cambiar de página
