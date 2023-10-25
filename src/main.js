@@ -13,17 +13,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/
 // listar pokemons y poder cambiar de página
