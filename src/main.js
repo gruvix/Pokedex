@@ -14,10 +14,21 @@ function getPokemonById(pokemon){
         displayPokemon(data);
     })
     .catch(() => {
-        console.log('pokeapi server error')
+        showPokemonNotFoundError(pokemon)
     })
 }
 
+function displayPokemon(pokemon){
+    console.log(pokemon.base_experience)
+}
+
+function showPokemonNotFoundError(pokemon){
+    document.querySelector('#pokemonNotFound').classList.remove('hidden');
+    document.querySelector('#pokemonNameError').textContent = pokemon;
+}
+function hidePokemonNotFoundError(){
+    document.querySelector('#pokemonNotFound').classList.add('hidden');
+}
 
 
 
