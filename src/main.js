@@ -1,12 +1,13 @@
 /// <reference types="jquery" />
 
 document.querySelector('#searchPokemonByIdButton').addEventListener('click', function () {
-    const pokemonId = document.querySelector('#pokemonIdInput').value
-    getPokemonById(pokemonId)
+    const pokemon = document.querySelector('#pokemonIdInput').value
+    getPokemonById(pokemon)
+    hidePokemonNotFoundError()
 })
 
-function getPokemonById(pokemonId){
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
+function getPokemonById(pokemon){
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
