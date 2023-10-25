@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 
 document.querySelector('#searchPokemonByIdButton').addEventListener('click', function () {
-    const pokemon = document.querySelector('#pokemonIdInput').value
+    const pokemon = document.querySelector('#pokemonIdInput').value.toLowerCase();
     getPokemonById(pokemon)
     hidePokemonNotFoundError()
 })
