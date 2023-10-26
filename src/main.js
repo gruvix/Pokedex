@@ -33,8 +33,13 @@ function addImageToCarousel(imageSource){
     img.src = imageSource;
     const div = document.createElement('div');
     div.appendChild(img);
-    document.querySelector('#pokemonCarousel').children[0].appendChild(div);
+    const carousel = document.querySelector('#pokemonCarousel');
+    carousel.children[0].appendChild(div);
     div.classList.add('carousel-item');
+    if(carousel.children[0].children.length === 1){
+        div.classList.add('active');
+    }
+
 }
 
 function showPokemonNotFoundError(pokemon){
