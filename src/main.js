@@ -43,8 +43,8 @@ function addImageToCarousel(imageSource){
 }
 
 function showPokemonNotFoundError(pokemon){
-    document.querySelector('#pokemonNameError').textContent = pokemon;
-    document.querySelector('#pokemonNotFound').classList.remove('hidden');
+    $('#pokemonNameOrIdDoesNotExist').text(pokemon);
+    $('#pokemonNotFound').removeClass('hidden');
 }
 function hidePokemonNotFoundError(){
     document.querySelector('#pokemonNotFound').classList.add('hidden');
