@@ -22,13 +22,13 @@ function displayPokemon(pokemon){
     for(const spriteCategory in pokemon.sprites.other){
         for(const sprite in pokemon.sprites.other[spriteCategory]){
             if(pokemon.sprites.other[spriteCategory][sprite] !== null){
-                addImageToPokemonCarousel(pokemon.sprites.other[spriteCategory][sprite]);
+                addImageToCarousel(pokemon.sprites.other[spriteCategory][sprite]);
             }
         }
     }
 }
 
-function addImageToPokemonCarousel(imageSource){
+function addImageToCarousel(imageSource){
     const img = document.createElement('img');
     img.src = imageSource;
     const div = document.createElement('div');
