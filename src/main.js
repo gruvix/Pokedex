@@ -13,8 +13,8 @@ function getPokemonById(pokemon){
         displayPokemon(data);
     })
     .catch(() => {
-        showPokemonNotFoundError(pokemon)
-    })
+        showPokemonNotFoundError(pokemon);
+    });
 }
 
 function displayPokemon(pokemon){
