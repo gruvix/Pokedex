@@ -16,21 +16,25 @@ function getPokemonList(offset = 0, amount = 15){
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
-        updatePokemonList(data.results);
+        updatePokemonList(data.results, offset, amount);
     })
     .catch(() => {
         alert('Could not get pokemons list');
     })
 }
 
-function updatePokemonList(pokemonList){
+function updatePokemonList(pokemonList, offset, amount){
     clearPokemonList();
     for(const pokemon of pokemonList){
         addPokemonToList(pokemon);
     }
+    updatePageIndicator(offset, amount);
+}
+function updatePageIndicator(offset, amount){
+    const pageIndicator = $('#pokemon-list-page');
+    pageIndicator.text(`pokemon ${offset + 1} to ${offset + amount}`);
 }
 function addPokemonToList(pokemon){
-    
     const pokemonButton = $(`<button class="btn btn-link">${pokemon.name}</button>`);
     const li = $('<li></li>')
     li.append(pokemonButton);
