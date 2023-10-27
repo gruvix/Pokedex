@@ -16,23 +16,29 @@ function getPokemonList(offset = 0, amount = 15){
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
-        updatePokemonList(data.results, offset, amount);
+        updateFirstAndLastPokemon(offset, amount);
+        updatePokemonList(data.results);
     })
     .catch(() => {
         alert('Could not get pokemons list');
     })
 }
-
-function updatePokemonList(pokemonList, offset, amount){
+let firstPokemon;
+let lastPokemon;
+function updateFirstAndLastPokemon(offset, amount){
+    firstPokemon = offset + 1;//first pokemon is 1
+    lastPokemon = offset + amount;
+}
+function updatePokemonList(pokemonList){
     clearPokemonList();
     for(const pokemon of pokemonList){
         addPokemonToList(pokemon);
     }
-    updatePageIndicator(offset, amount);
+    updatePageIndicator();
 }
-function updatePageIndicator(offset, amount){
+function updatePageIndicator(){
     const pageIndicator = $('#pokemon-list-page');
-    pageIndicator.text(`pokemon ${offset + 1} to ${offset + amount}`);
+    pageIndicator.text(`pokemon ${firstPokemon} to ${lastPokemon}`);
 }
 function addPokemonToList(pokemon){
     const pokemonButton = $(`<button class="btn btn-link">${pokemon.name}</button>`);
