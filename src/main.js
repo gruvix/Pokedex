@@ -26,7 +26,7 @@ function getPokemonList(offset = 0, amount = 15){
 let firstPokemon;
 let lastPokemon;
 function updateFirstAndLastPokemon(offset, amount){
-    firstPokemon = offset + 1;//first pokemon is 1
+    firstPokemon = offset + 1;//first pokemon is 1 but first offset is 0
     lastPokemon = offset + amount;
 }
 function updatePokemonList(pokemonList){
