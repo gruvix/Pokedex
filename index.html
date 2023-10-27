@@ -13,39 +13,55 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="title">Pokedex</h1>
-            </div>
-        </div>
 
         <div class="row">
-            <div class="col-3">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="pokemonIdInput" placeholder="Pokemon name or ID" aria-label="Pokemon name or ID" aria-describedby="pokemon-id-input">
-                    <button class="btn btn-outline-secondary" type="button" id="searchPokemonByIdButton">Search</button>
-                </div>
-                <div class="alert alert-danger hidden" role="alert" id="pokemonNotFound">
-                    The Pokemon <strong id="pokemonNameOrIdDoesNotExist">POKEMON_NAME</strong> doesn't exist!
-                </div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-5">
-                <div class="carousel slide" id="pokemonCarousel" data-bs-theme="dark" style="height: 500px;">
-                    <div class="carousel-inner">
+            <main class="col-md-9">
+
+                <div class="row">
+                    <div class="col">
+                        <h1 class="title">Pokedex</h1>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#pokemonCarousel" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#pokemonCarousel" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-            </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="pokemonIdInput" placeholder="Pokemon name or ID" aria-label="Pokemon name or ID" aria-describedby="pokemon-id-input">
+                            <button class="btn btn-outline-secondary" type="button" id="searchPokemonByIdButton">Search</button>
+                        </div>
+                        <div class="alert alert-danger hidden" role="alert" id="pokemonNotFound">
+                            The Pokemon <strong id="pokemonNameOrIdDoesNotExist">POKEMON_NAME</strong> doesn't exist!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-5">
+                        <div class="carousel slide" id="pokemonCarousel" data-bs-theme="dark" style="height: 500px;">
+                            <div class="carousel-inner">
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#pokemonCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#pokemonCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <nav id="sidebar" class="col-md-3 bg-dark text-white">
+                <ul class="nav flex-column" id="pokemon-list">
+                  <h3 class="nav-item">
+                    <strong>Pokemon List</strong>
+                  </h3>
+                  <li>
+                      <button class="btn btn-link">TEST</button>
+                  </li>
+                </ul>
+              </nav>
         </div>
     </div>
 </body>
