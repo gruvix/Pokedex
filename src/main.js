@@ -5,6 +5,14 @@ document.querySelector('#searchPokemonByIdButton').addEventListener('click', fun
     getPokemonByIdOrName(pokemon)
     hidePokemonNotFoundError()
 })
+document.querySelector('#previous-page').addEventListener('click', function () {
+    const previousPage = firstPokemon - 16;
+    getPokemonList(previousPage)
+})
+document.querySelector('#next-page').addEventListener('click', function () {
+    const nextPage = lastPokemon;
+    getPokemonList(nextPage)
+})
 getPokemonList();
 
 /**
@@ -13,6 +21,7 @@ getPokemonList();
  * @param {number} [amount=10] - The maximum number of Pokemon to fetch.
  */
 function getPokemonList(offset = 0, amount = 15){
+    offset = Math.max(offset, 0);
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
@@ -66,7 +75,7 @@ function getPokemonByIdOrName(pokemon){
 function displayPokemon(pokemon){
     console.log(pokemon)
     for(const spriteCategory in pokemon.sprites.other){
-        for(const sprite in pokemon.sprites.other[spriteCategory]){
+        for(const sprite in pokemon.sprites.other[spriteCategory]){//only other (best) sprites, main sprites are too small
             if(pokemon.sprites.other[spriteCategory][sprite] !== null){
                 addImageToCarousel(pokemon.sprites.other[spriteCategory][sprite]);
             }
