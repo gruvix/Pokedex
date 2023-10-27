@@ -5,6 +5,22 @@ document.querySelector('#searchPokemonByIdButton').addEventListener('click', fun
     getPokemonById(pokemon)
     hidePokemonNotFoundError()
 })
+const FIRST_POKEMON_LIST_OFFSET = 0;
+getTenPokemonsWithOffset(FIRST_POKEMON_LIST_OFFSET);
+
+function getTenPokemonsWithOffset(offset){
+    //gets a list of 10 pokemon given starting id, like 1, 11, 21, ...
+    // https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=10`)
+    .then(response => response.json())
+    .then(data => {
+        updatePokemonList(data.results);
+    })
+    .catch(() => {
+        alert.log('Could not get pokemons list');
+    })
+}
+
 
 function getPokemonById(pokemon){
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
