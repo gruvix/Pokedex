@@ -23,6 +23,11 @@ function getPokemonList(offset = 0, amount = 10){
     })
 }
 
+function updatePokemonList(pokemonList){
+    for(const pokemon of pokemonList){
+        addPokemonToList(pokemon);
+    }
+}
 
 function getPokemonById(pokemon){
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
