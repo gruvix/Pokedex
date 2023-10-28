@@ -45,3 +45,8 @@
   display: block;
   margin: 0 auto;
 }
+
+.list-sprite{
+  max-width: 45px;
+  max-height: 45px;
+}
