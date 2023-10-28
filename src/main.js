@@ -49,7 +49,7 @@ let lastPokemonOnListId;
 function updateFirstAndLastPokemon(offset, amount, maximumPokemonId){
     firstPokemonOnListId = offset + 1;//first offset is 0 but first pokemon is 1
     lastPokemonOnListId = offset + amount;
-    if(lastPokemonOnListId > maximumPokemonId)
+    if(lastPokemonOnListId > maximumPokemonId)//makes sure it doesen't go further from last pokemon
     lastPokemonOnListId = maximumPokemonId;
 }
 function updatePokemonList(pokemonList, offset){
