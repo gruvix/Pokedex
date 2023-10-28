@@ -70,20 +70,29 @@ function addPokemonToList(pokemon, index){
     const li = $('<li></li>')
     li.append(pokemonButton);
     $('#pokemon-list').append(li);
-    getSpriteToList(li, pokemon);
+    addLoading(li)
+    fetchSpriteToList(li, pokemon);
 }
-function getSpriteToList(htmlItem, pokemon){
+function addLoading(element){
+    const loading = $(`<div class="lds-dual-ring"></div>`);
+    loading.addClass('lds-dual-ring');
+    element.append(loading);
+}
+function removeLoading(element){
+    element.children('.lds-dual-ring').remove();
+}
+function fetchSpriteToList(element, pokemon){
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
     .then(response => response.json())
     .then(data => {
-        addSprite(data, htmlItem)
+        addSprite(data.sprites.front_default, element)
+        removeLoading(element)
     })
     .catch(() => {
         alert('Could not get pokemon for sprite list');
     })
 }
-function addSprite(pokemon, htmlItem){
-    const sprite = pokemon.sprites.front_default;
+function addSprite(sprite, htmlItem){
     if(sprite === null) return;
     const img = $(`<img src="${sprite}" class="list-sprite">`);
     htmlItem.append(img);
