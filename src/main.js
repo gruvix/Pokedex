@@ -7,11 +7,11 @@ document.querySelector('#search-pokemon-button').addEventListener('click', funct
 })
 document.querySelector('#previous-page').addEventListener('click', function () {
     const PREVIOUS_PAGE_OFFSET = 16;
-    const previousPage = firstPokemon - PREVIOUS_PAGE_OFFSET;
+    const previousPage = firstPokemonOnListId - PREVIOUS_PAGE_OFFSET;
     getPokemonList(previousPage)
 })
 document.querySelector('#next-page').addEventListener('click', function () {
-    const nextPage = lastPokemon;
+    const nextPage = lastPokemonOnListId;
     getPokemonList(nextPage)
 })
 $('#pokemon-list').on('click', function (event) {
@@ -32,7 +32,7 @@ function getPokemonList(offset = 0, amount = 15){
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
-        updateFirstAndLastPokemon(offset, amount);
+        updateFirstAndLastPokemon(offset, amount, data.count);
         updatePokemonList(data.results, offset);
     })
     .catch(() => {
@@ -44,11 +44,13 @@ function getPokemonHandler(pokemon){
     getPokemonByIdOrName(pokemon);
     hidePokemonNotFoundError()
 }
-let firstPokemon;
-let lastPokemon;
-function updateFirstAndLastPokemon(offset, amount){
-    firstPokemon = offset + 1;//first offset is 0 but first pokemon is 1
-    lastPokemon = offset + amount;
+let firstPokemonOnListId;
+let lastPokemonOnListId;
+function updateFirstAndLastPokemon(offset, amount, maximumPokemonId){
+    firstPokemonOnListId = offset + 1;//first offset is 0 but first pokemon is 1
+    lastPokemonOnListId = offset + amount;
+    if(lastPokemonOnListId > maximumPokemonId)
+    lastPokemonOnListId = maximumPokemonId;
 }
 function updatePokemonList(pokemonList, offset){
     clearPokemonList();
@@ -61,7 +63,7 @@ function updatePokemonList(pokemonList, offset){
 }
 function updatePageIndicator(){
     const pageIndicator = $('#pokemon-list-page');
-    pageIndicator.text(`pokemon ${firstPokemon} to ${lastPokemon}`);
+    pageIndicator.text(`pokemon ${firstPokemonOnListId} to ${lastPokemonOnListId}`);
 }
 function addPokemonToList(pokemon, index){
     const pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${index}. ${pokemon.name}</button>`);
