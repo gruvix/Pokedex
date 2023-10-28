@@ -51,8 +51,8 @@ function updatePokemonList(pokemonList, offset){
     clearPokemonList();
     let i = 0;
     for(const pokemon of pokemonList){
-        addPokemonToList(pokemon, offset+i);
         i++
+        addPokemonToList(pokemon, offset+i);
     }
     updatePageIndicator();
 }
