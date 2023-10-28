@@ -13,7 +13,11 @@ document.querySelector('#next-page').addEventListener('click', function () {
     const nextPage = lastPokemon;
     getPokemonList(nextPage)
 })
-$('#pokemon-list')
+$('#pokemon-list').on('click', function (event) {
+    const pokemon = event.target.textContent.toLowerCase();
+    getPokemonByIdOrName(pokemon)
+    hidePokemonNotFoundError()
+})
 getPokemonList();
 
 /**
