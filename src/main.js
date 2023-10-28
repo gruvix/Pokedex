@@ -16,6 +16,7 @@ document.querySelector('#next-page').addEventListener('click', function () {
 })
 $('#pokemon-list').on('click', function (event) {
     const pokemon = event.target.id;
+    if(pokemon === '') return;
     getPokemonHandler(pokemon)
 })
 getPokemonList();
@@ -67,8 +68,24 @@ function addPokemonToList(pokemon, index){
     const li = $('<li></li>')
     li.append(pokemonButton);
     $('#pokemon-list').append(li);
+    getSpriteToList(li, pokemon);
 }
-
+function getSpriteToList(htmlItem, pokemon){
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
+    .then(response => response.json())
+    .then(data => {
+        addSprite(data, htmlItem)
+    })
+    .catch(() => {
+        alert('Could not get pokemon for sprite list');
+    })
+}
+function addSprite(pokemon, htmlItem){
+    const sprite = pokemon.sprites.front_default;
+    if(sprite === null) return;
+    const img = $(`<img src="${sprite}" class="list-sprite">`);
+    htmlItem.append(img);
+}
 function clearPokemonList(){
     const list = $('#pokemon-list');
     list.children().remove();
