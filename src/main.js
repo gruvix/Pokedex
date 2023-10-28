@@ -1,9 +1,9 @@
 /// <reference types="jquery" />
 
 document.querySelector('#search-pokemon-button').addEventListener('click', function () {
-    const pokemon = document.querySelector('#pokemon-id-input').value.toLowerCase();
-    getPokemonByIdOrName(pokemon)
-    hidePokemonNotFoundError()
+    const pokemon = $('#pokemon-id-input').val().toLowerCase();
+    getPokemonHandler(pokemon)
+
 })
 document.querySelector('#previous-page').addEventListener('click', function () {
     const previousPage = firstPokemon - 16;
@@ -15,8 +15,7 @@ document.querySelector('#next-page').addEventListener('click', function () {
 })
 $('#pokemon-list').on('click', function (event) {
     const pokemon = event.target.textContent.toLowerCase();
-    getPokemonByIdOrName(pokemon)
-    hidePokemonNotFoundError()
+    getPokemonHandler(pokemon)
 })
 getPokemonList();
 
@@ -36,6 +35,11 @@ function getPokemonList(offset = 0, amount = 15){
     .catch(() => {
         alert('Could not get pokemons list');
     })
+}
+function getPokemonHandler(pokemon){
+    clearPokemon();
+    getPokemonByIdOrName(pokemon);
+    hidePokemonNotFoundError()
 }
 let firstPokemon;
 let lastPokemon;
