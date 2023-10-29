@@ -119,6 +119,7 @@ function getPokemonByIdOrName(pokemon){
     })
     .catch(() => {
         showPokemonNotFoundError(pokemon);
+        clearPokemon();
     });
 }
 function displayPokemon(pokemon){
