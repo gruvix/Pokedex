@@ -51,20 +51,20 @@ body{
 }
 
 .list-sprite{
-  max-width: 45px;
-  max-height: 45px;
+  max-width: 30px;
+  max-height: 30px;
 }
 
 .lds-dual-ring {
   display: inline-block;
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
 }
 .lds-dual-ring:after {
   content: " ";
   display: block;
-  width: 44px;
-  height: 44px;
+  width: 30px;
+  height: 30px;
   margin: 8px;
   border-radius: 50%;
   border: 6px solid #fff;
