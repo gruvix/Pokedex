@@ -32,12 +32,17 @@ function getPokemonList(offset = 0, amount = 15){
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
-        updateFirstAndLastPokemon(offset, amount, data.count);
+        if(!totalPokemon) { updateTotalPokemon(data.count); };
+        updateFirstAndLastPokemon(offset, amount);
         updatePokemonList(data.results, offset);
     })
     .catch(() => {
         alert('Could not get pokemons list');
     })
+}
+function updateTotalPokemon(total){
+    totalPokemon = total;
+    Cypress.env('totalPokemon', total);
 }
 function getPokemonHandler(pokemon){
     clearPokemon();
@@ -52,13 +57,14 @@ function addLoadingToPokemon(){
 function removeLoadingFromPokemon(){
     $('#pokemon-carousel .loader.pokemon-carousel').remove();
 }
+let totalPokemon // total amount of pokemons is global por testing purposes
 let firstPokemonOnListId;
 let lastPokemonOnListId;
-function updateFirstAndLastPokemon(offset, amount, maximumPokemonId){
+function updateFirstAndLastPokemon(offset, amount){
     firstPokemonOnListId = offset + 1;//first offset is 0 but first pokemon is 1
     lastPokemonOnListId = offset + amount;
-    if(lastPokemonOnListId > maximumPokemonId)//makes sure it doesen't go further from last pokemon
-    lastPokemonOnListId = maximumPokemonId;
+    if(lastPokemonOnListId > totalPokemon)//makes sure it doesen't go further from last pokemon
+    lastPokemonOnListId = totalPokemon;
 }
 function updatePokemonList(pokemonList, offset){
     clearPokemonList();
