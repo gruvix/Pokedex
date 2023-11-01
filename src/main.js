@@ -125,19 +125,22 @@ function getPokemonByIdOrName(pokemon){
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
     .then(response => response.json())
     .then(data => {
-        removeLoadingFromPokemon();
-        displayPokemon(data);
+        pokemonHandler(data);
     })
     .catch(() => {
         showPokemonNotFoundError(pokemon);
         clearPokemon();
     });
 }
-function displayPokemon(pokemon){
-    for(const spriteCategory in pokemon.sprites.other){
-        for(const sprite in pokemon.sprites.other[spriteCategory]){//only other (best) sprites, main sprites are too small
-            if(pokemon.sprites.other[spriteCategory][sprite] !== null){
-                addImageToCarousel(pokemon.sprites.other[spriteCategory][sprite]);
+function pokemonHandler(pokemon){
+    removeLoadingFromPokemon();
+    displayPokemon(pokemon.sprites.other);
+}
+function displayPokemon(sprites){
+    for(const spriteCategory in sprites){
+        for(const sprite in sprites[spriteCategory]){//only other (best) sprites, main sprites are too small
+            if(sprites[spriteCategory][sprite] !== null){
+                addImageToCarousel(sprites[spriteCategory][sprite]);
             }
         }
     }
