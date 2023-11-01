@@ -6,6 +6,11 @@ body{
   background-color: rgb(51, 51, 51);
 }
 
+.pokemon-prompt{
+  color: wheat;
+  margin-bottom: 20%;
+}
+
 .title{
     --bg-size: 400%;
     --color-one: hsl(15 90% 55%);
