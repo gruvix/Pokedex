@@ -42,7 +42,12 @@ function getPokemonList(offset = 0, amount = 15){
 }
 function updateTotalPokemon(total){
     totalPokemon = total;
-    Cypress.env('totalPokemon', total);
+    try{
+        Cypress.env('totalPokemon', total);
+
+    } catch(error){
+        console.log(error);
+    }
 }
 function getPokemonHandler(pokemon){
     clearPokemon();
