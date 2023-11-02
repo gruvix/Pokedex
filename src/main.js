@@ -133,10 +133,14 @@ function getPokemonByIdOrName(pokemon){
     });
 }
 function pokemonHandler(pokemon){
+    showPokemonInfo()
     removeLoadingFromPokemon();
     updateName(pokemon);
     updateAbilities(pokemon.abilities)
     displayPokemon(pokemon.sprites.other);
+}
+function showPokemonInfo(){
+    $('#pokemon-info').removeClass('hidden');
 }
 function updateAbilities(abilities){
     $('#pokemon-abilities').children().empty();
