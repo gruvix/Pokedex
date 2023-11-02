@@ -139,8 +139,9 @@ function pokemonHandler(pokemon){
     displayPokemon(pokemon.sprites.other);
 }
 function updateAbilities(abilities){
+    $('#pokemon-abilities').children().empty();
     for(const ability of abilities){
-        const div  = $(`<div>${ability.ability.name}</div>`);
+        const div  = $(`<div><i>-${ability.ability.name}</i></div>`);
         $('#pokemon-abilities').append(div);
     }
 }
