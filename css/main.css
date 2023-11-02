@@ -10,6 +10,9 @@ body{
   color: wheat;
   margin-bottom: 20%;
 }
+.pokemon-ability{
+  color: rgb(209, 209, 209)
+}
 #pokemon-name{
   font-size: 250%;
 }
