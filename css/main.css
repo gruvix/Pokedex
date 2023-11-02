@@ -15,6 +15,9 @@ body{
 .pokemon-ability{
   color: rgb(209, 209, 209)
 }
+.pokemon-move{
+  color: rgb(0, 0, 0)
+}
 #pokemon-name{
   font-size: 250%;
   animation: glow 2s ease-in-out infinite;
