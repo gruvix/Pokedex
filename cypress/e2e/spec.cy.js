@@ -8,6 +8,18 @@ describe('tests the pokedex', () => {
 
   })
 
+  it("gets pikachu and checks for known info", () => {
+    const CAROUSEL_DELAY = 700
+    const PIKACHU_NAME = 'Pikachu'
+    const PIKACHU_FIRST_TYPE = 'electric'
+    const PIKACHU_FIRST_ABILITY = 'static'
+    cy.get('#pokemon-id-input').type('pikachu').get('#search-pokemon-button').click()
+    cy.get('#pokemon-not-found').should('not.be.visible')
+    cy.get('#pokemon-name').should('be.text', PIKACHU_NAME)
+    cy.get('#pokemon-types').children().should('have.length', 1).first().should('have.text', PIKACHU_FIRST_TYPE)
+    cy.get('#pokemon-abilities').children().should('have.length', 2).first().should('have.text', PIKACHU_FIRST_ABILITY)
+  })
+
   it('clicks a random pokemon from the list', () => {
     const POKEMON_LIST_AMOUNT = 15;
     const TOTAL_POKEMON = Cypress.env('totalPokemon')
