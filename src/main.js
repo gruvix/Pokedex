@@ -211,6 +211,7 @@ function clearPokemon(){
     $('#pokemon-abilities').children().empty();
     $('#pokemon-types').children().empty();
     $("#pokemon-moves-table").children().empty();
+    $('#pokemon-info').addClass('hidden');
 
 }
 
