@@ -37,15 +37,15 @@ describe('tests the pokedex', () => {
       const randomPokemon = list[randomPokemonIndex];
       cy.wrap(randomPokemon).children().first().click();
     }).get("#pokemon-carousel .carousel-inner").children().first().should('not.have.class', 'loader');
-  })
-
-  it("gets pikachu and scrolls through the pokedex's images", () => {
+    cy.get("#pokemon-name").should('be.visible');
     const CAROUSEL_DELAY = 700
-    cy.get('#pokemon-id-input').type('pikachu').get('#search-pokemon-button').click()
-    cy.get('#pokemon-not-found').should('not.be.visible')
     cy.get('.carousel-inner').children().each((sprite) => {
-      cy.wait(CAROUSEL_DELAY).get('.carousel-control-next').click().get(sprite).should('be.visible')
+    cy.wait(CAROUSEL_DELAY).get('.carousel-control-next').click().get(sprite).should('be.visible')
     })
-
+    const DEFAULT_POKEMON_NAME = 'POKEMON'	
+    cy.get('#pokemon-name').should('not.be.text', DEFAULT_POKEMON_NAME)
+    cy.get('#pokemon-types').children().should('have.length.greaterThan', 0)
+    cy.get('#pokemon-abilities').children().should('have.length.greaterThan', 0)
   })
+
 })
