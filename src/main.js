@@ -192,8 +192,7 @@ function hidePokemonNotFoundError(){
     document.querySelector('#pokemon-not-found').classList.add('hidden');
 }
 function clearPokemon(){
-    const carousel = $('#pokemon-carousel .carousel-inner');
-    carousel.children().remove();
+    $('#pokemon-carousel .carousel-inner').children().remove();
     $('#pokemon-name').removeClass()
     $('#pokemon-abilities').children().empty();
     $('#pokemon-types').children().empty();
