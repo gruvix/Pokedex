@@ -17,6 +17,19 @@ body{
 }
 #pokemon-name{
   font-size: 250%;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px
+  }
+  50% {
+    text-shadow: 0 0 25px
+  }
+  100% {
+    text-shadow: 0 0 5px
+  }
 }
 
 .title{
