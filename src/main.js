@@ -148,6 +148,7 @@ function updateName(pokemon){
     const name = pokemon.name;
     const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
     const nameElement = $('#pokemon-name');
+    $('#pokemon-name').removeClass()
     nameElement.text(capitalizedName).addClass(`type-${pokemon.types[0].type.name}`);
 }
 function displayPokemon(sprites){
