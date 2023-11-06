@@ -84,7 +84,7 @@ function updatePokemonList(pokemonList, offset){
     updatePageIndicator();
 }
 function updatePageIndicator(){
-    const pageIndicator = $('#pokemon-list-page');
+    const pageIndicator = $('#pokemon-now-showing');
     pageIndicator.text(`pokemon ${firstPokemonOnListId} to ${lastPokemonOnListId}`);
 }
 function addPokemonToList(pokemon, index){
