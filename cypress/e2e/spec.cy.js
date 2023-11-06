@@ -2,25 +2,25 @@ describe('tests the pokedex', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8000/')
   })
-  it('shows an error if the pokemon is not found', () => {
+  it('should show an error saying the pokemon was not found', () => {
     cy.get('#pokemon-id-input').type('not a pokemon').get('#search-pokemon-button').click()
     cy.get('#pokemon-not-found').should('be.visible')
 
   })
 
-  it("gets pikachu and checks for known info", () => {
+  it("should get a pokemon and show its info", () => {
     const CAROUSEL_DELAY = 700
-    const PIKACHU_NAME = 'Pikachu'
-    const PIKACHU_FIRST_TYPE = 'electric'
-    const PIKACHU_FIRST_ABILITY = 'static'
+    const POKEMON_NAME = 'Pikachu'
+    const POKEMON_FIRST_TYPE = 'electric'
+    const POKEMON_FIRST_ABILITY = 'static'
     cy.get('#pokemon-id-input').type('pikachu').get('#search-pokemon-button').click()
     cy.get('#pokemon-not-found').should('not.be.visible')
-    cy.get('#pokemon-name').should('be.text', PIKACHU_NAME)
-    cy.get('#pokemon-types').children().should('have.length', 1).first().should('have.text', PIKACHU_FIRST_TYPE)
-    cy.get('#pokemon-abilities').children().should('have.length', 2).first().should('have.text', PIKACHU_FIRST_ABILITY)
+    cy.get('#pokemon-name').should('be.text', POKEMON_NAME)
+    cy.get('#pokemon-types').children().should('have.length', 1).first().should('have.text', POKEMON_FIRST_TYPE)
+    cy.get('#pokemon-abilities').children().should('have.length', 2).first().should('have.text', POKEMON_FIRST_ABILITY)
   })
 
-  it('clicks a random pokemon from the list', () => {
+  it('should get a random pokemon from the list', () => {
     const POKEMON_LIST_AMOUNT = 15;
     const TOTAL_POKEMON = Cypress.env('totalPokemon')
     const LIST_TOTAL_OFFSET = TOTAL_POKEMON - POKEMON_LIST_AMOUNT;
