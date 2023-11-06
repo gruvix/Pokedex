@@ -205,11 +205,12 @@ function updateAbilities(abilities){
     }
 }
 function updateMoves(moves){
+    const COMPLETE_PAIR = 2;
     let currentRow = $("<tr></tr>")
     $("#pokemon-moves-table").append(currentRow);
     moves.forEach(move => {  
         const td = $(`<td style="width: 60%;">${move.move.name}</td>`)     
-        if(currentRow.children().length === 2)
+        if(currentRow.children().length === COMPLETE_PAIR)
         {
             currentRow = $("<tr></tr>")
             $("#pokemon-moves-table").append(currentRow);
