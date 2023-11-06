@@ -124,18 +124,18 @@ function clearPokemonList(){
     list.children().remove();
 }
 
-function getPokemonByIdOrName(pokemon){
-    if(pokemon === 'michelin'){
+function getPokemonByIdOrName(pokemonIdOrName){
+    if(pokemonIdOrName === 'michelin'){
         easterEgg();
         return;
     }
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonIdOrName}`)
     .then(response => response.json())
     .then(data => {
         pokemonHandler(data);
     })
     .catch(() => {
-        showPokemonNotFoundError(pokemon);
+        showPokemonNotFoundError(pokemonIdOrName);
         clearPokemon();
     });
 }
