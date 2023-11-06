@@ -137,7 +137,7 @@ function getPokemonByIdOrName(pokemon){
     });
 }
 function easterEgg(){
-    let michelin = {
+    const michelin = {
         name: 'michelin',
         types: [
             {
