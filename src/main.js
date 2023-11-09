@@ -40,11 +40,10 @@ function getPokemons(offset = 0, amount = 15){
 }
 function updatePokemons(pokemons, offset = 0){
     $('#pokemon-now-showing').attr('data-index', offset);
-    if(!totalPokemon) { updateTotalPokemon(pokemons.count); };
+    updateTotalPokemon(pokemons.count);
     updatePokemonList(pokemons.results, offset);
 }
 function updateTotalPokemon(total){
-    totalPokemon = total;
     try{
         Cypress.env('totalPokemon', total);
 
@@ -65,14 +64,14 @@ function addLoadingToPokemon(){
 function removeLoadingFromPokemon(){
     $('#pokemon-carousel .loader.pokemon-carousel').remove();
 }
-let totalPokemon // total amount of pokemons is global por testing purposes
 function getFirstPokemonOnListId(){
     const offset = Number($('#pokemon-now-showing').attr('data-index'));
     return offset + 1;//offset starts in 0, pokemon list starts in 1
 }
 function getLastPokemonOnListId(amount = 15){
     const offset = Number($('#pokemon-now-showing').attr('data-index'));
-    return Math.min(offset + amount, totalPokemon);
+    const TOTAL = $('#pokemon-now-showing').attr('data-total');
+    return Math.min(offset + amount, TOTAL);
 }
 function updatePokemonList(pokemonList, offset){
     clearPokemonList();
