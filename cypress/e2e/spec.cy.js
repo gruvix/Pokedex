@@ -24,7 +24,7 @@ describe('tests the pokedex', () => {
   it('should get a random pokemon from the list', () => {
     const POKEMON_LIST_AMOUNT = 15;
     cy.window().then((win) => {
-      win.getPokemons(0, POKEMON_LIST_AMOUNT)
+      win.updatePokemons(0)
     }).wait(1000)
     cy.get("#pokemon-now-showing").invoke('attr', 'data-total').then((total) => {
       return parseInt(total)
@@ -33,7 +33,7 @@ describe('tests the pokedex', () => {
       const LIST_RANDOM_OFFSET = Math.floor(Math.random() * LIST_TOTAL_OFFSET);
       const FIRST_POKEMON_IN_LIST = LIST_RANDOM_OFFSET + 1;
       cy.window().then((win) => {
-        win.getPokemons(win.updatePokemons, LIST_RANDOM_OFFSET, POKEMON_LIST_AMOUNT)
+        win.updatePokemons(LIST_RANDOM_OFFSET)
         cy.get("#pokemon-list li").first().invoke('text').should(text => {
           const index = parseInt(text.split('.'));
           expect(index).to.equal(FIRST_POKEMON_IN_LIST)
