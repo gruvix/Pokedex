@@ -189,16 +189,16 @@ function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');
 }
 function updateTypes(types) {
-  for (const type of types) {
+  types.forEach((type) => {
     const div = $(`<div><i class="type-${type.type.name}">${type.type.name}</i></div>`);
     $('#pokemon-types').append(div);
-  }
+  });
 }
 function updateAbilities(abilities) {
-  for (const ability of abilities) {
+  abilities.forEach((ability) => {
     const div = $(`<div><i class="pokemon-ability">${ability.ability.name}</i></div>`);
     $('#pokemon-abilities').append(div);
-  }
+  });
 }
 function updateMoves(moves) {
   const COMPLETE_PAIR = 2;
