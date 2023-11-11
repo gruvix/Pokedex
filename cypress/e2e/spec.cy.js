@@ -5,7 +5,9 @@ describe('tests the pokedex', () => {
   });
   it('should show an error indicating the searched pokemon does not exist', () => {
     cy.get('#pokemon-id-input').type('not a pokemon').get('#search-pokemon-button').click();
-    cy.get('#error').should('be.visible');
+    cy.get('#error').should('be.visible').should('be.text', 'The pokemon not a pokemon does not exist');
+  });
+
   it('should show an error indicating it could not load pokemons list', () => {
     cy.window().then((win) => {
       win.fetchSpriteToList('', '');
