@@ -34,3 +34,4 @@ http://localhost:8000/
 ## Pruebas 
 Para hacer las pruebas en Cypress:
 `npm run cypress-dev`
+(requiere el iniciado del programa)
