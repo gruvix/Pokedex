@@ -25,7 +25,7 @@ function getPokemons(offset, amount) {
   return fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then((response) => response.json())
     .catch(() => {
-      handleError('Could not get pokemons list');
+      handleError('Failed to get pokemons list');
     });
 }
 /**
@@ -107,7 +107,7 @@ function fetchSpriteToList(element, pokemon) {
       removeLoadingFromListItem(element);
     })
     .catch(() => {
-      handleError('Could not get pokemon for sprite list');
+      handleError('Failed to get pokemon for sprite list');
     });
 }
 function addSprite(sprite, htmlItem) {
@@ -250,7 +250,7 @@ function showError() {
   $('#error').removeClass('hidden');
 }
 function hideError() {
-  document.querySelector('#error').classList.add('hidden');
+  $('#error').addClass('hidden');
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();

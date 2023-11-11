@@ -3,7 +3,7 @@ describe('tests the pokedex', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8000/');
   });
-  it('should show an error saying the pokemon was not found', () => {
+  it('should show an error indicating the searched pokemon does not exist', () => {
     cy.get('#pokemon-id-input').type('not a pokemon').get('#search-pokemon-button').click();
     cy.get('#error').should('be.visible');
   });
