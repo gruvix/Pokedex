@@ -73,10 +73,10 @@ function getLastPokemonOnListId() {
 function updatePokemonList(pokemonList, offset) {
   clearPokemonList();
   let i = 0;
-  for (const pokemon of pokemonList) {
-    i++;
+  pokemonList.forEach((pokemon) => {
+    i += 1;
     addPokemonToList(pokemon, offset + i);
-  }
+  });
   updatePageIndicator();
 }
 function updatePageIndicator() {
