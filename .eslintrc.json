@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "jquery": true
+        "jquery": true,
+        "cypress/globals": true
     },
     "extends": "airbnb-base",
     "parserOptions": {
@@ -11,5 +12,8 @@
     },
     "rules": {
         "linebreak-style": 0
-    }
+    },
+    "plugins": [
+        "cypress"
+      ]
 }
