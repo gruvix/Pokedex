@@ -6,6 +6,11 @@ describe('tests the pokedex', () => {
   it('should show an error indicating the searched pokemon does not exist', () => {
     cy.get('#pokemon-id-input').type('not a pokemon').get('#search-pokemon-button').click();
     cy.get('#error').should('be.visible');
+  it('should show an error indicating it could not load pokemons list', () => {
+    cy.window().then((win) => {
+      win.fetchSpriteToList('', '');
+    });
+    cy.get('#error').should('be.visible').should('be.text', 'Failed to get pokemon for sprite list');
   });
 
   it('should get a pokemon and show its info', () => {
