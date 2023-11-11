@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 describe('tests the pokedex', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8000/');
