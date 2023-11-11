@@ -25,7 +25,7 @@ function getPokemons(offset, amount) {
   return fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then((response) => response.json())
     .catch(() => {
-      alert('Could not get pokemons list');
+      handleError('Could not get pokemons list');
     });
 }
 /**
@@ -50,7 +50,7 @@ function updateFirstPokemonIndex(offset) {
 function getPokemonHandler(pokemon) {
   clearPokemon();
   addLoadingToPokemon();
-  hidePokemonNotFoundError();
+  hideError();
   getPokemonByIdOrName(pokemon);
 }
 function addLoadingToPokemon() {
@@ -107,7 +107,7 @@ function fetchSpriteToList(element, pokemon) {
       removeLoadingFromListItem(element);
     })
     .catch(() => {
-      alert('Could not get pokemon for sprite list');
+      handleError('Could not get pokemon for sprite list');
     });
 }
 function addSprite(sprite, htmlItem) {
@@ -131,7 +131,7 @@ function getPokemonByIdOrName(pokemonIdOrName) {
       pokemonHandler(data);
     })
     .catch(() => {
-      showPokemonNotFoundError(pokemonIdOrName);
+      handleError(`The pokemon <strong>${pokemonIdOrName}</strong> does not exist`);
       clearPokemon();
     });
 }
@@ -242,12 +242,15 @@ function addImageToCarousel(imageSource) {
   }
 }
 
-function showPokemonNotFoundError(pokemon) {
-  $('#pokemon-does-not-exist').text(pokemon);
-  $('#pokemon-not-found').removeClass('hidden');
+function handleError(message) {
+  $('#error').html(message);
+  showError();
 }
-function hidePokemonNotFoundError() {
-  document.querySelector('#pokemon-not-found').classList.add('hidden');
+function showError() {
+  $('#error').removeClass('hidden');
+}
+function hideError() {
+  document.querySelector('#error').classList.add('hidden');
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();
