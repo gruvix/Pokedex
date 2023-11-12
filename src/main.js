@@ -87,8 +87,9 @@ function updatePageIndicator() {
   const pageIndicator = $('#pokemon-now-showing');
   pageIndicator.text(`pokemon ${getFirstPokemonOnListId()} to ${getLastPokemonOnListId()}`);
 }
-function addPokemonToList(pokemon, index) {
-  const pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${index}. ${pokemon.name}</button>`);
+function addPokemonToList(pokemonFromList, index) {
+  const pokemonName = pokemonFromList.name;
+  const pokemonButton = $(`<button class="btn btn-link" id="${pokemonName}">${index}. ${pokemonName}</button>`);
   const li = $('<li></li>');
   li.append(pokemonButton);
   $('#pokemon-list').append(li);
