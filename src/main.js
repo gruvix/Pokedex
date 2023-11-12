@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
+import * as request from './apiRequests.js';
 import { easterEgg } from './easterEgg.js';
 import { hideError } from './error.js';
 
@@ -22,26 +23,19 @@ $('#pokemon-list').on('click', (event) => {
   getPokemonHandler(pokemon);
 });
 updatePokemons();
-
-function getPokemons(offset, amount) {
-  return fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
-    .then((response) => response.json())
-    .catch(() => {
-      handleError('Failed to get pokemons list');
-    });
-}
 /**
  * Updates the list of Pokemon with the given offset and limit.
  * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
  * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
  */
-async function updatePokemons(rawOffset = 0, amount = 15) {
+function updatePokemons(rawOffset = 0, amount = 15) {
   const LOWEST_POKEMON_OFFSET = 0;
   const offset = Math.max(rawOffset, LOWEST_POKEMON_OFFSET);
-  const pokemons = await getPokemons(offset, amount);
-  updateFirstPokemonIndex(offset);
-  updateTotalPokemon(pokemons.count);
-  updatePokemonList(pokemons.results, offset);
+  request.getPokemons(offset, amount).then((pokemons) => {
+    updateFirstPokemonIndex(offset);
+    updateTotalPokemon(pokemons.count);
+    updatePokemonList(pokemons.results, offset);
+  });
 }
 function updateTotalPokemon(total) {
   $('#pokemon-now-showing').attr('data-total', total);
@@ -49,14 +43,19 @@ function updateTotalPokemon(total) {
 function updateFirstPokemonIndex(offset) {
   $('#pokemon-now-showing').attr('data-index', offset);
 }
-function getPokemonHandler(pokemon) {
+function getPokemonHandler(pokemonName) {
   clearPokemon();
   addLoadingToPokemon();
   hideError();
-  getPokemonByIdOrName(pokemon);
-  let pokemon;
   if (pokemonName === 'michelin') {
-    pokemon = easterEgg();
+    const pokemon = easterEgg();
+    pokemonHandler(pokemon);
+  } else {
+    request.getPokemonByIdOrName(pokemonName).then((pokemon) => {
+      pokemonHandler(pokemon);
+    });
+  }
+  clearPokemon();
 }
 function addLoadingToPokemon() {
   $('#pokemon-carousel .carousel-inner')
@@ -94,27 +93,20 @@ function addPokemonToList(pokemon, index) {
   li.append(pokemonButton);
   $('#pokemon-list').append(li);
   addLoadingToListItem(li);
-  fetchSpriteToList(li, pokemon);
+  request.getPokemonByIdOrName(pokemonName).then((pokemon) => {
+    addSprite(pokemon.sprites.front_default, li);
+  });
+  removeLoadingFromListItem(li);
+}
+function removeLoadingFromListItem(element) {
+  element.children('.lds-dual-ring').remove();
 }
 function addLoadingToListItem(element) {
   const loading = $('<div class="lds-dual-ring"></div>');
   loading.addClass('lds-dual-ring');
   element.append(loading);
 }
-function removeLoadingFromListItem(element) {
-  element.children('.lds-dual-ring').remove();
-}
-function fetchSpriteToList(element, pokemon) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-    .then((response) => response.json())
-    .then((data) => {
-      addSprite(data.sprites.front_default, element);
-      removeLoadingFromListItem(element);
-    })
-    .catch(() => {
-      handleError('Failed to get pokemon for sprite list');
-    });
-}
+
 function addSprite(sprite, htmlItem) {
   if (!sprite) return;
   const img = $(`<img src="${sprite}" class="list-sprite">`);
@@ -125,21 +117,6 @@ function clearPokemonList() {
   list.children().remove();
 }
 
-function getPokemonByIdOrName(pokemonIdOrName) {
-  if (pokemonIdOrName === 'michelin') {
-    easterEgg();
-    return;
-  }
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonIdOrName}`)
-    .then((response) => response.json())
-    .then((data) => {
-      pokemonHandler(data);
-    })
-    .catch(() => {
-      handleError(`The pokemon <strong>${pokemonIdOrName}</strong> does not exist`);
-      clearPokemon();
-    });
-}
 function pokemonHandler(pokemon) {
   showPokemonInfo();
   removeLoadingFromPokemon();
