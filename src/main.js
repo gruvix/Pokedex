@@ -33,6 +33,9 @@ function updatePokemons(rawOffset = 0, amount = 15) {
   const LOWEST_POKEMON_OFFSET = 0;
   const offset = Math.max(rawOffset, LOWEST_POKEMON_OFFSET);
   request.getPokemons(offset, amount).then((pokemons) => {
+    if (!pokemons) {
+      return;
+    }
     updateFirstPokemonIndex(offset);
     updateTotalPokemon(pokemons.count);
     updatePokemonList(pokemons.results, offset);
@@ -53,6 +56,9 @@ function getPokemonHandler(pokemonName) {
     pokemonHandler(pokemon);
   } else {
     request.getPokemonByIdOrName(pokemonName).then((pokemon) => {
+      if (!pokemon) {
+        return;
+      }
       pokemonHandler(pokemon);
     });
   }
@@ -96,6 +102,9 @@ function addPokemonToList(pokemonFromList, index) {
   $('#pokemon-list').append(li);
   addLoadingToListItem(li);
   request.getPokemonByIdOrName(pokemonName).then((pokemon) => {
+    if (!pokemon) {
+      return;
+    }
     addSprite(pokemon.sprites.front_default, li);
   });
   removeLoadingFromListItem(li);
