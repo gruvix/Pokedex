@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
+import { hideError } from './error';
 
 document.querySelector('#search-pokemon-button').addEventListener('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
@@ -242,16 +243,6 @@ function addImageToCarousel(imageSource) {
   }
 }
 
-function handleError(message) {
-  $('#error').html(message);
-  showError();
-}
-function showError() {
-  $('#error').removeClass('hidden');
-}
-function hideError() {
-  $('#error').addClass('hidden');
-}
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();
   $('#pokemon-name').removeClass();
