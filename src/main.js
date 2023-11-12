@@ -220,13 +220,13 @@ function updateName(pokemon) {
   nameElement.text(capitalizedName).addClass(`type-${pokemon.types[0].type.name}`);
 }
 function displayPokemon(sprites) {
-  for (const spriteCategory in sprites) {
-    for (const sprite in sprites[spriteCategory]) { // only other (best) sprites, main sprites are too small
+  Object.keys(sprites).forEach((spriteCategory) => {
+    Object.keys(sprites[spriteCategory]).forEach((sprite) => {
       if (sprites[spriteCategory][sprite]) {
         addImageToCarousel(sprites[spriteCategory][sprite]);
       }
-    }
-  }
+    });
+  });
 }
 
 function addImageToCarousel(imageSource) {
