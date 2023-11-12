@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
 import * as request from './apiRequests.js';
