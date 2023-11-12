@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
-import { hideError } from './error';
 import { easterEgg } from './easterEgg.js';
+import { hideError } from './error.js';
 
 document.querySelector('#search-pokemon-button').addEventListener('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
