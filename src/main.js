@@ -2,7 +2,7 @@
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
 import * as request from './apiRequests.js';
-import { easterEgg } from './easterEgg.js';
+import easterEgg from './easterEgg.js';
 import { hideError } from './error.js';
 
 document.querySelector('#search-pokemon-button').addEventListener('click', () => {

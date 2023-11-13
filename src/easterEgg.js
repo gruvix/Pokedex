@@ -1,4 +1,4 @@
-export function easterEgg() {
+export default function easterEgg() {
   const michelin = {
     name: 'michelin',
     types: [
