@@ -62,7 +62,6 @@ function getPokemonHandler(pokemonName) {
       pokemonHandler(pokemon);
     });
   }
-  clearPokemon();
 }
 function addLoadingToPokemon() {
   $('#pokemon-carousel .carousel-inner')
