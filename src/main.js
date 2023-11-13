@@ -5,6 +5,10 @@ import * as request from './apiRequests.js';
 import easterEgg from './easterEgg.js';
 import { hideError } from './error.js';
 
+document.querySelector('#random-pokemon-button').addEventListener('click', () => {
+  const random = generateRandomId();
+  updatePokemons(random);
+});
 document.querySelector('#search-pokemon-button').addEventListener('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
   getPokemonHandler(pokemon);
@@ -40,6 +44,12 @@ function updatePokemons(rawOffset = 0, amount = 15) {
     updateTotalPokemon(pokemons.count);
     updatePokemonList(pokemons.results, offset);
   });
+}
+function generateRandomId() {
+  const POKEMON_PAGE_AMOUNT = 15;
+  const POKEMON_TOTAL = $('#pokemon-now-showing').attr('data-total');
+  const RANDOM_ID = Math.floor(Math.random() * POKEMON_TOTAL);
+  return RANDOM_ID - POKEMON_PAGE_AMOUNT;
 }
 function updateTotalPokemon(total) {
   $('#pokemon-now-showing').attr('data-total', total);
