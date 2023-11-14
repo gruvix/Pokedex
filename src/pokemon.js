@@ -2,7 +2,6 @@
 import displayPokemon from './display.js';
 import easterEgg from './easterEgg.js';
 import { hideError } from './error.js';
-import clearPokemon from './clearPokemon.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 
 function showPokemonInfo() {
@@ -54,6 +53,14 @@ function pokemonHandler(pokemon) {
   updateAbilities(pokemon.abilities);
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites.other);
+}
+function clearPokemon() {
+  $('#pokemon-carousel .carousel-inner').children().remove();
+  $('#pokemon-name').removeClass();
+  $('#pokemon-abilities').children().empty();
+  $('#pokemon-types').children().empty();
+  $('#pokemon-moves-table').children().empty();
+  $('#pokemon-info').addClass('hidden');
 }
 export default function getPokemonHandler(pokemonName) {
   clearPokemon();
