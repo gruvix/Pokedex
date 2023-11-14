@@ -24,39 +24,30 @@ describe('tests the pokedex', () => {
 
   it('should get a random pokemon from the list', () => {
     const POKEMON_LIST_AMOUNT = 15;
-    cy.window().then((win) => {
-      win.updatePokemons(0);
-    }).wait(1000);
-    cy.get('#pokemon-now-showing').invoke('attr', 'data-total').then((total) => parseInt(total)).then((TOTAL_POKEMON) => {
-      const LIST_TOTAL_OFFSET = TOTAL_POKEMON - POKEMON_LIST_AMOUNT;
-      const LIST_RANDOM_OFFSET = Math.floor(Math.random() * LIST_TOTAL_OFFSET);
-      const FIRST_POKEMON_IN_LIST = LIST_RANDOM_OFFSET + 1;
-      cy.window().then((win) => {
-        win.updatePokemons(LIST_RANDOM_OFFSET);
-        cy.get('#pokemon-list li').first().invoke('text').should((text) => {
-          const index = parseInt(text.split('.'));
-          expect(index).to.equal(FIRST_POKEMON_IN_LIST);
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('pokemons');
+
+    cy.get('#random-pokemon-button').click().wait('@pokemons').wait(100)
+      .then(() => {
+        cy.get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
+          .then((list) => {
+            const randomPokemonIndex = Math.floor(Math.random() * list.length);
+            const randomPokemon = list[randomPokemonIndex];
+            cy.wrap(randomPokemon).children().first().click();
+          })
+          .get('#pokemon-carousel .carousel-inner')
+          .children()
+          .first()
+          .should('not.have.class', 'loader');
+        cy.get('#pokemon-name').should('be.visible');
+        const CAROUSEL_DELAY = 700;
+        cy.get('.carousel-inner').children().each((sprite) => {
+          cy.wait(CAROUSEL_DELAY).get('.carousel-control-next').click().get(sprite)
+            .should('be.visible');
         });
-      }).get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
-        .then((list) => {
-          const randomPokemonIndex = Math.floor(Math.random() * list.length);
-          const randomPokemon = list[randomPokemonIndex];
-          cy.wrap(randomPokemon).children().first().click();
-        })
-        .get('#pokemon-carousel .carousel-inner')
-        .children()
-        .first()
-        .should('not.have.class', 'loader');
-      cy.get('#pokemon-name').should('be.visible');
-      const CAROUSEL_DELAY = 700;
-      cy.get('.carousel-inner').children().each((sprite) => {
-        cy.wait(CAROUSEL_DELAY).get('.carousel-control-next').click().get(sprite)
-          .should('be.visible');
+        const DEFAULT_POKEMON_NAME = 'POKEMON';
+        cy.get('#pokemon-name').should('not.be.text', DEFAULT_POKEMON_NAME);
+        cy.get('#pokemon-types').children().should('have.length.greaterThan', 0);
+        cy.get('#pokemon-abilities').children().should('have.length.greaterThan', 0);
       });
-      const DEFAULT_POKEMON_NAME = 'POKEMON';
-      cy.get('#pokemon-name').should('not.be.text', DEFAULT_POKEMON_NAME);
-      cy.get('#pokemon-types').children().should('have.length.greaterThan', 0);
-      cy.get('#pokemon-abilities').children().should('have.length.greaterThan', 0);
-    });
   });
 });
