@@ -2,7 +2,7 @@
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
 import * as request from './apiRequests.js';
-import getPokemonHandler from './pokemonHandler.js';
+import getPokemonHandler from './pokemon.js';
 
 document.querySelector('#random-pokemon-button').addEventListener('click', () => {
   const random = generateRandomId();
