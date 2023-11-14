@@ -114,15 +114,6 @@ function clearPokemonList() {
   list.children().remove();
 }
 
-function clearPokemon() {
-  $('#pokemon-carousel .carousel-inner').children().remove();
-  $('#pokemon-name').removeClass();
-  $('#pokemon-abilities').children().empty();
-  $('#pokemon-types').children().empty();
-  $('#pokemon-moves-table').children().empty();
-  $('#pokemon-info').addClass('hidden');
-}
-
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/
 // listar pokemons y poder cambiar de página
