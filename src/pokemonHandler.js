@@ -1,8 +1,9 @@
-import displayPokemon from './display';
-import easterEgg from './easterEgg';
-import { hideError } from './error';
-import clearPokemon from './clearPokemon';
-import { getPokemonByIdOrName } from './apiRequests';
+/* eslint-disable import/extensions */
+import displayPokemon from './display.js';
+import easterEgg from './easterEgg.js';
+import { hideError } from './error.js';
+import clearPokemon from './clearPokemon.js';
+import { getPokemonByIdOrName } from './apiRequests.js';
 
 function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');
