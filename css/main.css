@@ -22,22 +22,6 @@ body{
   font-size: 250%;
   animation: glow 2s ease-in-out infinite;
 }
-table {
-  border-collapse: collapse;
-}
-
-td {
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  color: white;
-}
-
-td:nth-child(even) {
-  border-right: none;
-}
-
-
-
 
 @keyframes glow {
   0% {
