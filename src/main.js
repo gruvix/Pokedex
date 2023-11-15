@@ -44,7 +44,12 @@ function updatePokemons(pokemons, offset = 0){
     updatePokemonList(pokemons.results, offset);
 }
 function updateTotalPokemon(total){
-    $('#pokemon-now-showing').attr('data-total', total);
+    try{
+        Cypress.env('totalPokemon', total);
+
+    } catch(error){
+        console.log(error);
+    }
 }
 function getPokemonHandler(pokemon){
     clearPokemon();
