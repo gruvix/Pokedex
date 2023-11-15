@@ -145,7 +145,7 @@ function showPokemonInfo(){
 function updateAbilities(abilities){
     $('#pokemon-abilities').children().empty();
     for(const ability of abilities){
-        const div  = $(`<div><i class="pokemon-ability">-${ability.ability.name}</i></div>`);
+        const div  = $(`<div><i>-${ability.ability.name}</i></div>`);
         $('#pokemon-abilities').append(div);
     }
 }
