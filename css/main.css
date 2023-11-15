@@ -7,10 +7,8 @@ body{
 }
 
 .pokemon-prompt{
-  color: rgb(235, 229, 217);
-  margin-bottom: 160%;
-  background-color: #181818;
-  border-radius: 15%;
+  color: wheat;
+  margin-bottom: 20%;
 }
 .pokemon-ability{
   color: rgb(209, 209, 209)
