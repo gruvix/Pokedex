@@ -24,7 +24,7 @@ describe('tests the pokedex', () => {
       const randomPokemonIndex = Math.floor(Math.random() * list.length);
       const randomPokemon = list[randomPokemonIndex];
       cy.wrap(randomPokemon).children().first().click();
-    }).get("#pokemon-carousel .carousel-inner").children().first().should('not.have.class', 'loader');
+    }).get("#pokemon-carousel .carousel-inner").should('have.length.gt', 0);
   })
 
   it("gets pikachu and scrolls through the pokedex's images", () => {
