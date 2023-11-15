@@ -33,7 +33,7 @@ describe('tests the pokedex', () => {
     const POKEMON_LIST_AMOUNT = 15;
     cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('pokemons');
 
-    cy.get('#random-pokemon-button').click().wait('@pokemons').wait(100)
+    cy.get('#random-pokemon-button').click().wait('@pokemons')
       .then(() => {
         cy.get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
           .then((list) => {
