@@ -144,12 +144,14 @@ function showPokemonInfo(){
     $('#pokemon-info').removeClass('hidden');
 }
 function updateTypes(types){
+    $('#pokemon-types').children().empty();
     for(const type of types){
         const div  = $(`<div><i class="type-${type.type.name}">${type.type.name}</i></div>`);
         $('#pokemon-types').append(div);
     }
 }
 function updateAbilities(abilities){
+    $('#pokemon-abilities').children().empty();
     for(const ability of abilities){
         const div  = $(`<div><i class="pokemon-ability">-${ability.ability.name}</i></div>`);
         $('#pokemon-abilities').append(div);
@@ -159,6 +161,7 @@ function updateName(pokemon){
     const name = pokemon.name;
     const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
     const nameElement = $('#pokemon-name');
+    $('#pokemon-name').removeClass()
     nameElement.text(capitalizedName).addClass(`type-${pokemon.types[0].type.name}`);
 }
 function displayPokemon(sprites){
@@ -194,9 +197,6 @@ function hidePokemonNotFoundError(){
 function clearPokemon(){
     const carousel = $('#pokemon-carousel .carousel-inner');
     carousel.children().remove();
-    $('#pokemon-name').removeClass()
-    $('#pokemon-abilities').children().empty();
-    $('#pokemon-types').children().empty();
 }
 
 
