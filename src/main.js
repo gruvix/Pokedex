@@ -12,9 +12,7 @@ function getPokemonById(pokemonId){
         console.log(data);
         displayPokemon(data);
     })
-    .catch(() => {
-        console.log('pokeapi server error')
-    })
+    .catch(console.log('pokeapi server error'))
 }
 
 
