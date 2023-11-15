@@ -41,16 +41,8 @@ function getPokemonList(offset = 0, amount = 15){
 }
 function getPokemonHandler(pokemon){
     clearPokemon();
-    addLoadingToPokemon();
     getPokemonByIdOrName(pokemon);
     hidePokemonNotFoundError()
-}
-function addLoadingToPokemon(){
-    $('#pokemon-carousel .carousel-inner')
-    .append(`<div class="loader pokemon-carousel active"></div>`)
-}
-function removeLoadingFromPokemon(){
-    $('#pokemon-carousel .loader.pokemon-carousel').remove();
 }
 let firstPokemonOnListId;
 let lastPokemonOnListId;
@@ -114,7 +106,6 @@ function getPokemonByIdOrName(pokemon){
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
     .then(response => response.json())
     .then(data => {
-        removeLoadingFromPokemon();
         displayPokemon(data);
     })
     .catch(() => {
