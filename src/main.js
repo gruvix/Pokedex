@@ -38,15 +38,12 @@ async function updatePokemons(offset = 0, amount = 15){
     const LOWEST_POKEMON_OFFSET = 0;
     offset = Math.max(offset, LOWEST_POKEMON_OFFSET);
     const pokemons = await getPokemons(offset, amount);
-    updateFirstPokemonIndex(offset);
+    $('#pokemon-now-showing').attr('data-index', offset);
     updateTotalPokemon(pokemons.count);
     updatePokemonList(pokemons.results, offset);
 }
 function updateTotalPokemon(total){
     $('#pokemon-now-showing').attr('data-total', total);
-}
-function updateFirstPokemonIndex(offset){
-    $('#pokemon-now-showing').attr('data-index', offset);
 }
 function getPokemonHandler(pokemon){
     clearPokemon();
