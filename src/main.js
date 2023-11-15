@@ -67,7 +67,7 @@ function addPokemonToList(pokemon){
 
 function clearPokemonList(){
     const list = $('#pokemon-list');
-    list.children().remove();
+    list.children().not('h3').remove();
 }
 
 function getPokemonByIdOrName(pokemon){
@@ -80,6 +80,7 @@ function getPokemonByIdOrName(pokemon){
         showPokemonNotFoundError(pokemon);
     });
 }
+
 function displayPokemon(pokemon){
     for(const spriteCategory in pokemon.sprites.other){
         for(const sprite in pokemon.sprites.other[spriteCategory]){//only other (best) sprites, main sprites are too small
