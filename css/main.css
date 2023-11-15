@@ -10,9 +10,6 @@ body{
   color: wheat;
   margin-bottom: 20%;
 }
-#pokemon-name{
-  font-size: 250%;
-}
 
 .title{
     --bg-size: 400%;
