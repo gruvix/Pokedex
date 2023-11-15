@@ -9,11 +9,11 @@ function updateFirstPokemonIndex(offset) {
   $('#pokemon-now-showing').attr('data-index', offset);
 }
 
-function getFirstPokemonOnListId() {
+export function getFirstPokemonOnListId() {
   const offset = Number($('#pokemon-now-showing').attr('data-index'));
   return offset + 1;// offset starts in 0, pokemon list starts in 1
 }
-function getLastPokemonOnListId() {
+export function getLastPokemonOnListId() {
   const AMOUNT = $('#pokemon-list li').length;
   const offset = Number($('#pokemon-now-showing').attr('data-index'));
   const TOTAL = $('#pokemon-now-showing').attr('data-total');
@@ -51,7 +51,7 @@ function updatePokemonList(pokemonList, offset) {
   });
   updatePageIndicator();
 }
-export default function updatePokemons(rawOffset = 0, amount = 15) {
+export function updatePokemons(rawOffset = 0, amount = 15) {
   const LOWEST_POKEMON_OFFSET = 0;
   const offset = Math.max(rawOffset, LOWEST_POKEMON_OFFSET);
   request.getPokemons(offset, amount).then((pokemons) => {

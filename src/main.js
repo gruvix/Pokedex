@@ -1,12 +1,13 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-use-before-define */
 /// <reference types="jquery" />
-import updatePokemons from './pokemonList.js';
+import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';
+import generateRandomId from './utils.js';
 
 document.querySelector('#random-pokemon-button').addEventListener('click', () => {
   const random = generateRandomId();
-  updatePokemons(random);
+  pokeList.updatePokemons(random);
 });
 document.querySelector('#search-pokemon-button').addEventListener('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
@@ -14,19 +15,19 @@ document.querySelector('#search-pokemon-button').addEventListener('click', () =>
 });
 document.querySelector('#previous-page').addEventListener('click', () => {
   const PREVIOUS_PAGE_OFFSET = 16;
-  const previousPage = getFirstPokemonOnListId() - PREVIOUS_PAGE_OFFSET;
-  updatePokemons(previousPage);
+  const previousPage = pokeList.getFirstPokemonOnListId() - PREVIOUS_PAGE_OFFSET;
+  pokeList.updatePokemons(previousPage);
 });
 document.querySelector('#next-page').addEventListener('click', () => {
-  const nextPage = getLastPokemonOnListId();
-  updatePokemons(nextPage);
+  const nextPage = pokeList.getLastPokemonOnListId();
+  pokeList.updatePokemons(nextPage);
 });
 $('#pokemon-list').on('click', (event) => {
   const pokemon = event.target.id;
   if (!event.target.classList.contains('btn-link')) return;
   getPokemonHandler(pokemon);
 });
-updatePokemons();
+pokeList.updatePokemons();
 /**
  * Updates the list of Pokemon with the given offset and limit.
  * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
