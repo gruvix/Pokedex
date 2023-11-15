@@ -8,32 +8,31 @@ document.querySelector('#search-pokemon-button').addEventListener('click', funct
 document.querySelector('#previous-page').addEventListener('click', function () {
     const PREVIOUS_PAGE_OFFSET = 16;
     const previousPage = getFirstPokemonOnListId() - PREVIOUS_PAGE_OFFSET;
-    getPokemons(updatePokemons, previousPage)
+    getPokemons(previousPage)
 })
 document.querySelector('#next-page').addEventListener('click', function () {
     const nextPage = getLastPokemonOnListId();
-    getPokemons(updatePokemons, nextPage)
+    getPokemons(nextPage)
 })
 $('#pokemon-list').on('click', event => {
     const pokemon = event.target.id;
     if(!event.target.classList.contains("btn-link")) return;
     getPokemonHandler(pokemon)
 })
-getPokemons(updatePokemons)
+getPokemons()
 
 /**
  * Fetches a list of Pokemon with the given offset and limit.
- * @param {function} callbackFunction - The function to call when the list is fetched, will be called with the list and the offset.
  * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
  * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
  */
-function getPokemons(callbackFunction, offset = 0, amount = 15){
+function getPokemons(offset = 0, amount = 15){
     const LOWEST_POKEMON_OFFSET = 0;
     offset = Math.max(offset, LOWEST_POKEMON_OFFSET);
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(pokemons => {
-        callbackFunction(pokemons, offset);
+        updatePokemons(pokemons, offset);
     })
     .catch(() => {
         alert('Could not get pokemons list');
