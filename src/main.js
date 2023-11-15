@@ -7,11 +7,11 @@ document.querySelector('#search-pokemon-button').addEventListener('click', funct
 })
 document.querySelector('#previous-page').addEventListener('click', function () {
     const PREVIOUS_PAGE_OFFSET = 16;
-    const previousPage = getFirstPokemonOnListId() - PREVIOUS_PAGE_OFFSET;
+    const previousPage = firstPokemonOnListId - PREVIOUS_PAGE_OFFSET;
     getPokemons(previousPage)
 })
 document.querySelector('#next-page').addEventListener('click', function () {
-    const nextPage = getLastPokemonOnListId();
+    const nextPage = lastPokemonOnListId;
     getPokemons(nextPage)
 })
 $('#pokemon-list').on('click', event => {
@@ -29,18 +29,18 @@ getPokemons()
 function getPokemons(offset = 0, amount = 15){
     const LOWEST_POKEMON_OFFSET = 0;
     offset = Math.max(offset, LOWEST_POKEMON_OFFSET);
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
+    return fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(pokemons => {
-        updatePokemons(pokemons, offset);
+        updatePokemons(pokemons, offset, amount);
     })
     .catch(() => {
         alert('Could not get pokemons list');
     })
 }
-function updatePokemons(pokemons, offset = 0){
-    $('#pokemon-now-showing').attr('data-index', offset);
+function updatePokemons(pokemons, offset = 0, amount = 15){
     if(!totalPokemon) { updateTotalPokemon(pokemons.count); };
+    updateFirstAndLastPokemon(offset, amount);
     updatePokemonList(pokemons.results, offset);
 }
 function updateTotalPokemon(total){
@@ -66,13 +66,13 @@ function removeLoadingFromPokemon(){
     $('#pokemon-carousel .loader.pokemon-carousel').remove();
 }
 let totalPokemon // total amount of pokemons is global por testing purposes
-function getFirstPokemonOnListId(){
-    const offset = Number($('#pokemon-now-showing').attr('data-index'));
-    return offset + 1;//offset starts in 0, pokemon list starts in 1
-}
-function getLastPokemonOnListId(amount = 15){
-    const offset = Number($('#pokemon-now-showing').attr('data-index'));
-    return Math.min(offset + amount, totalPokemon);
+let firstPokemonOnListId;
+let lastPokemonOnListId;
+function updateFirstAndLastPokemon(offset, amount){
+    firstPokemonOnListId = offset + 1;//first offset is 0 but first pokemon is 1
+    lastPokemonOnListId = offset + amount;
+    if(lastPokemonOnListId > totalPokemon)//makes sure it doesen't go further from last pokemon
+    lastPokemonOnListId = totalPokemon;
 }
 function updatePokemonList(pokemonList, offset){
     clearPokemonList();
@@ -85,7 +85,7 @@ function updatePokemonList(pokemonList, offset){
 }
 function updatePageIndicator(){
     const pageIndicator = $('#pokemon-now-showing');
-    pageIndicator.text(`pokemon ${getFirstPokemonOnListId()} to ${getLastPokemonOnListId()}`);
+    pageIndicator.text(`pokemon ${firstPokemonOnListId} to ${lastPokemonOnListId}`);
 }
 function addPokemonToList(pokemon, index){
     const pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${index}. ${pokemon.name}</button>`);
