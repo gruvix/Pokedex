@@ -46,7 +46,7 @@ function getPokemonHandler(pokemon){
 let firstPokemon;
 let lastPokemon;
 function updateFirstAndLastPokemon(offset, amount){
-    firstPokemon = offset + 1;//first offset is 0 but first pokemon is 1
+    firstPokemon = offset + 1;//first pokemon is 1 but first offset is 0
     lastPokemon = offset + amount;
 }
 function updatePokemonList(pokemonList, offset){
