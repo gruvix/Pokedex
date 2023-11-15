@@ -12,7 +12,7 @@ getPokemonList();
  * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
  * @param {number} [amount=10] - The maximum number of Pokemon to fetch.
  */
-function getPokemonList(offset = 0, amount = 15){
+function getPokemonList(offset = 0, amount = 10){
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
