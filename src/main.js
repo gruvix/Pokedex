@@ -2,7 +2,7 @@
 
 document.querySelector('#searchPokemonByIdButton').addEventListener('click', function () {
     const pokemon = document.querySelector('#pokemonIdInput').value.toLowerCase();
-    getPokemonByIdOrName(pokemon)
+    getPokemonById(pokemon)
     hidePokemonNotFoundError()
 })
 getPokemonList();
@@ -42,7 +42,7 @@ function clearPokemonList(){
     list.children().not('h3').remove();
 }
 
-function getPokemonByIdOrName(pokemon){
+function getPokemonById(pokemon){
     fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
     .then(response => response.json())
     .then(data => {
