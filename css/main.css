@@ -83,13 +83,6 @@ td:nth-child(even) {
   padding: 1%;
 }
 
-.carousel-item img {
-  max-height: 100%;
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
 #pokemon-carousel{
   height: 500px;
   display: flex;
