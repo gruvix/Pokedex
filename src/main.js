@@ -110,10 +110,6 @@ function showPokemonNotFoundError(pokemon){
 function hidePokemonNotFoundError(){
     document.querySelector('#pokemon-not-found').classList.add('hidden');
 }
-function clearPokemon(){
-    const carousel = $('#pokemon-carousel .carousel-inner');
-    carousel.children().remove();
-}
 
 
 
