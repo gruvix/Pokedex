@@ -157,8 +157,7 @@ function updateAbilities(abilities){
     }
 }
 function updateMoves(moves){
-    let currentRow = $("<tr></tr>")
-    $("#pokemon-moves-table").append(currentRow);
+    let currentRow = $("#pokemon-moves-table tr")
     moves.forEach(move => {  
         const td = $(`<td style="width: 60%;">${move.move.name}</td>`)     
         if(currentRow.children().length === 2)
@@ -211,8 +210,6 @@ function clearPokemon(){
     $('#pokemon-name').removeClass()
     $('#pokemon-abilities').children().empty();
     $('#pokemon-types').children().empty();
-    $("#pokemon-moves-table").children().empty();
-
 }
 
 
