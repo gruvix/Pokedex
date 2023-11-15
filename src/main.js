@@ -136,19 +136,11 @@ function pokemonHandler(pokemon){
     showPokemonInfo()
     removeLoadingFromPokemon();
     updateName(pokemon);
-    updateTypes(pokemon.types)
     updateAbilities(pokemon.abilities)
     displayPokemon(pokemon.sprites.other);
 }
 function showPokemonInfo(){
     $('#pokemon-info').removeClass('hidden');
-}
-function updateTypes(types){
-    $('#pokemon-types').children().empty();
-    for(const type of types){
-        const div  = $(`<div><i class="type-${type.type.name}">${type.type.name}</i></div>`);
-        $('#pokemon-types').append(div);
-    }
 }
 function updateAbilities(abilities){
     $('#pokemon-abilities').children().empty();
