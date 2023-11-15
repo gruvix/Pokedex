@@ -5,21 +5,19 @@ document.querySelector('#searchPokemonByIdButton').addEventListener('click', fun
     getPokemonById(pokemon)
     hidePokemonNotFoundError()
 })
-getPokemonList();
+const FIRST_POKEMON_LIST_OFFSET = 0;
+getTenPokemonsWithOffset(FIRST_POKEMON_LIST_OFFSET);
 
-/**
- * Fetches a list of Pokemon with the given offset and limit.
- * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
- * @param {number} [amount=10] - The maximum number of Pokemon to fetch.
- */
-function getPokemonList(offset = 0, amount = 10){
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
+function getTenPokemonsWithOffset(offset){
+    //gets a list of 10 pokemon given starting id, like 1, 11, 21, ...
+    // https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=10`)
     .then(response => response.json())
     .then(data => {
         updatePokemonList(data.results);
     })
     .catch(() => {
-        alert('Could not get pokemons list');
+        alert.log('Could not get pokemons list');
     })
 }
 
