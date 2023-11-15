@@ -30,8 +30,7 @@
                             <input type="text" class="form-control" id="pokemon-id-input" placeholder="Pokemon name or ID" aria-label="Pokemon name or ID" aria-describedby="pokemon-id-input">
                             <button class="btn btn-outline-secondary" type="button" id="search-pokemon-button">Search</button>
                         </div>
-                        <div class="alert alert-danger hidden" role="alert" id="pokemon-not-found">
-                            The Pokemon <strong id="pokemon-does-not-exist">POKEMON_NAME</strong> doesn't exist!
+                        <div class="alert alert-danger hidden" role="alert" id="error">
                         </div>
                     </div>
                 </div>
@@ -94,6 +93,7 @@
             <nav id="sidebar" class="col-md-4 bg-dark text-white" style="padding-bottom: 10px;">
                 <h3 class="nav-item" style="margin-top: 20px;">
                     <strong>Pokemon List</strong>
+                    <button id="random-pokemon-button" class="btn btn-success">Random</button>
                 </h3>
                 <ul class="nav flex-column" id="pokemon-list">
                     <li>
@@ -101,12 +101,14 @@
                     </li>
                 </ul>
                 <div style="justify-content: space-between; align-items: center; display: flex;">
-                    <button class="btn btn-secondary pokemon-list-button" id="previous-page">previous page</button><span id="pokemon-now-showing" data-index="0" data-total="0" style="padding: 5%;">pokemon X to Y</span><button class="btn btn-secondary pokemon-list-button" id="next-page">next page</button>
+                    <button class="btn btn-secondary pokemon-list-button" id="previous-page">previous page</button>
+                    <span id="pokemon-now-showing" data-index="0" data-total="0" style="padding: 5%;">pokemon X to Y</span>
+                    <button class="btn btn-secondary pokemon-list-button" id="next-page">next page</button>
                 </div>
             </nav>
         </div>
     </div>
 </body>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-<script src='src/main.js'></script>
+<script type="module" src='src/main.js'></script>
 </html>
