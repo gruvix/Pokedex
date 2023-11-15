@@ -134,20 +134,7 @@ function getPokemonByIdOrName(pokemon){
 }
 function pokemonHandler(pokemon){
     removeLoadingFromPokemon();
-    updateName(pokemon.name);
-    updateAbilities(pokemon.abilities)
     displayPokemon(pokemon.sprites.other);
-}
-function updateAbilities(abilities){
-    for(const ability of abilities){
-        const div  = $(`<div>${ability.ability.name}</div>`);
-        $('#pokemon-abilities').append(div);
-    }
-}
-function updateName(name){
-    const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
-    const nameElement = $('#pokemon-name');
-    nameElement.text(capitalizedName);
 }
 function displayPokemon(sprites){
     for(const spriteCategory in sprites){
