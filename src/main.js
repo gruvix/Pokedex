@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 
-document.querySelector('#search-pokemon-button').addEventListener('click', function () {
-    const pokemon = document.querySelector('#pokemon-id-input').value.toLowerCase();
+document.querySelector('#searchPokemonByIdButton').addEventListener('click', function () {
+    const pokemon = document.querySelector('#pokemonIdInput').value.toLowerCase();
     getPokemonByIdOrName(pokemon)
     hidePokemonNotFoundError()
 })
@@ -13,7 +13,6 @@ document.querySelector('#next-page').addEventListener('click', function () {
     const nextPage = lastPokemon;
     getPokemonList(nextPage)
 })
-$('#pokemon-list')
 getPokemonList();
 
 /**
@@ -88,7 +87,7 @@ function addImageToCarousel(imageSource){
     img.src = imageSource;
     const div = document.createElement('div');
     div.appendChild(img);
-    const carousel = document.querySelector('#pokemon-carousel');
+    const carousel = document.querySelector('#pokemonCarousel');
     carousel.children[0].appendChild(div);
     div.classList.add('carousel-item');
     if(carousel.children[0].children.length === 1){
@@ -97,11 +96,11 @@ function addImageToCarousel(imageSource){
 }
 
 function showPokemonNotFoundError(pokemon){
-    $('#pokemon-does-not-exist').text(pokemon);
-    $('#pokemon-not-found').removeClass('hidden');
+    $('#pokemonNameOrIdDoesNotExist').text(pokemon);
+    $('#pokemonNotFound').removeClass('hidden');
 }
 function hidePokemonNotFoundError(){
-    document.querySelector('#pokemon-not-found').classList.add('hidden');
+    document.querySelector('#pokemonNotFound').classList.add('hidden');
 }
 
 
