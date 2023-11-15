@@ -8,40 +8,37 @@ document.querySelector('#search-pokemon-button').addEventListener('click', funct
 document.querySelector('#previous-page').addEventListener('click', function () {
     const PREVIOUS_PAGE_OFFSET = 16;
     const previousPage = firstPokemonOnListId - PREVIOUS_PAGE_OFFSET;
-    getPokemons(previousPage)
+    getPokemonList(previousPage)
 })
 document.querySelector('#next-page').addEventListener('click', function () {
     const nextPage = lastPokemonOnListId;
-    getPokemons(nextPage)
+    getPokemonList(nextPage)
 })
 $('#pokemon-list').on('click', event => {
     const pokemon = event.target.id;
     if(!event.target.classList.contains("btn-link")) return;
     getPokemonHandler(pokemon)
 })
-getPokemons()
+getPokemonList();
 
 /**
  * Fetches a list of Pokemon with the given offset and limit.
  * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
- * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
+ * @param {number} [amount=10] - The maximum number of Pokemon to fetch.
  */
-function getPokemons(offset = 0, amount = 15){
+function getPokemonList(offset = 0, amount = 15){
     const LOWEST_POKEMON_OFFSET = 0;
     offset = Math.max(offset, LOWEST_POKEMON_OFFSET);
-    return fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
-    .then(pokemons => {
-        updatePokemons(pokemons, offset, amount);
+    .then(data => {
+        if(!totalPokemon) { updateTotalPokemon(data.count); };
+        updateFirstAndLastPokemon(offset, amount);
+        updatePokemonList(data.results, offset);
     })
     .catch(() => {
         alert('Could not get pokemons list');
     })
-}
-function updatePokemons(pokemons, offset = 0, amount = 15){
-    if(!totalPokemon) { updateTotalPokemon(pokemons.count); };
-    updateFirstAndLastPokemon(offset, amount);
-    updatePokemonList(pokemons.results, offset);
 }
 function updateTotalPokemon(total){
     totalPokemon = total;

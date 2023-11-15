@@ -27,7 +27,7 @@ describe('tests the pokedex', () => {
     const LIST_RANDOM_OFFSET = Math.floor(Math.random() * LIST_TOTAL_OFFSET);
     const FIRST_POKEMON_IN_LIST = LIST_RANDOM_OFFSET + 1;
     cy.window().then((win) => {
-      win.getPokemons(LIST_RANDOM_OFFSET, POKEMON_LIST_AMOUNT)
+      win.getPokemonList(LIST_RANDOM_OFFSET, POKEMON_LIST_AMOUNT)
       cy.get("#pokemon-list li").first().invoke('text').should(text => {
         const index = parseInt(text.split('.'));
         expect(index).to.equal(FIRST_POKEMON_IN_LIST)
