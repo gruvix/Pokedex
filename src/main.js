@@ -24,12 +24,12 @@ function getPokemonList(offset = 0, amount = 15){
 }
 
 function updatePokemonList(pokemonList){
-    clearPokemonList();
+    clearPokemonListExceptHeadline();
     for(const pokemon of pokemonList){
         addPokemonToList(pokemon);
     }
 }
-function clearPokemonList(){
+function clearPokemonListExceptHeadline(){
     const list = $('#pokemon-list');
     list.children().not('h3').remove();
 }
