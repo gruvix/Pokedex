@@ -11,7 +11,7 @@ describe('tests the pokedex', () => {
     const CAROUSEL_DELAY = 700
     cy.get('#pokemonIdInput').type('pikachu').get('#searchPokemonByIdButton').click()
     cy.get('#pokemonNotFound').should('not.be.visible')
-    cy.get('.carousel-inner').children().each((sprite) => {
+    cy.get('.carousel-inner').children().each((sprite, index) => {
       cy.wait(CAROUSEL_DELAY).get('.carousel-control-next').click().get(sprite).should('be.visible')
     })
 
