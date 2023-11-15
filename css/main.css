@@ -1,7 +1,3 @@
-.hidden{
-    display: none;
-}
-
 .title{
     --bg-size: 400%;
     --color-one: hsl(15 90% 55%);
