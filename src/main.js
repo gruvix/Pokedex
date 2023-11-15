@@ -4,20 +4,20 @@ import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';
 import generateRandomId from './utils.js';
 
-document.querySelector('#random-pokemon-button').addEventListener('click', () => {
+$('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
   pokeList.updatePokemons(random);
 });
-document.querySelector('#search-pokemon-button').addEventListener('click', () => {
+$('#search-pokemon-button').on('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
   getPokemonHandler(pokemon);
 });
-document.querySelector('#previous-page').addEventListener('click', () => {
+$('#previous-page').on('click', () => {
   const PREVIOUS_PAGE_OFFSET = 16;
   const previousPage = pokeList.getFirstPokemonOnListId() - PREVIOUS_PAGE_OFFSET;
   pokeList.updatePokemons(previousPage);
 });
-document.querySelector('#next-page').addEventListener('click', () => {
+$('#next-page').on('click', () => {
   const nextPage = pokeList.getLastPokemonOnListId();
   pokeList.updatePokemons(nextPage);
 });
