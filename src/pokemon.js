@@ -62,7 +62,7 @@ function clearPokemon() {
   $('#pokemon-moves-table').children().empty();
   $('#pokemon-info').addClass('hidden');
 }
-export default function getPokemonHandler(pokemonName) {
+export default async function getPokemonHandler(pokemonName) {
   clearPokemon();
   addLoadingToPokemon();
   hideError();
@@ -70,11 +70,10 @@ export default function getPokemonHandler(pokemonName) {
     const pokemon = easterEgg();
     pokemonHandler(pokemon);
   } else {
-    getPokemonByIdOrName(pokemonName).then((pokemon) => {
-      if (!pokemon) {
-        return;
-      }
-      pokemonHandler(pokemon);
-    });
+    const pokemon = await getPokemonByIdOrName(pokemonName)
+    if (!pokemon) {
+      return;
+    }
+    pokemonHandler(pokemon);
   }
 }
