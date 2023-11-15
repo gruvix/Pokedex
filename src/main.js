@@ -1,9 +1,10 @@
 /// <reference types="jquery" />
 
-document.querySelector('#searchPokemonByIdButton').addEventListener('click', function () {
-    const pokemonId = document.querySelector('#pokemonIdInput').value
-    getPokemonById(pokemonId)
-})
+//1. Construir un pokedex
+// a.buscar por id
+// b.buscar por tipo
+
+
 
 
 
