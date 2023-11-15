@@ -1,0 +1,31 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "Pokedex from Pokemon for r/ArgentinaPrograma",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-server": "http-server -p 8000 -c-1",
+    "cypress-dev": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gruvix/Pokedex.git"
+  },
+  "author": "Timothy Burton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gruvix/Pokedex/issues"
+  },
+  "homepage": "https://github.com/gruvix/Pokedex#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "node": "^21.0.0"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.25",
+    "cypress": "^13.3.2",
+    "http-server": "^14.1.1",
+    "jquery": "^3.7.1"
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Pokedex</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <main class="col-md-8">
+
+                <div class="row">
+                    <div class="col">
+                        <h1 class="title">Pokedex</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="pokemon-id-input" placeholder="Pokemon name or ID" aria-label="Pokemon name or ID" aria-describedby="pokemon-id-input">
+                            <button class="btn btn-outline-secondary" type="button" id="search-pokemon-button">Search</button>
+                        </div>
+                        <div class="alert alert-danger hidden" role="alert" id="pokemon-not-found">
+                            The Pokemon <strong id="pokemon-does-not-exist">POKEMON_NAME</strong> doesn't exist!
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="carousel slide" id="pokemon-carousel" data-bs-theme="dark">
+                            <div class="carousel-inner">
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#pokemon-carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#pokemon-carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col hidden" id="pokemon-info">
+                        <div class="row">
+                            <div class="col">
+                                <strong id="pokemon-name">
+                                    POKEMON
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong class="pokemon-prompt" id="pokemon-types">
+                                    Types:
+                                </strong>
+                            </div>
+                            <div class="col">
+                                <strong class="pokemon-prompt" id="pokemon-abilities">
+                                    Abilities:
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong class="pokemon-prompt" id="pokemon-moves">
+                                    Moves:
+                                </strong>
+                                <div style="overflow-y: scroll; max-height: 250px;">
+
+                                    <table style="background-color: rgb(8, 66, 117);">
+
+                                        <tbody id="pokemon-moves-table">
+                                        </tbody>
+                                      </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <nav id="sidebar" class="col-md-4 bg-dark text-white" style="padding-bottom: 10px;">
+                <h3 class="nav-item" style="margin-top: 20px;">
+                    <strong>Pokemon List</strong>
+                </h3>
+                <ul class="nav flex-column" id="pokemon-list">
+                    <li>
+                        <button class="btn btn-link">TEST</button>
+                    </li>
+                </ul>
+                <div style="justify-content: space-between; align-items: center; display: flex;">
+                    <button class="btn btn-secondary pokemon-list-button" id="previous-page">previous page</button><span id="pokemon-now-showing" data-index="0" data-total="0" style="padding: 5%;">pokemon X to Y</span><button class="btn btn-secondary pokemon-list-button" id="next-page">next page</button>
+                </div>
+            </nav>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script src='src/main.js'></script>
+</html>
