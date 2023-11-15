@@ -14,9 +14,9 @@ document.querySelector('#next-page').addEventListener('click', function () {
     const nextPage = lastPokemonOnListId;
     getPokemonList(nextPage)
 })
-$('#pokemon-list').on('click', event => {
+$('#pokemon-list').on('click', function (event) {
     const pokemon = event.target.id;
-    if(!event.target.classList.contains("btn-link")) return;
+    if(pokemon === '') return;
     getPokemonHandler(pokemon)
 })
 getPokemonList();
