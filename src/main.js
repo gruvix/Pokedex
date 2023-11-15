@@ -165,6 +165,7 @@ function updateMoves(moves){
         {
             currentRow = $("<tr></tr>")
             $("#pokemon-moves-table").append(currentRow);
+            //create new row, set current row as new row
         }
         currentRow.append(td);
     });
