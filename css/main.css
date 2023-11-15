@@ -33,15 +33,3 @@
 .pokemon-list-button{
   padding: 3px;
 }
-
-#pokemonCarousel{
-  height: 500px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.carousel img {
-  display: block;
-  margin: 0 auto;
-}
