@@ -14,7 +14,7 @@ document.querySelector('#next-page').addEventListener('click', function () {
     getPokemonList(nextPage)
 })
 $('#pokemon-list').on('click', function (event) {
-    const pokemon = event.target.id;
+    const pokemon = event.target.textContent.toLowerCase();
     getPokemonHandler(pokemon)
 })
 getPokemonList();
@@ -30,7 +30,7 @@ function getPokemonList(offset = 0, amount = 15){
     .then(response => response.json())
     .then(data => {
         updateFirstAndLastPokemon(offset, amount);
-        updatePokemonList(data.results, offset);
+        updatePokemonList(data.results);
     })
     .catch(() => {
         alert('Could not get pokemons list');
@@ -47,12 +47,10 @@ function updateFirstAndLastPokemon(offset, amount){
     firstPokemon = offset + 1;//first pokemon is 1 but first offset is 0
     lastPokemon = offset + amount;
 }
-function updatePokemonList(pokemonList, offset){
+function updatePokemonList(pokemonList){
     clearPokemonList();
-    let i = 0;
     for(const pokemon of pokemonList){
-        addPokemonToList(pokemon, offset+i);
-        i++
+        addPokemonToList(pokemon);
     }
     updatePageIndicator();
 }
@@ -60,8 +58,8 @@ function updatePageIndicator(){
     const pageIndicator = $('#pokemon-list-page');
     pageIndicator.text(`pokemon ${firstPokemon} to ${lastPokemon}`);
 }
-function addPokemonToList(pokemon, index){
-    const pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${index}. ${pokemon.name}</button>`);
+function addPokemonToList(pokemon){
+    const pokemonButton = $(`<button class="btn btn-link">${pokemon.name}</button>`);
     const li = $('<li></li>')
     li.append(pokemonButton);
     $('#pokemon-list').append(li);
