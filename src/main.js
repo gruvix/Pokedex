@@ -115,7 +115,7 @@ function fetchSpriteToList(element, pokemon){
     })
 }
 function addSprite(sprite, htmlItem){
-    if(!sprite) return;
+    if(sprite === null) return;
     const img = $(`<img src="${sprite}" class="list-sprite">`);
     htmlItem.append(img);
 }
@@ -226,7 +226,7 @@ function updateName(pokemon){
 function displayPokemon(sprites){
     for(const spriteCategory in sprites){
         for(const sprite in sprites[spriteCategory]){//only other (best) sprites, main sprites are too small
-            if(sprites[spriteCategory][sprite]){
+            if(sprites[spriteCategory][sprite] !== null){
                 addImageToCarousel(sprites[spriteCategory][sprite]);
             }
         }
