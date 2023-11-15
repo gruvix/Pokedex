@@ -42,8 +42,8 @@ function getPokemonList(offset = 0, amount = 15){
 function getPokemonHandler(pokemon){
     clearPokemon();
     addLoadingToPokemon();
-    hidePokemonNotFoundError()
     getPokemonByIdOrName(pokemon);
+    hidePokemonNotFoundError()
 }
 function addLoadingToPokemon(){
     $('#pokemon-carousel .carousel-inner')
