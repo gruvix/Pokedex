@@ -34,7 +34,7 @@
   padding: 3px;
 }
 
-#pokemon-carousel{
+#pokemonCarousel{
   height: 500px;
   display: flex;
   justify-content: space-between;
