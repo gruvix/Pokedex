@@ -134,7 +134,7 @@ function getPokemonByIdOrName(pokemon){
 }
 function pokemonHandler(pokemon){
     removeLoadingFromPokemon();
-    updateName(pokemon);
+    updateName(pokemon.name);
     updateAbilities(pokemon.abilities)
     displayPokemon(pokemon.sprites.other);
 }
@@ -144,11 +144,10 @@ function updateAbilities(abilities){
         $('#pokemon-abilities').append(div);
     }
 }
-function updateName(pokemon){
-    const name = pokemon.name;
+function updateName(name){
     const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
     const nameElement = $('#pokemon-name');
-    nameElement.text(capitalizedName).addClass(`type-${pokemon.types[0].type.name}`);
+    nameElement.text(capitalizedName);
 }
 function displayPokemon(sprites){
     for(const spriteCategory in sprites){
