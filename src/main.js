@@ -18,13 +18,6 @@ function getPokemonById(pokemon){
 }
 
 function displayPokemon(pokemon){
-function addImageToPokemonCarousel(imageSource){
-    const img = document.createElement('img');
-    img.src = imageSource;
-    const div = document.createElement('div');
-    div.appendChild(img);
-    document.querySelector('#pokemonCarousel').children[0].appendChild(div);
-    div.classList.add('carousel-item');
 }
 
 function showPokemonNotFoundError(pokemon){
