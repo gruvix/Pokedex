@@ -70,15 +70,15 @@ function addPokemonToList(pokemon, index){
     const li = $('<li></li>')
     li.append(pokemonButton);
     $('#pokemon-list').append(li);
-    addLoadingToListItem(li)
+    addLoading(li)
     fetchSpriteToList(li, pokemon);
 }
-function addLoadingToListItem(element){
+function addLoading(element){
     const loading = $(`<div class="lds-dual-ring"></div>`);
     loading.addClass('lds-dual-ring');
     element.append(loading);
 }
-function removeLoadingFromListItem(element){
+function removeLoading(element){
     element.children('.lds-dual-ring').remove();
 }
 function fetchSpriteToList(element, pokemon){
@@ -86,7 +86,7 @@ function fetchSpriteToList(element, pokemon){
     .then(response => response.json())
     .then(data => {
         addSprite(data.sprites.front_default, element)
-        removeLoadingFromListItem(element)
+        removeLoading(element)
     })
     .catch(() => {
         alert('Could not get pokemon for sprite list');
