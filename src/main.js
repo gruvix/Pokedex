@@ -138,7 +138,6 @@ function pokemonHandler(pokemon){
     updateName(pokemon);
     updateTypes(pokemon.types)
     updateAbilities(pokemon.abilities)
-    updateMoves(pokemon.moves)
     displayPokemon(pokemon.sprites.other);
 }
 function showPokemonInfo(){
@@ -155,19 +154,6 @@ function updateAbilities(abilities){
         const div  = $(`<div><i class="pokemon-ability">-${ability.ability.name}</i></div>`);
         $('#pokemon-abilities').append(div);
     }
-}
-function updateMoves(moves){
-    let currentRow = $("#pokemon-moves-table tr")
-    moves.forEach(move => {  
-        const td = $(`<td style="width: 60%;">${move.move.name}</td>`)     
-        if(currentRow.children().length === 2)
-        {
-            currentRow = $("<tr></tr>")
-            $("#pokemon-moves-table").append(currentRow);
-            //create new row, set current row as new row
-        }
-        currentRow.append(td);
-    });
 }
 function updateName(pokemon){
     const name = pokemon.name;
