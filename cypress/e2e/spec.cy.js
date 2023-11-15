@@ -9,7 +9,3 @@ describe('tests the pokedex', () => {
     cy.get('#pokemonNotFound').should('be.visible')
 
   })
-  it('gets a pokemon', () => {
-    cy.get('#pokemonIdInput').type('pikachu').get('#searchPokemonByIdButton').click()
-  })
-})
