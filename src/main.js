@@ -24,14 +24,9 @@ function getPokemonList(offset = 0, amount = 10){
 }
 
 function updatePokemonList(pokemonList){
-    clearPokemonListExceptHeadline();
     for(const pokemon of pokemonList){
         addPokemonToList(pokemon);
     }
-}
-function clearPokemonListExceptHeadline(){
-    const list = $('#pokemon-list');
-    list.children().not('h3').remove();
 }
 
 function getPokemonById(pokemon){
@@ -67,6 +62,7 @@ function addImageToCarousel(imageSource){
     if(carousel.children[0].children.length === 1){
         div.classList.add('active');
     }
+
 }
 
 function showPokemonNotFoundError(pokemon){
