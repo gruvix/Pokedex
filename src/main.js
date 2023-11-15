@@ -18,16 +18,6 @@ function getPokemonById(pokemon){
 }
 
 function displayPokemon(pokemon){
-    console.log(pokemon)
-    for(const spriteCategory in pokemon.sprites.other){
-        for(const sprite in pokemon.sprites.other[spriteCategory]){
-            if(pokemon.sprites.other[spriteCategory][sprite] !== null){
-                addImageToPokemonCarousel(pokemon.sprites.other[spriteCategory][sprite]);
-            }
-        }
-    }
-}
-
 function addImageToPokemonCarousel(imageSource){
     const img = document.createElement('img');
     img.src = imageSource;
