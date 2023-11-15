@@ -6,8 +6,7 @@ document.querySelector('#search-pokemon-button').addEventListener('click', funct
 
 })
 document.querySelector('#previous-page').addEventListener('click', function () {
-    const PREVIOUS_PAGE_OFFSET = 16;
-    const previousPage = firstPokemon - PREVIOUS_PAGE_OFFSET;
+    const previousPage = firstPokemon - 16;
     getPokemonList(previousPage)
 })
 document.querySelector('#next-page').addEventListener('click', function () {
@@ -26,8 +25,7 @@ getPokemonList();
  * @param {number} [amount=10] - The maximum number of Pokemon to fetch.
  */
 function getPokemonList(offset = 0, amount = 15){
-    const LOWEST_POKEMON_OFFSET = 0;
-    offset = Math.max(offset, LOWEST_POKEMON_OFFSET);
+    offset = Math.max(offset, 0);
     fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
     .then(data => {
