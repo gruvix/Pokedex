@@ -29,14 +29,6 @@ function updatePokemonList(pokemonList){
         addPokemonToList(pokemon);
     }
 }
-function addPokemonToList(pokemon){
-    
-    const pokemonButton = $(`<button class="btn btn-link">${pokemon.name}</button>`);
-    const li = $('<li></li>')
-    li.append(pokemonButton);
-    $('#pokemon-list').append(li);
-}
-
 function clearPokemonList(){
     const list = $('#pokemon-list');
     list.children().not('h3').remove();
