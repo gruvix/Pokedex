@@ -1,11 +1,13 @@
 # Pokedex
 
 ## Descripción
-El pokedex es una computadora de las series de Pokémon que se utiliza para ver informacion de los Pokémon
+El pokedex es una computadora de las series de Pokémon que se utiliza para ver informacion de los Pokémon.
 
-Este pokedex fue programado como tarea para una clase del curso de Fabricio Sodano, r/argentina programa
+Este pokedex fue programado como tarea para una clase del curso r/argentina programa de Fabricio Sodano.
 
-El programa obtiene su informacion de una API RESTful "PokeAPI" a travez del método GET
+El programa obtiene su informacion de una API RESTful "PokeAPI" a travez del método GET.
+
+El código se lintea con ESLint para garantizar que cumpla con los estándares de codificación del proyecto.
 
 ## Funciones
 Permite buscar Pokémon por nombre ó por ID, ó ver el listado completo de Pokémon
