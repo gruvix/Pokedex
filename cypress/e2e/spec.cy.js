@@ -22,6 +22,13 @@ describe('tests the pokedex', () => {
       .should('have.text', POKEMON_FIRST_ABILITY);
   });
 
+  it('should get next and previous pages', () => {
+    cy.get('#next-page').click().get('#pokemon-now-showing')
+      .should('have.text', 'pokemon 16 to 30');
+    cy.get('#previous-page').click().get('#pokemon-now-showing')
+      .should('have.text', 'pokemon 1 to 15');
+  });
+
   it('should get a random pokemon from the list', () => {
     const POKEMON_LIST_AMOUNT = 15;
     cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('pokemons');
