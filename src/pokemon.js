@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import displayPokemon from './display.js';
-import easterEgg from './easterEgg.js';
+import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 
@@ -67,7 +67,7 @@ export default async function getPokemonHandler(pokemonName) {
   addLoadingToPokemon();
   hideError();
   if (pokemonName === 'michelin') {
-    const pokemon = easterEgg();
+    const pokemon = fakePokemon();
     pokemonHandler(pokemon);
   } else {
     const pokemon = await getPokemonByIdOrName(pokemonName)
