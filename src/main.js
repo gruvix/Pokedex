@@ -23,8 +23,8 @@ function displayPokemon(pokemon){
 }
 
 function showPokemonNotFoundError(pokemon){
-    document.querySelector('#pokemonNameError').textContent = pokemon;
     document.querySelector('#pokemonNotFound').classList.remove('hidden');
+    document.querySelector('#pokemonNameError').textContent = pokemon;
 }
 function hidePokemonNotFoundError(){
     document.querySelector('#pokemonNotFound').classList.add('hidden');
