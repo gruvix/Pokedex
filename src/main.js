@@ -28,11 +28,6 @@ $('#pokemon-list').on('click', (event) => {
   getPokemonHandler(pokemon);
 });
 pokeList.updatePokemons();
-/**
- * Updates the list of Pokemon with the given offset and limit.
- * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
- * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
- */
 
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/

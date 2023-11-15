@@ -51,6 +51,11 @@ function updatePokemonList(pokemonList, offset) {
   });
   updatePageIndicator();
 }
+/**
+ * Updates the list of Pokemon with the given offset and limit.
+ * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
+ * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
+ */
 export function updatePokemons(rawOffset = 0, amount = 15) {
   const LOWEST_POKEMON_OFFSET = 0;
   const offset = Math.max(rawOffset, LOWEST_POKEMON_OFFSET);
