@@ -21,23 +21,26 @@ $('#pokemon-list').on('click', event => {
 })
 updatePokemons()
 
-
-function getPokemons(offset, amount){
+/**
+ * Fetches a list of Pokemon with the given offset and limit.
+ * @param {function} callbackFunction - The function to call when the list is fetched, will be called with the list and the offset.
+ * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
+ * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
+ */
+function getPokemons(offset = 0, amount = 15){
     return fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${amount}`)
     .then(response => response.json())
+    .then(pokemons => {
+        return pokemons;
+    })
     .catch(() => {
         alert('Could not get pokemons list');
     })
 }
-/**
- * Updates the list of Pokemon with the given offset and limit.
- * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
- * @param {number} [amount=15] - The maximum number of Pokemon to fetch.
- */
-async function updatePokemons(offset = 0, amount = 15){
+async function updatePokemons(offset = 0){
     const LOWEST_POKEMON_OFFSET = 0;
     offset = Math.max(offset, LOWEST_POKEMON_OFFSET);
-    const pokemons = await getPokemons(offset, amount);
+    const pokemons = await getPokemons(offset);
     $('#pokemon-now-showing').attr('data-index', offset);
     updateTotalPokemon(pokemons.count);
     updatePokemonList(pokemons.results, offset);
