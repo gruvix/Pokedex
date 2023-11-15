@@ -5,16 +5,6 @@ document.querySelector('#searchPokemonByIdButton').addEventListener('click', fun
     getPokemonById(pokemonId)
 })
 
-function getPokemonById(pokemonId){
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        displayPokemon(data);
-    })
-    .catch(console.log('pokeapi server error'))
-}
-
 
 
 
