@@ -73,6 +73,7 @@ function getPokemonByIdOrName(pokemon){
 }
 
 function displayPokemon(pokemon){
+    console.log(pokemon)
     for(const spriteCategory in pokemon.sprites.other){
         for(const sprite in pokemon.sprites.other[spriteCategory]){//only other (best) sprites, main sprites are too small
             if(pokemon.sprites.other[spriteCategory][sprite] !== null){
