@@ -152,7 +152,7 @@ function updateTypes(types){
 }
 function updateAbilities(abilities){
     for(const ability of abilities){
-        const div  = $(`<div><i class="pokemon-ability">${ability.ability.name}</i></div>`);
+        const div  = $(`<div><i class="pokemon-ability">-${ability.ability.name}</i></div>`);
         $('#pokemon-abilities').append(div);
     }
 }
