@@ -4,7 +4,7 @@
   "description": "Pokedex from Pokemon for r/ArgentinaPrograma",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "run-p start-server cypress-dev",
     "start-server": "http-server -p 8000 -c-1",
     "cypress-dev": "cypress open"
   },
