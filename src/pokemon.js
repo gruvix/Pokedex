@@ -70,7 +70,7 @@ export default async function getPokemonHandler(pokemonName) {
     const pokemon = fakePokemon();
     pokemonHandler(pokemon);
   } else {
-    const pokemon = await getPokemonByIdOrName(pokemonName)
+    const pokemon = await getPokemonByIdOrName(pokemonName);
     if (!pokemon) {
       return;
     }
