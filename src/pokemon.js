@@ -66,14 +66,14 @@ export default async function getPokemonHandler(pokemonName) {
   clearPokemon();
   addLoadingToPokemon();
   hideError();
+  let pokemon;
   if (pokemonName === 'michelin') {
-    const pokemon = fakePokemon();
-    pokemonHandler(pokemon);
+    pokemon = fakePokemon();
   } else {
-    const pokemon = await getPokemonByIdOrName(pokemonName);
+    pokemon = await getPokemonByIdOrName(pokemonName);
     if (!pokemon) {
       return;
     }
-    pokemonHandler(pokemon);
   }
+  pokemonHandler(pokemon);
 }
