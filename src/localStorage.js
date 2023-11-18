@@ -4,19 +4,19 @@ function getPokemonKey(id) {
 function getPokemonsKey(offset, amount) {
   return `pokemons-${offset}-to-${amount}`;
 }
-function savePokemonToLocalStorage(id, pokemon) {
+export function savePokemonToLocalStorage(id, pokemon) {
   if (id === undefined) {
     throw new Error('id is undefined');
   }
   localStorage.setItem(getPokemonKey(id), JSON.stringify(pokemon));
 }
-function savePokemonListToLocalStorage(offset, amount, pokemons) {
+export function savePokemonListToLocalStorage(offset, amount, pokemons) {
   if (offset === undefined || amount === undefined || pokemons !== Object) {
     throw new Error('offset, amount or pokemons is undefined');
   }
   localStorage.setItem(getPokemonsKey(offset, amount), JSON.stringify(pokemons));
 }
-function loadPokemonFromLocalStorage(id) {
+export function loadPokemonFromLocalStorage(id) {
   if (id === undefined) {
     throw new Error('id is undefined');
   }
@@ -25,7 +25,7 @@ function loadPokemonFromLocalStorage(id) {
     throw new Error(`pokemon ${id} not found`);
   }
 }
-function loadPokemonListFromLocalStorage(offset, amount) {
+export function loadPokemonListFromLocalStorage(offset, amount) {
   if (offset === undefined || amount === undefined) {
     throw new Error('offset or amount is undefined');
   }
