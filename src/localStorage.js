@@ -24,6 +24,7 @@ export function loadPokemonFromLocalStorage(id) {
   if (pokemon === null) {
     throw new Error(`pokemon ${id} not found`);
   }
+  return pokemon;
 }
 export function loadPokemonListFromLocalStorage(offset, amount) {
   if (offset === undefined || amount === undefined) {
@@ -33,4 +34,5 @@ export function loadPokemonListFromLocalStorage(offset, amount) {
   if (pokemons === null) {
     throw new Error(`pokemon list with offset ${offset} and amount ${amount} not found`);
   }
+  return pokemons;
 }
