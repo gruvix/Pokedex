@@ -1,5 +1,5 @@
 /* eslint-disable radix */
-/// <reference> types="cypress" />
+/// <reference types="cypress" />
 
 describe('tests the pokedex', () => {
   beforeEach(() => {
