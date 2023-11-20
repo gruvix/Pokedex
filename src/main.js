@@ -3,6 +3,7 @@
 import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';
 import generateRandomId from './utils.js';
+import enableOrDisableFavorite from './favorites.js';
 
 $('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
@@ -30,14 +31,7 @@ $('#pokemon-storage').on('click', () => {
   $('#pokemon-storage-modal').modal('show');
 });
 $('#pokemon-favorite').on('click', () => {
-  const pokemonFavorite = $('#pokemon-favorite');
-  if (pokemonFavorite.attr('data-favorite') === 'true') {
-    pokemonFavorite.attr('data-favorite', 'false');
-    pokemonFavorite.text('☆');
-  } else {
-    pokemonFavorite.attr('data-favorite', 'true');
-    pokemonFavorite.text('★');
-  }
+  enableOrDisableFavorite();
 });
 pokeList.updatePokemons();
 // ## construir un pokedex
