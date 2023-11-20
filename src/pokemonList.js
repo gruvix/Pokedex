@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import * as display from './displayList.js';
 import * as request from './apiRequests.js';
+import * as localStorage from './localStorage.js';
 
 function updateTotalPokemon(total) {
   $('#pokemon-now-showing').attr('data-total', total);
@@ -27,19 +28,23 @@ function clearPokemonList() {
   const list = $('#pokemon-list');
   list.children().remove();
 }
-function addPokemonToList(pokemonFromList, index) {
+async function addPokemonToList(pokemonFromList, index) {
   const pokemonName = pokemonFromList.name;
   const pokemonButton = $(`<button class="btn btn-link" id="${pokemonName}">${index}. ${pokemonName}</button>`);
   const li = $('<li></li>');
   li.append(pokemonButton);
   $('#pokemon-list').append(li);
   display.addLoadingToListItem(li);
-  request.getPokemonByIdOrName(pokemonName).then((pokemon) => {
+  let pokemon;
+  try {
+    pokemon = localStorage.loadPokemonFromLocalStorage(pokemonName);
+  } catch (error) {
+    pokemon = await request.getPokemonByIdOrName(pokemonName);
     if (!pokemon) {
-      return;
+      throw new Error(`Failed to load ${pokemonName}`);
     }
-    display.addSprite(pokemon.sprites.front_default, li);
-  });
+  }
+  display.addSprite(pokemon.sprites.front_default, li);
   display.removeLoadingFromListItem(li);
 }
 function updatePokemonList(pokemonList, offset) {
