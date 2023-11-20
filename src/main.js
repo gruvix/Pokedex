@@ -27,7 +27,7 @@ $('#pokemon-list').on('click', (event) => {
   getPokemonHandler(pokemon);
 });
 $('#pokemon-storage').on('click', () => {
-  $('#exampleModalCenter').modal('show');
+  $('#pokemon-storage-modal').modal('show');
 });
 pokeList.updatePokemons();
 // ## construir un pokedex
