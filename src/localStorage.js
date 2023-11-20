@@ -8,7 +8,11 @@ export function savePokemonToLocalStorage(id, pokemon) {
   if (id === undefined) {
     throw new Error('id is undefined');
   }
-  localStorage.setItem(getPokemonKey(id), JSON.stringify(pokemon));
+  try {
+    localStorage.setItem(getPokemonKey(id), JSON.stringify(pokemon));
+  } catch (error) {
+    throw new Error(`Failed to save pokemon ${id}`);
+  }
 }
 export function savePokemonListToLocalStorage(offset, amount, pokemons) {
   if (offset === undefined || amount === undefined || pokemons !== Object) {
