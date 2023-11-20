@@ -78,7 +78,6 @@ export default async function getPokemonHandler(pokemonName) {
       if (!pokemon) {
         throw new Error(`Failed to load ${pokemonName}`);
       }
-      savePokemonToLocalStorage(pokemonName, pokemon);
     }
   }
   pokemonHandler(pokemon);
