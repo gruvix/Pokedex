@@ -5,6 +5,15 @@
 body{
   background-color: rgb(51, 51, 51);
 }
+.favorite{
+  color: rgb(224, 169, 58);
+  font-size: 250%;
+  background:none;
+  border:none;
+  margin:0;
+  padding:0;
+  cursor: pointer;
+}
 
 .pokemon-prompt{
   color: rgb(235, 229, 217);

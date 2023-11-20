@@ -29,6 +29,16 @@ $('#pokemon-list').on('click', (event) => {
 $('#pokemon-storage').on('click', () => {
   $('#pokemon-storage-modal').modal('show');
 });
+$('#pokemon-favorite').on('click', () => {
+  const pokemonFavorite = $('#pokemon-favorite');
+  if (pokemonFavorite.attr('data-favorite') === 'true') {
+    pokemonFavorite.attr('data-favorite', 'false');
+    pokemonFavorite.text('☆');
+  } else {
+    pokemonFavorite.attr('data-favorite', 'true');
+    pokemonFavorite.text('★');
+  }
+});
 pokeList.updatePokemons();
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/
