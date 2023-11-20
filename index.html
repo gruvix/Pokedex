@@ -14,17 +14,8 @@
 
 </head>
 <body>
-
-
-
-
-
     <div class="container">
 
-        <button type="button" class="btn btn-primary" id="pokemon-storage">
-            Favorites
-        </button>
-        
         <div class="modal fade" id="pokemon-storage-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -54,14 +45,19 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-5">
+                <div class="row justify-content-between">
+                    <div class="col-5">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="pokemon-id-input" placeholder="Pokemon name or ID" aria-label="Pokemon name or ID" aria-describedby="pokemon-id-input">
                             <button class="btn btn-outline-secondary" type="button" id="search-pokemon-button">Search</button>
                         </div>
                         <div class="alert alert-danger hidden" role="alert" id="error">
                         </div>
+                    </div>
+                    <div class="col-3">
+                        <button type="button" class="btn btn-primary" id="pokemon-storage">
+                            Favorites ★
+                        </button>
                     </div>
                 </div>
                 
