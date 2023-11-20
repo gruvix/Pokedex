@@ -26,8 +26,10 @@ $('#pokemon-list').on('click', (event) => {
   if (!event.target.classList.contains('btn-link')) return;
   getPokemonHandler(pokemon);
 });
+$('#pokemon-storage').on('click', () => {
+  $('#exampleModalCenter').modal('show');
+});
 pokeList.updatePokemons();
-
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/
 // listar pokemons y poder cambiar de página
