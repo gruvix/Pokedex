@@ -3,6 +3,7 @@ import displayPokemon from './display.js';
 import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
+import { setCurrentPokemon } from './currentPokemon.js';
 
 function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');
@@ -53,6 +54,7 @@ function pokemonHandler(pokemon) {
   updateAbilities(pokemon.abilities);
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites.other);
+  setCurrentPokemon(pokemon);
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();
