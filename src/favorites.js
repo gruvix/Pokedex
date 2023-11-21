@@ -1,4 +1,4 @@
-export default function enableOrDisableFavorite() {
+export default function toggleFavorite() {
   const pokemonFavorite = $('#pokemon-favorite');
   if (pokemonFavorite.attr('data-favorite') === 'true') {
     pokemonFavorite.attr('data-favorite', 'false');

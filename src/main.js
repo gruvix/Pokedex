@@ -3,7 +3,7 @@
 import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';
 import generateRandomId from './utils.js';
-import enableOrDisableFavorite from './favorites.js';
+import toggleFavorite from './favorites.js';
 
 $('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
@@ -31,7 +31,7 @@ $('#pokemon-storage').on('click', () => {
   $('#pokemon-storage-modal').modal('show');
 });
 $('#pokemon-favorite').on('click', () => {
-  enableOrDisableFavorite();
+  toggleFavorite();
 });
 pokeList.updatePokemons();
 // ## construir un pokedex
