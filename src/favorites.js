@@ -27,18 +27,24 @@ function hasIndexFreeSlot(index) {
   }
   return true;
 }
+function addPokemonToIndex(pokemonName, index) {
+  index.push(pokemonName);
+  saveIndex(index);
+}
 export default function toggleFavorite() {
   const $pokemonFavorite = $('#pokemon-favorite');
   const isFavorite = $pokemonFavorite.attr('data-favorite');
+  const pokemon = getCurrentPokemon();
+
   if (isFavorite === 'false') {
     const index = loadIndex();
     if (!hasIndexFreeSlot(index)) {
       throw new Error('Index is full');
+      //  here it shows a message to the user telling that there is no space left in the pokedex
     }
     toggleAttributeOn();
     toggleIconOn();
-    const pokemon = getCurrentPokemon();
-    // add pokemon to index, update stored index
+    addPokemonToIndex(pokemon.name, index);
     storePokemon(pokemon);
   } else {
     toggleAttributeOff();
