@@ -37,7 +37,7 @@ export default function toggleFavorite() {
     toggleIconOn();
     const pokemon = getCurrentPokemon();
     // add pokemon to index, update stored index
-    storePokemon(pokemon);// storePokemon NEEDS ID, pokemon
+    storePokemon(pokemon);
   } else {
     toggleAttributeOff();
     toggleIconOff();

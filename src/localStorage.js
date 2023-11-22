@@ -1,14 +1,14 @@
 function getPokemonKey(id) {
   return `pokemon-${id}`;
 }
-export function savePokemonToLocalStorage(id, pokemon) {
-  if (id === undefined) {
-    throw new Error('id is undefined');
+export function savePokemonToLocalStorage(pokemon) {
+  if (pokemon === undefined) {
+    throw new Error('pokemon is undefined');
   }
   try {
-    localStorage.setItem(getPokemonKey(id), JSON.stringify(pokemon));
+    localStorage.setItem(getPokemonKey(pokemon.name), JSON.stringify(pokemon));
   } catch (error) {
-    throw new Error(`Failed to save pokemon ${id}`);
+    throw new Error(`Failed to save pokemon ${pokemon.name}`);
   }
 }
 export function removePokemonFromLocalStorage(id) {
