@@ -28,10 +28,10 @@ export function loadPokemonFromLocalStorage(id) {
   return pokemon;
 }
 export function saveIndexToLocalStorage(index) {
-  localStorage.setItem('index', index);
+  localStorage.setItem('index', JSON.stringify(index));
 }
 export function loadIndexFromLocalStorage() {
-  const index = localStorage.getItem('index');
+  const index = JSON.parse(localStorage.getItem('index'));
   if (index === null) {
     throw new Error('index not found');
   }
