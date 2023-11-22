@@ -46,6 +46,12 @@ export function checkForFavorited(pokemonName) {
   }
 }
 export default function toggleFavorite() {
+function showFavoritesModal() {
+  $('#pokemon-storage-modal').modal('show');
+}
+export function launchFavoritesModal() {
+  showFavoritesModal();
+}
 export function closeFavoritesModal() {
   $('#pokemon-storage-modal').modal('hide');
 }

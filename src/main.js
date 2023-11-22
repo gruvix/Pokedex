@@ -5,6 +5,7 @@ import getPokemonHandler from './pokemon.js';
 import generateRandomId from './utils.js';
 import {
   toggleFavorite,
+  launchFavoritesModal,
   closeFavoritesModal,
 } from './favorites.js';
 
@@ -30,8 +31,9 @@ $('#pokemon-list').on('click', (event) => {
   if (!event.target.classList.contains('btn-link')) return;
   getPokemonHandler(pokemon);
 });
-$('#pokemon-storage').on('click', () => {
-  $('#pokemon-storage-modal').modal('show');
+$('#launch-pokemon-storage-button').on('click', () => {
+  launchFavoritesModal();
+});
 $('#close-pokemon-storage-button').on('click', () => {
   closeFavoritesModal();
 });
