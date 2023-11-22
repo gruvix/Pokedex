@@ -11,6 +11,12 @@ export function savePokemonToLocalStorage(id, pokemon) {
     throw new Error(`Failed to save pokemon ${id}`);
   }
 }
+export function removePokemonFromLocalStorage(id) {
+  if (id === undefined) {
+    throw new Error('id is undefined');
+  }
+  localStorage.removeItem(getPokemonKey(id));
+}
 export function loadPokemonFromLocalStorage(id) {
   if (id === undefined) {
     throw new Error('id is undefined');
