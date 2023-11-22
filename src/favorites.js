@@ -1,10 +1,36 @@
+/* eslint-disable import/extensions */
+import { getCurrentPokemon } from './currentPokemon.js';
+import {
+  savePokemonToLocalStorage as storePokemon,
+  loadPokemonFromLocalStorage as loadPokemon,
+  removePokemonFromLocalStorage as removePokemon,
+  loadIndexFromLocalStorage as loadIndex,
+  saveIndexToLocalStorage as saveIndex,
+} from './localStorage.js';
+
+function toggleIconOn() {
+  $('#pokemon-favorite').text('★');
+}
+function toggleIconOff() {
+  $('#pokemon-favorite').text('☆');
+}
+function toggleAttributeOn() {
+  $('#pokemon-favorite').attr('data-favorite', 'true');
+}
+function toggleAttributeOff() {
+  $('#pokemon-favorite').attr('data-favorite', 'false');
+}
 export default function toggleFavorite() {
-  const pokemonFavorite = $('#pokemon-favorite');
-  if (pokemonFavorite.attr('data-favorite') === 'true') {
-    pokemonFavorite.attr('data-favorite', 'false');
-    pokemonFavorite.text('☆');
+  const $pokemonFavorite = $('#pokemon-favorite');
+  const isFavorite = $pokemonFavorite.attr('data-favorite');
+  if (isFavorite === 'false') {
+    toggleAttributeOn();
+    toggleIconOn();
+    const pokemon = getCurrentPokemon();
+    // add pokemon to index, update stored index
+    storePokemon(pokemon);// storePokemon NEEDS ID, pokemon
   } else {
-    pokemonFavorite.attr('data-favorite', 'true');
-    pokemonFavorite.text('★');
+    toggleAttributeOff();
+    toggleIconOff();
   }
 }
