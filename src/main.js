@@ -3,7 +3,10 @@
 import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';
 import generateRandomId from './utils.js';
-import toggleFavorite from './favorites.js';
+import {
+  toggleFavorite,
+  closeFavoritesModal,
+} from './favorites.js';
 
 $('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
@@ -29,6 +32,8 @@ $('#pokemon-list').on('click', (event) => {
 });
 $('#pokemon-storage').on('click', () => {
   $('#pokemon-storage-modal').modal('show');
+$('#close-pokemon-storage-button').on('click', () => {
+  closeFavoritesModal();
 });
 $('#pokemon-favorite').on('click', () => {
   toggleFavorite();

@@ -46,6 +46,10 @@ export function checkForFavorited(pokemonName) {
   }
 }
 export default function toggleFavorite() {
+export function closeFavoritesModal() {
+  $('#pokemon-storage-modal').modal('hide');
+}
+export function toggleFavorite() {
   const index = loadIndex();
   const $pokemonFavorite = $('#pokemon-favorite');
   const isFavorite = $pokemonFavorite.attr('data-favorite');
