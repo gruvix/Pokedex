@@ -33,7 +33,7 @@ export function saveIndexToLocalStorage(index) {
 export function loadIndexFromLocalStorage() {
   const index = JSON.parse(localStorage.getItem('index'));
   if (index === null) {
-    throw new Error('index not found');
+    return [];
   }
   return index;
 }
