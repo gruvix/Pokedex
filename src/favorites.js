@@ -22,7 +22,7 @@ function toggleAttributeOff() {
 }
 function hasIndexFreeSlot(index) {
   const MAXIMUN_FAVORITE_POKEMON = 5;
-  if (index.lenght === MAXIMUN_FAVORITE_POKEMON) {
+  if (index.lenght >= MAXIMUN_FAVORITE_POKEMON) {
     return false;
   }
   return true;
@@ -32,7 +32,9 @@ export default function toggleFavorite() {
   const isFavorite = $pokemonFavorite.attr('data-favorite');
   if (isFavorite === 'false') {
     const index = loadIndex();
-    hasIndexFreeSlot(index);
+    if (!hasIndexFreeSlot(index)) {
+      throw new Error('Index is full');
+    }
     toggleAttributeOn();
     toggleIconOn();
     const pokemon = getCurrentPokemon();
