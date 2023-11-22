@@ -20,10 +20,19 @@ function toggleAttributeOn() {
 function toggleAttributeOff() {
   $('#pokemon-favorite').attr('data-favorite', 'false');
 }
+function hasIndexFreeSlot(index) {
+  const MAXIMUN_FAVORITE_POKEMON = 5;
+  if (index.lenght === MAXIMUN_FAVORITE_POKEMON) {
+    return false;
+  }
+  return true;
+}
 export default function toggleFavorite() {
   const $pokemonFavorite = $('#pokemon-favorite');
   const isFavorite = $pokemonFavorite.attr('data-favorite');
   if (isFavorite === 'false') {
+    const index = loadIndex();
+    hasIndexFreeSlot(index);
     toggleAttributeOn();
     toggleIconOn();
     const pokemon = getCurrentPokemon();
