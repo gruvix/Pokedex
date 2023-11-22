@@ -4,6 +4,7 @@ import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 import { setCurrentPokemon } from './currentPokemon.js';
+import { checkForFavorited } from './favorites.js';
 
 function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');
@@ -55,6 +56,7 @@ function pokemonHandler(pokemon) {
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites.other);
   setCurrentPokemon(pokemon);
+  checkForFavorited(pokemon.name);
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();

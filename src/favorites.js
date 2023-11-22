@@ -31,6 +31,16 @@ function addPokemonToIndex(pokemonName, index) {
   index.push(pokemonName);
   saveIndex(index);
 }
+export function checkForFavorited(pokemonName) {
+  const index = loadIndex();
+  if (index.includes(pokemonName)) {
+    toggleAttributeOn();
+    toggleIconOn();
+  } else {
+    toggleAttributeOff();
+    toggleIconOff();
+  }
+}
 export default function toggleFavorite() {
   const $pokemonFavorite = $('#pokemon-favorite');
   const isFavorite = $pokemonFavorite.attr('data-favorite');
