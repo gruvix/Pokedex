@@ -31,6 +31,10 @@ function addPokemonToIndex(pokemonName, index) {
   index.push(pokemonName);
   saveIndex(index);
 }
+function removePokemonFromIndex(pokemonName, index) {
+  index.splice(index.indexOf(pokemonName), 1);
+  saveIndex(index);
+}
 export function checkForFavorited(pokemonName) {
   const index = loadIndex();
   if (index.includes(pokemonName)) {
@@ -59,5 +63,7 @@ export default function toggleFavorite() {
   } else {
     toggleAttributeOff();
     toggleIconOff();
+    removePokemonFromIndex(pokemon.name, index);
+    removePokemon(pokemon.name);
   }
 }
