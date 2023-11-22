@@ -42,12 +42,12 @@ export function checkForFavorited(pokemonName) {
   }
 }
 export default function toggleFavorite() {
+  const index = loadIndex();
   const $pokemonFavorite = $('#pokemon-favorite');
   const isFavorite = $pokemonFavorite.attr('data-favorite');
   const pokemon = getCurrentPokemon();
 
   if (isFavorite === 'false') {
-    const index = loadIndex();
     if (!hasIndexFreeSlot(index)) {
       throw new Error('Index is full');
       //  here it shows a message to the user telling that there is no space left in the pokedex
