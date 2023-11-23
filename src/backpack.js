@@ -64,13 +64,21 @@ function addPokemonButton(pokemon) {
 function emptyBackpack() {
   $('#backpack-list').empty();
 }
+function disableEmptyBackpackButton() {
+  $('#empty-backpack-button').attr('disabled', 'disabled');
+}
+function enableEmptyBackpackButton() {
+  $('#empty-backpack-button').removeAttr('disabled');
+}
 function loadBackpack() {
   const index = loadIndex();
   if (index.length === 0) {
     const $emptyModalText = $('<div>Your bag is empty</div>');
     $('#backpack-list').append($emptyModalText);
+    disableEmptyBackpackButton();
     return;
   }
+  enableEmptyBackpackButton();
   index.forEach((pokemonName) => {
     const pokemon = loadPokemon(pokemonName);
     addPokemonButton(pokemon);
