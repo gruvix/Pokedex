@@ -6,7 +6,7 @@ import generateRandomId from './utils.js';
 import {
   toggleFavorite,
   launchFavoritesModal,
-  closeFavoritesModal,
+  hideFavoritesModal,
   emptyStoredPokemons,
 } from './favorites.js';
 
@@ -39,7 +39,7 @@ $('#empty-favorites-button').on('click', () => {
   emptyStoredPokemons();
 });
 $('#close-pokemon-storage-button').on('click', () => {
-  closeFavoritesModal();
+  hideFavoritesModal();
 });
 $('#pokemon-favorite-button').on('click', () => {
   toggleFavorite();

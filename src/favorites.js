@@ -21,6 +21,12 @@ function toggleAttributeOn() {
 function toggleAttributeOff() {
   $('#pokemon-favorite-button').attr('data-favorite', 'false');
 }
+function showFavoritesModal() {
+  $('#pokemon-storage-modal').modal('show');
+}
+export function hideFavoritesModal() {
+  $('#pokemon-storage-modal').modal('hide');
+}
 function hasIndexFreeSlot(index) {
   const MAXIMUN_FAVORITE_POKEMON = 5;
   if (index.lenght >= MAXIMUN_FAVORITE_POKEMON) {
@@ -51,6 +57,7 @@ function addPokemonButton(pokemon) {
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
   $pokemonButton.on('click', () => {
     pokemonHandler(loadPokemon(pokemon.name));//ACA VA UN BOTON PARA ELIMINAR AL POKEMON
+    hideFavoritesModal();
   });
   $pokemonList.append($pokemonButton);
 }
@@ -65,16 +72,11 @@ function loadFavorites() {
     addPokemonButton(pokemon);
   });
 }
-function showFavoritesModal() {
-  $('#pokemon-storage-modal').modal('show');
-}
 export function launchFavoritesModal() {
   showFavoritesModal();
   loadFavorites();
 }
-export function closeFavoritesModal() {
-  $('#pokemon-storage-modal').modal('hide');
-}
+
 export function emptyStoredPokemons() {
   loadIndex().forEach((pokemonName) => {
     removePokemon(pokemonName);
