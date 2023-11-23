@@ -23,6 +23,25 @@ describe('tests the pokedex', () => {
       .should('have.text', POKEMON_FIRST_ABILITY);
   });
 
+  // it('should get a pokemon and show its info', () => {
+  //   const POKEMON_NAME = 'Pikachu';
+  //   const POKEMON_FIRST_TYPE = 'electric';
+  //   const POKEMON_FIRST_ABILITY = 'static';
+  //   cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('pokemon');
+
+  //   cy.get('#pokemon-id-input').type('pikachu').get('#search-pokemon-button')
+  //     .click()
+  //     .wait('@pokemon');
+
+  //   cy.get('#error').should('not.be.visible');
+  //   cy.get('#pokemon-name').should('be.text', POKEMON_NAME);
+  //   cy.get('#pokemon-types').children().should('have.length', 1).first()
+  //     .should('have.text', POKEMON_FIRST_TYPE);
+  //   cy.get('#pokemon-abilities').children().should('have.length', 2).first()
+  //     .should('have.text', POKEMON_FIRST_ABILITY);
+  //   cy.wait(1000);
+  // });
+
   it('should get next and previous pages', () => {
     cy.get('#next-page').click().get('#pokemon-now-showing')
       .should('have.text', 'pokemon 16 to 30');
