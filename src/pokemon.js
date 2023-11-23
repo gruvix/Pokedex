@@ -5,6 +5,7 @@ import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 import { setCurrentPokemon } from './currentPokemon.js';
 import { checkForFavorited } from './favorites.js';
+import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
 
 function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');
@@ -74,7 +75,11 @@ export default async function getPokemonHandler(pokemonName) {
   if (pokemonName === 'michelin') {
     pokemon = fakePokemon();
   } else {
-    pokemon = await getPokemonByIdOrName(pokemonName);
+    try {
+      pokemon = loadPokemon(pokemonName);
+    } catch {
+      pokemon = await getPokemonByIdOrName(pokemonName);
+    }
   }
   pokemonHandler(pokemon);
 }
