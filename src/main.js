@@ -7,7 +7,7 @@ import {
   toggleFavorite,
   launchFavoritesModal,
   hideFavoritesModal,
-  emptyStoredPokemons,
+  emptyFavorites,
 } from './favorites.js';
 
 $('#random-pokemon-button').on('click', () => {
@@ -36,7 +36,7 @@ $('#launch-pokemon-storage-button').on('click', () => {
   launchFavoritesModal();
 });
 $('#empty-favorites-button').on('click', () => {
-  emptyStoredPokemons();
+  emptyFavorites();
 });
 $('#close-pokemon-storage-button').on('click', () => {
   hideFavoritesModal();

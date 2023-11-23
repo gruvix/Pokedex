@@ -77,7 +77,7 @@ export function launchFavoritesModal() {
   loadFavorites();
 }
 
-export function emptyStoredPokemons() {
+export function emptyFavorites() {
   loadIndex().forEach((pokemonName) => {
     removePokemon(pokemonName);
     removePokemonFromIndex(pokemonName, loadIndex());
