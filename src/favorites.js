@@ -7,6 +7,7 @@ import {
   loadIndexFromLocalStorage as loadIndex,
   saveIndexToLocalStorage as saveIndex,
 } from './localStorage.js';
+import { pokemonHandler } from './pokemon.js';
 
 function toggleIconOn() {
   $('#pokemon-favorite').text('★');
@@ -46,6 +47,17 @@ export function checkForFavorited(pokemonName) {
   }
 }
 export default function toggleFavorite() {
+function clearFavoriteList() {
+  $('#favorite-list').empty();
+}
+function loadFavorites() {
+  clearFavoriteList();
+  const index = loadIndex();
+  index.forEach((pokemonName) => {
+    const pokemon = loadPokemon(pokemonName);
+    addPokemonButton(pokemon);
+  });
+}
 function showFavoritesModal() {
   $('#pokemon-storage-modal').modal('show');
 }
@@ -60,6 +72,9 @@ export function emptyStoredPokemons() {
     removePokemon(pokemonName);
     removePokemonFromIndex(pokemonName, loadIndex());
   });
+  toggleAttributeOff();
+  toggleIconOff();
+  clearFavoriteList();
 }
 export function toggleFavorite() {
   const index = loadIndex();
