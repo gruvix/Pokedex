@@ -29,6 +29,9 @@
                 ...
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" id="empty-favorites-button">
+                        Empty favorites
+                    </button>
                 </div>
             </div>
             </div>
@@ -80,7 +83,7 @@
                                 <strong id="pokemon-name">
                                     POKEMON
                                 </strong>
-                                <button id="pokemon-favorite" class="favorite" data-favorite="false">
+                                <button id="pokemon-favorite-button" class="favorite" data-favorite="false">
                                     ☆
                                 </button>
                             </div>
@@ -128,9 +131,9 @@
                     </li>
                 </ul>
                 <div style="justify-content: space-between; align-items: center; display: flex;">
-                    <button class="btn btn-secondary pokemon-list-button" id="previous-page">previous page</button>
+                    <button class="btn btn-secondary pokemon-list-button" id="previous-page-button">previous page</button>
                     <span id="pokemon-now-showing" data-index="0" data-total="0" style="padding: 5%;">pokemon X to Y</span>
-                    <button class="btn btn-secondary pokemon-list-button" id="next-page">next page</button>
+                    <button class="btn btn-secondary pokemon-list-button" id="next-page-button">next page</button>
                 </div>
             </nav>
         </div>

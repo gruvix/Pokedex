@@ -7,6 +7,7 @@ import {
   toggleFavorite,
   launchFavoritesModal,
   closeFavoritesModal,
+  emptyStoredPokemons,
 } from './favorites.js';
 
 $('#random-pokemon-button').on('click', () => {
@@ -17,12 +18,12 @@ $('#search-pokemon-button').on('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
   getPokemonHandler(pokemon);
 });
-$('#previous-page').on('click', () => {
+$('#previous-page-button').on('click', () => {
   const PREVIOUS_PAGE_OFFSET = 16;
   const previousPage = pokeList.getFirstPokemonOnListId() - PREVIOUS_PAGE_OFFSET;
   pokeList.updatePokemons(previousPage);
 });
-$('#next-page').on('click', () => {
+$('#next-page-button').on('click', () => {
   const nextPage = pokeList.getLastPokemonOnListId();
   pokeList.updatePokemons(nextPage);
 });
@@ -33,6 +34,9 @@ $('#pokemon-list').on('click', (event) => {
 });
 $('#launch-pokemon-storage-button').on('click', () => {
   launchFavoritesModal();
+});
+$('#empty-favorites-button').on('click', () => {
+  emptyStoredPokemons();
 });
 $('#close-pokemon-storage-button').on('click', () => {
   closeFavoritesModal();
