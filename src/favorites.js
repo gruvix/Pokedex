@@ -10,16 +10,16 @@ import {
 import { pokemonHandler } from './pokemon.js';
 
 function toggleIconOn() {
-  $('#pokemon-favorite').text('★');
+  $('#pokemon-favorite-button').text('★');
 }
 function toggleIconOff() {
-  $('#pokemon-favorite').text('☆');
+  $('#pokemon-favorite-button').text('☆');
 }
 function toggleAttributeOn() {
-  $('#pokemon-favorite').attr('data-favorite', 'true');
+  $('#pokemon-favorite-button').attr('data-favorite', 'true');
 }
 function toggleAttributeOff() {
-  $('#pokemon-favorite').attr('data-favorite', 'false');
+  $('#pokemon-favorite-button').attr('data-favorite', 'false');
 }
 function hasIndexFreeSlot(index) {
   const MAXIMUN_FAVORITE_POKEMON = 5;
@@ -78,7 +78,7 @@ export function emptyStoredPokemons() {
 }
 export function toggleFavorite() {
   const index = loadIndex();
-  const $pokemonFavorite = $('#pokemon-favorite');
+  const $pokemonFavorite = $('#pokemon-favorite-button');
   const isFavorite = $pokemonFavorite.attr('data-favorite');
   const pokemon = getCurrentPokemon();
 
