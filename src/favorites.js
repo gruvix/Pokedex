@@ -87,6 +87,7 @@ export function emptyFavorites() {
   toggleAttributeOff();
   toggleIconOff();
   clearFavoriteList();
+  hideFavoritesModal();
 }
 export function toggleFavorite() {
   const index = loadIndex();
