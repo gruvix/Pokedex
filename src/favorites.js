@@ -70,6 +70,7 @@ function showFavoritesModal() {
 }
 export function launchFavoritesModal() {
   showFavoritesModal();
+  loadFavorites();
 }
 export function closeFavoritesModal() {
   $('#pokemon-storage-modal').modal('hide');
