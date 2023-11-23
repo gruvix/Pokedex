@@ -46,7 +46,14 @@ export function checkForFavorited(pokemonName) {
     toggleIconOff();
   }
 }
-export default function toggleFavorite() {
+function addPokemonButton(pokemon) {
+  const $pokemonList = $('#favorite-list');
+  const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
+  $pokemonButton.on('click', () => {
+    pokemonHandler(loadPokemon(pokemon.name));//ACA VA UN BOTON PARA ELIMINAR AL POKEMON
+  });
+  $pokemonList.append($pokemonButton);
+}
 function clearFavoriteList() {
   $('#favorite-list').empty();
 }
