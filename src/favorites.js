@@ -55,6 +55,12 @@ export function launchFavoritesModal() {
 export function closeFavoritesModal() {
   $('#pokemon-storage-modal').modal('hide');
 }
+export function emptyStoredPokemons() {
+  loadIndex().forEach((pokemonName) => {
+    removePokemon(pokemonName);
+    removePokemonFromIndex(pokemonName, loadIndex());
+  });
+}
 export function toggleFavorite() {
   const index = loadIndex();
   const $pokemonFavorite = $('#pokemon-favorite');
