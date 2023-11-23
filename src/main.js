@@ -8,7 +8,7 @@ import {
   launchBackpack,
   hideBackpack,
   wipeCapturedPokemon,
-} from './favorites.js';
+} from './backpack.js';
 
 $('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
