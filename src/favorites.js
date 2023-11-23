@@ -10,26 +10,26 @@ import {
 import getPokemon from './pokemon.js';
 
 function toggleIconOn() {
-  $('#pokemon-favorite-button').text('★');
+  $('#pokemon-catch-button').text('★');
 }
 function toggleIconOff() {
-  $('#pokemon-favorite-button').text('☆');
+  $('#pokemon-catch-button').text('☆');
 }
 function toggleAttributeOn() {
-  $('#pokemon-favorite-button').attr('data-favorite', 'true');
+  $('#pokemon-catch-button').attr('data-caught', 'true');
 }
 function toggleAttributeOff() {
-  $('#pokemon-favorite-button').attr('data-favorite', 'false');
+  $('#pokemon-catch-button').attr('data-caught', 'false');
 }
-function showFavoritesModal() {
-  $('#pokemon-storage-modal').modal('show');
+function showBackpack() {
+  $('#pokemon-backpack-modal').modal('show');
 }
-export function hideFavoritesModal() {
-  $('#pokemon-storage-modal').modal('hide');
+export function hideBackpack() {
+  $('#pokemon-backpack-modal').modal('hide');
 }
 function hasIndexFreeSlot(index) {
-  const MAXIMUN_FAVORITE_POKEMON = 5;
-  if (index.lenght >= MAXIMUN_FAVORITE_POKEMON) {
+  const MAXIMUN_BACKPACK_POKEMON = 5;
+  if (index.length >= MAXIMUN_BACKPACK_POKEMON) {
     return false;
   }
   return true;
@@ -42,7 +42,7 @@ function removePokemonFromIndex(pokemonName, index) {
   index.splice(index.indexOf(pokemonName), 1);
   saveIndex(index);
 }
-export function checkForFavorited(pokemonName) {
+export function checkForBackpacked(pokemonName) {
   const index = loadIndex();
   if (index.includes(pokemonName)) {
     toggleAttributeOn();
@@ -53,46 +53,51 @@ export function checkForFavorited(pokemonName) {
   }
 }
 function addPokemonButton(pokemon) {
-  const $pokemonList = $('#favorite-list');
+  const $pokemonList = $('#backpack-list');
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
   $pokemonButton.on('click', () => {
     getPokemon(pokemon.name);//ACA VA UN BOTON PARA ELIMINAR AL POKEMON
-    hideFavoritesModal();
+    hideBackpack();
   });
   $pokemonList.append($pokemonButton);
 }
-function clearFavoriteList() {
-  $('#favorite-list').empty();
+function emptyBackpack() {
+  $('#backpack-list').empty();
 }
-function loadFavorites() {
-  clearFavoriteList();
+function loadBackpack() {
   const index = loadIndex();
+  if (index.length === 0) {
+    const $emptyModalText = $('<div>Your bag is empty</div>');
+    $('#backpack-list').append($emptyModalText);
+    return;
+  }
   index.forEach((pokemonName) => {
     const pokemon = loadPokemon(pokemonName);
     addPokemonButton(pokemon);
   });
 }
-export function launchFavoritesModal() {
-  showFavoritesModal();
-  loadFavorites();
+export function launchBackpack() {
+  emptyBackpack();
+  loadBackpack();
+  showBackpack();
 }
-function removeEachFavorite() {
+function removeEachCaptured() {
   loadIndex().forEach((pokemonName) => {
     removePokemon(pokemonName);
     removePokemonFromIndex(pokemonName, loadIndex());
   });
 }
-export function emptyFavorites() {
-  removeEachFavorite();
+export function wipeCapturedPokemon() {
+  removeEachCaptured();
   toggleAttributeOff();
   toggleIconOff();
-  clearFavoriteList();
-  hideFavoritesModal();
+  emptyBackpack();
+  hideBackpack();
 }
-export function toggleFavorite() {
+export function toggleCaptured() {
   const index = loadIndex();
-  const $pokemonFavorite = $('#pokemon-favorite-button');
-  const isFavorite = $pokemonFavorite.attr('data-favorite');
+  const $pokemonFavorite = $('#pokemon-catch-button');
+  const isFavorite = $pokemonFavorite.attr('data-caught');
   const pokemon = getCurrentPokemon();
 
   if (isFavorite === 'false') {

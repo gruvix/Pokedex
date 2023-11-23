@@ -4,10 +4,10 @@ import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';
 import generateRandomId from './utils.js';
 import {
-  toggleFavorite,
-  launchFavoritesModal,
-  hideFavoritesModal,
-  emptyFavorites,
+  toggleCaptured,
+  launchBackpack,
+  hideBackpack,
+  wipeCapturedPokemon,
 } from './favorites.js';
 
 $('#random-pokemon-button').on('click', () => {
@@ -32,17 +32,17 @@ $('#pokemon-list').on('click', (event) => {
   if (!event.target.classList.contains('btn-link')) return;
   getPokemonHandler(pokemon);
 });
-$('#launch-pokemon-storage-button').on('click', () => {
-  launchFavoritesModal();
+$('#launch-pokemon-backpack-button').on('click', () => {
+  launchBackpack();
 });
-$('#empty-favorites-button').on('click', () => {
-  emptyFavorites();
+$('#empty-backpack-button').on('click', () => {
+  wipeCapturedPokemon();
 });
-$('#close-pokemon-storage-button').on('click', () => {
-  hideFavoritesModal();
+$('#close-pokemon-backpack-button').on('click', () => {
+  hideBackpack();
 });
-$('#pokemon-favorite-button').on('click', () => {
-  toggleFavorite();
+$('#pokemon-catch-button').on('click', () => {
+  toggleCaptured();
 });
 pokeList.updatePokemons();
 // ## construir un pokedex

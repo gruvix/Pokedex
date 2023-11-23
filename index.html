@@ -16,20 +16,20 @@
 <body>
     <div class="container">
 
-        <div class="modal fade" id="pokemon-storage-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal fade" id="pokemon-backpack-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="modal-title">Modal title</h5>
-                <button type="button" class="close" id="close-pokemon-storage-button" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="modal-title">Backpack</h5>
+                <button type="button" class="close" id="close-pokemon-backpack-button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                <div class="modal-body" id="favorite-list">
+                <div class="modal-body" id="backpack-list">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" id="empty-favorites-button">
-                        Empty favorites
+                    <button type="button" class="btn btn-warning" id="empty-backpack-button">
+                        Empty backpack
                     </button>
                 </div>
             </div>
@@ -55,8 +55,8 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-primary" id="launch-pokemon-storage-button">
-                            Favorites ★
+                        <button type="button" class="btn btn-primary" id="launch-pokemon-backpack-button">
+                            Backpack ★
                         </button>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                                 <strong id="pokemon-name">
                                     POKEMON
                                 </strong>
-                                <button id="pokemon-favorite-button" class="favorite" data-favorite="false">
+                                <button id="pokemon-catch-button" class="favorite" data-caught="false">
                                     ☆
                                 </button>
                             </div>

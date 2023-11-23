@@ -4,7 +4,7 @@ import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 import { setCurrentPokemon } from './currentPokemon.js';
-import { checkForFavorited } from './favorites.js';
+import { checkForBackpacked } from './favorites.js';
 import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
 
 function showPokemonInfo() {
@@ -57,7 +57,7 @@ function pokemonHandler(pokemon) {
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites.other);
   setCurrentPokemon(pokemon);
-  checkForFavorited(pokemon.name);
+  checkForBackpacked(pokemon.name);
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();
