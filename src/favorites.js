@@ -7,7 +7,7 @@ import {
   loadIndexFromLocalStorage as loadIndex,
   saveIndexToLocalStorage as saveIndex,
 } from './localStorage.js';
-import { pokemonHandler } from './pokemon.js';
+import getPokemon from './pokemon.js';
 
 function toggleIconOn() {
   $('#pokemon-favorite-button').text('★');
@@ -56,7 +56,7 @@ function addPokemonButton(pokemon) {
   const $pokemonList = $('#favorite-list');
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
   $pokemonButton.on('click', () => {
-    pokemonHandler(loadPokemon(pokemon.name));//ACA VA UN BOTON PARA ELIMINAR AL POKEMON
+    getPokemon(pokemon.name);//ACA VA UN BOTON PARA ELIMINAR AL POKEMON
     hideFavoritesModal();
   });
   $pokemonList.append($pokemonButton);
