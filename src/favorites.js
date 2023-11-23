@@ -76,12 +76,14 @@ export function launchFavoritesModal() {
   showFavoritesModal();
   loadFavorites();
 }
-
-export function emptyFavorites() {
+function removeEachFavorite() {
   loadIndex().forEach((pokemonName) => {
     removePokemon(pokemonName);
     removePokemonFromIndex(pokemonName, loadIndex());
   });
+}
+export function emptyFavorites() {
+  removeEachFavorite();
   toggleAttributeOff();
   toggleIconOff();
   clearFavoriteList();
