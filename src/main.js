@@ -41,7 +41,7 @@ $('#empty-favorites-button').on('click', () => {
 $('#close-pokemon-storage-button').on('click', () => {
   closeFavoritesModal();
 });
-$('#pokemon-favorite').on('click', () => {
+$('#pokemon-favorite-button').on('click', () => {
   toggleFavorite();
 });
 pokeList.updatePokemons();
