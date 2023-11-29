@@ -23,24 +23,31 @@ describe('tests the pokedex', () => {
       .should('have.text', POKEMON_FIRST_ABILITY);
   });
 
-  // it('should get a pokemon and show its info', () => {
-  //   const POKEMON_NAME = 'Pikachu';
-  //   const POKEMON_FIRST_TYPE = 'electric';
-  //   const POKEMON_FIRST_ABILITY = 'static';
-  //   cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('pokemon');
-
-  //   cy.get('#pokemon-id-input').type('pikachu').get('#search-pokemon-button')
-  //     .click()
-  //     .wait('@pokemon');
-
-  //   cy.get('#error').should('not.be.visible');
-  //   cy.get('#pokemon-name').should('be.text', POKEMON_NAME);
-  //   cy.get('#pokemon-types').children().should('have.length', 1).first()
-  //     .should('have.text', POKEMON_FIRST_TYPE);
-  //   cy.get('#pokemon-abilities').children().should('have.length', 2).first()
-  //     .should('have.text', POKEMON_FIRST_ABILITY);
-  //   cy.wait(1000);
-  // });
+  it('should get a random pokemon and mock the result', () => {
+    const POKEMON_LIST_AMOUNT = 15;
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/?offset**').as('pokemons');
+    cy.get('#random-pokemon-button').click().wait('@pokemons')
+      .then(() => {
+        cy.get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
+          .then((list) => {
+            const randomPokemonIndex = Math.floor(Math.random() * list.length);
+            const randomPokemon = list[randomPokemonIndex];
+            cy.wrap(randomPokemon).children().first().invoke('attr', 'id')
+              .then((id) => {
+                const pokemonName = id;
+                cy.intercept('GET', `https://pokeapi.co/api/v2/pokemon/${pokemonName}`, { fixture: 'pikachu.json' }).as('pokemon');
+                cy.wrap(randomPokemon).children().first().click()
+                  .wait('@pokemon')
+                  .get('#pokemon-name')
+                  .should('be.text', 'Pikachu')
+                  .get('#pokemon-types')
+                  .children()
+                  .first()
+                  .should('be.text', 'fake');
+              });
+          });
+      });
+  });
 
   it('should get next and previous pages', () => {
     cy.get('#next-page-button').click().get('#pokemon-now-showing')

@@ -12487,7 +12487,7 @@
       {
         "slot": 1,
         "type": {
-          "name": "wachin",
+          "name": "fake",
           "url": "https://pokeapi.co/api/v2/type/13/"
         }
       }
