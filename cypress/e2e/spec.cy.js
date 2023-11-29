@@ -5,6 +5,7 @@ describe('tests the pokedex', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8000/');
   });
+
   it('should show an error indicating the searched pokemon does not exist', () => {
     cy.get('#pokemon-id-input').type('not a pokemon').get('#search-pokemon-button').click();
     cy.get('#error').should('be.visible').should('be.text', 'The pokemon not a pokemon does not exist');
@@ -54,6 +55,34 @@ describe('tests the pokedex', () => {
       .should('have.text', 'pokemon 16 to 30');
     cy.get('#previous-page-button').click().get('#pokemon-now-showing')
       .should('have.text', 'pokemon 1 to 15');
+  });
+
+  it('should catch a pokemon, select another pokemon and then load the first one from the backpack', () => {
+    const POKEMON_LIST_AMOUNT = 15;
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/?offset**').as('pokemons');
+    cy.get('#random-pokemon-button').click()
+      .get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
+      .then((list1) => {
+        const randomPokemonIndex1 = Math.floor(Math.random() * list1.length);
+        const randomPokemon1 = list1[randomPokemonIndex1];
+        cy.wrap(randomPokemon1).children().first().invoke('attr', 'id')
+          .then((id) => {
+            const pokemonName = id;
+            cy.wrap(randomPokemon1).children().first().click();
+            cy.get('#pokemon-catch-button').click();
+            cy.get('#random-pokemon-button').click().wait('@pokemons').get('#pokemon-list li')
+              .then((list2) => {
+                const randomPokemonIndex2 = Math.floor(Math.random() * list2.length);
+                const randomPokemon2 = list2[randomPokemonIndex2];
+                cy.wrap(randomPokemon2).children().first().click();
+              })
+              .get('#launch-pokemon-backpack-button')
+              .click()
+              .get('#backpack-list button')
+              .invoke('attr', 'id')
+              .should('be.equal', pokemonName);
+          });
+      });
   });
 
   it('should get a random pokemon from the list', () => {
