@@ -43,9 +43,9 @@ describe('tests the pokedex', () => {
   // });
 
   it('should get next and previous pages', () => {
-    cy.get('#next-page').click().get('#pokemon-now-showing')
+    cy.get('#next-page-button').click().get('#pokemon-now-showing')
       .should('have.text', 'pokemon 16 to 30');
-    cy.get('#previous-page').click().get('#pokemon-now-showing')
+    cy.get('#previous-page-button').click().get('#pokemon-now-showing')
       .should('have.text', 'pokemon 1 to 15');
   });
 
