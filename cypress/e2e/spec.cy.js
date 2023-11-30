@@ -11,7 +11,7 @@ describe('tests the pokedex', () => {
     cy.get('#error').should('be.visible').should('be.text', 'The pokemon not a pokemon does not exist');
   });
 
-  it('should get a pokemon and show its info', () => {
+  it('should get Pikachu and show its info', () => {
     const POKEMON_NAME = 'Pikachu';
     const POKEMON_FIRST_TYPE = 'electric';
     const POKEMON_FIRST_ABILITY = 'static';
