@@ -26,8 +26,8 @@ describe('tests the pokedex', () => {
 
   it('should get a random pokemon and mock the result', () => {
     const POKEMON_LIST_AMOUNT = 15;
-    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/?offset**').as('pokemons');
-    cy.get('#random-pokemon-button').click().wait('@pokemons')
+    cy.intercept('https://pokeapi.co/api/v2/pokemon/?offset**').as('GETpokemons');
+    cy.get('#random-pokemon-button').click().wait('@GETpokemons')
       .then(() => {
         cy.get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
           .then((list) => {
@@ -36,9 +36,9 @@ describe('tests the pokedex', () => {
             cy.wrap(randomPokemon).children().first().invoke('attr', 'id')
               .then((id) => {
                 const pokemonName = id;
-                cy.intercept('GET', `https://pokeapi.co/api/v2/pokemon/${pokemonName}`, { fixture: 'pikachu.json' }).as('pokemon');
+                cy.intercept(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, { fixture: 'pikachu.json' }).as('GETpokemon');
                 cy.wrap(randomPokemon).children().first().click()
-                  .wait('@pokemon')
+                  .wait('@GETpokemon')
                   .get('#pokemon-name')
                   .should('be.text', 'Pikachu')
                   .get('#pokemon-types')
@@ -59,7 +59,7 @@ describe('tests the pokedex', () => {
 
   it('should catch a pokemon, select another pokemon and then load the first one from the backpack', () => {
     const POKEMON_LIST_AMOUNT = 15;
-    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/?offset**').as('pokemons');
+    cy.intercept('https://pokeapi.co/api/v2/pokemon/?offset**').as('GETpokemons');
     cy.get('#random-pokemon-button').click()
       .get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
       .then((list1) => {
@@ -70,7 +70,7 @@ describe('tests the pokedex', () => {
             const pokemonName = id;
             cy.wrap(randomPokemon1).children().first().click();
             cy.get('#pokemon-catch-button').click();
-            cy.get('#random-pokemon-button').click().wait('@pokemons').get('#pokemon-list li')
+            cy.get('#random-pokemon-button').click().wait('@GETpokemons').get('#pokemon-list li')
               .then((list2) => {
                 const randomPokemonIndex2 = Math.floor(Math.random() * list2.length);
                 const randomPokemon2 = list2[randomPokemonIndex2];
@@ -87,9 +87,9 @@ describe('tests the pokedex', () => {
 
   it('should get a random pokemon from the list', () => {
     const POKEMON_LIST_AMOUNT = 15;
-    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('pokemons');
+    cy.intercept('GET', 'https://pokeapi.co/api/v2/pokemon/**').as('GETpokemons');
 
-    cy.get('#random-pokemon-button').click().wait('@pokemons')
+    cy.get('#random-pokemon-button').click().wait('@GETpokemons')
       .then(() => {
         cy.get('#pokemon-list li').should('have.length', POKEMON_LIST_AMOUNT)
           .then((list) => {
