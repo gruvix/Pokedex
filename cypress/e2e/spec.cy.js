@@ -83,6 +83,14 @@ describe('tests the pokedex', () => {
               .should('be.equal', pokemonName);
           });
       });
+  it('should catch a pokemon and then empty the backpack', () => {
+    cy.intercept('https://pokeapi.co/api/v2/pokemon/**').as('GETpokemon');
+    cy.get('#pokemon-list li').children().first().click();
+    cy.get('#pokemon-catch-button').click();
+    cy.get('#launch-pokemon-backpack-button').click();
+    cy.get('#backpack-list').children().should('have.length', 1);
+    cy.get('#empty-backpack-button').click();
+    cy.get('#backpack-list').children().should('have.length', 0);
   });
 
   it('should get a random pokemon from the list', () => {
