@@ -42,7 +42,7 @@ function removePokemonFromIndex(pokemonName, index) {
   index.splice(index.indexOf(pokemonName), 1);
   saveIndex(index);
 }
-export function checkForBackpacked(pokemonName) {
+export function checkForBackpackedAndToggle(pokemonName) {
   const index = loadIndex();
   if (index.includes(pokemonName)) {
     toggleAttributeOn();
