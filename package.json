@@ -4,9 +4,11 @@
   "description": "Pokedex from Pokemon for r/ArgentinaPrograma",
   "main": "index.js",
   "scripts": {
-    "test": "run-p start-server cypress-dev",
     "start-server": "http-server -p 8000 -c-1",
-    "cypress-dev": "cypress open"
+    "cypress-dev": "cypress open",
+    "test:cypress": "run-p start-server cypress-dev",
+    "test:jest": "jest --watch"
+
   },
   "repository": {
     "type": "git",
