@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 /// <reference types="jquery" />
 import * as pokeList from './pokemonList.js';
 import getPokemonHandler from './pokemon.js';

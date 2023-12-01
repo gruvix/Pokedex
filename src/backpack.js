@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { getCurrentPokemon } from './currentPokemon.js';
 import {
   savePokemonToLocalStorage as storePokemon,

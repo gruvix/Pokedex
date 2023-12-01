@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import * as display from './displayList.js';
 import * as request from './apiRequests.js';
 import * as localStorage from './localStorage.js';

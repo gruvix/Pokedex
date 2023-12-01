@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import displayPokemon from './display.js';
 import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
