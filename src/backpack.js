@@ -56,7 +56,7 @@ function addPokemonButton(pokemon) {
   const $pokemonList = $('#backpack-list');
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
   $pokemonButton.on('click', () => {
-    getPokemon(pokemon.name);//ACA VA UN BOTON PARA ELIMINAR AL POKEMON
+    getPokemon(pokemon.name);// TODO: button to remove pokemon from backpack
     hideBackpack();
   });
   $pokemonList.append($pokemonButton);
