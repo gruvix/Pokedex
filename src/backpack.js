@@ -26,7 +26,7 @@ function showBackpack() {
 export function hideBackpack() {
   $('#pokemon-backpack-modal').modal('hide');
 }
-function hasIndexFreeSlot(index) {
+export function hasIndexFreeSlot(index) {
   const MAXIMUN_BACKPACK_POKEMON = 5;
   if (index.length >= MAXIMUN_BACKPACK_POKEMON) {
     return false;
