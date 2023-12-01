@@ -23,6 +23,7 @@
     "node": "^21.0.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.23.5",
     "@types/jquery": "^3.5.25",
     "cypress": "^13.3.2",
     "eslint": "^8.53.0",
