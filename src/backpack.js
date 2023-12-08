@@ -51,15 +51,6 @@ export function checkForBackpackedAndToggle(pokemonName) {
     toggleIconOff();
   }
 }
-function addPokemonButton(pokemon) {
-  const $pokemonList = $('#backpack-list');
-  const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
-  $pokemonButton.on('click', () => {
-    getPokemon(pokemon.name);// TODO: button to remove pokemon from backpack
-    hideBackpack();
-  });
-  $pokemonList.append($pokemonButton);
-}
 function emptyBackpack() {
   $('#backpack-list').empty();
 }
@@ -104,6 +95,23 @@ export function wipeCapturedPokemon() {
   toggleIconOff();
   emptyBackpack();
   hideBackpack();
+}
+function addPokemonButton(pokemon) {
+  const $pokemonList = $('#backpack-list');
+  const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
+  $pokemonButton.on('click', () => {
+    getPokemon(pokemon.name);
+    hideBackpack();
+  });
+  const $removeButton = $('<button class="btn btn-primary" style="padding: 0.5%;">X</button><div></div>');
+  $removeButton.on('click', () => {
+    removePokemon(pokemon.name);
+    emptyBackpack();
+    loadBackpack();
+    checkForBackpackedAndToggle(pokemon.name);
+  });
+  $pokemonList.append($pokemonButton);
+  $pokemonList.append($removeButton);
 }
 export function toggleCaptured() {
   const index = loadIndex();
