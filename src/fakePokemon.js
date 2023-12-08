@@ -1,4 +1,4 @@
-export default function easterEgg() {
+export default function fakePokemon() {
   const michelin = {
     name: 'michelin',
     types: [

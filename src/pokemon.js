@@ -1,8 +1,10 @@
-/* eslint-disable import/extensions */
 import displayPokemon from './display.js';
-import easterEgg from './easterEgg.js';
+import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
+import { setCurrentPokemon } from './currentPokemon.js';
+import { updateBackpackIndicator } from './backpack.js';
+import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
 
 function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');
@@ -53,6 +55,8 @@ function pokemonHandler(pokemon) {
   updateAbilities(pokemon.abilities);
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites.other);
+  setCurrentPokemon(pokemon);
+  updateBackpackIndicator();
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();
@@ -66,14 +70,15 @@ export default async function getPokemonHandler(pokemonName) {
   clearPokemon();
   addLoadingToPokemon();
   hideError();
+  let pokemon;
   if (pokemonName === 'michelin') {
-    const pokemon = easterEgg();
-    pokemonHandler(pokemon);
+    pokemon = fakePokemon();
   } else {
-    const pokemon = await getPokemonByIdOrName(pokemonName)
-    if (!pokemon) {
-      return;
+    try {
+      pokemon = loadPokemon(pokemonName);
+    } catch {
+      pokemon = await getPokemonByIdOrName(pokemonName);
     }
-    pokemonHandler(pokemon);
   }
+  pokemonHandler(pokemon);
 }

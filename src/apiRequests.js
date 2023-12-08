@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import { handleError } from './error.js';
 
 export function getPokemons(offset, amount) {
