@@ -91,7 +91,6 @@ describe('tests the pokedex', () => {
   it('should catch a pokemon and then empty the backpack', () => {
     const ELEMENTS_PER_STORED_POKEMON = 3;
     const EMPTY_BACKPACK_ELEMENTS = 0;
-    cy.intercept('https://pokeapi.co/api/v2/pokemon/**').as('GETpokemon');
     cy.get('#pokemon-list li').children().first().click();
     cy.get('#pokemon-catch-button').click();
     cy.get('#launch-pokemon-backpack-button').click();
