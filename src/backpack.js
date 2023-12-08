@@ -2,7 +2,7 @@ import { getCurrentPokemon } from './currentPokemon.js';
 import {
   savePokemonToLocalStorage as storePokemon,
   loadPokemonFromLocalStorage as loadPokemon,
-  removePokemonFromLocalStorage as removePokemon,
+  removePokemonFromLocalStorage as unStorePokemon,
   loadIndexFromLocalStorage as loadIndex,
   saveIndexToLocalStorage as saveIndex,
 } from './localStorage.js';
@@ -90,7 +90,7 @@ export function launchBackpack() {
 }
 function removeEachCaptured() {
   loadIndex().forEach((pokemonName) => {
-    removePokemon(pokemonName);
+    unStorePokemon(pokemonName);
     removePokemonFromIndex(pokemonName, loadIndex());
   });
 }
@@ -120,6 +120,6 @@ export function toggleCaptured() {
     toggleAttributeOff();
     toggleIconOff();
     removePokemonFromIndex(pokemon.name, index);
-    removePokemon(pokemon.name);
+    unStorePokemon(pokemon.name);
   }
 }
