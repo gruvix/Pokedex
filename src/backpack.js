@@ -60,20 +60,6 @@ function disableEmptyBackpackButton() {
 function enableEmptyBackpackButton() {
   $('#empty-backpack-button').removeAttr('disabled');
 }
-function loadBackpack() {
-  const index = loadIndex();
-  if (index.length === 0) {
-    const $emptyModalText = $('<div>Your bag is empty</div>');
-    $('#backpack-list').append($emptyModalText);
-    disableEmptyBackpackButton();
-    return;
-  }
-  enableEmptyBackpackButton();
-  index.forEach((pokemonName) => {
-    const pokemon = loadPokemon(pokemonName);
-    addPokemonButton(pokemon);
-  });
-}
 export function launchBackpack() {
   emptyBackpack();
   loadBackpack();
@@ -96,6 +82,17 @@ export function wipeCapturedPokemon() {
   emptyBackpack();
   hideBackpack();
 }
+function isBackpackEmpty() {
+  const index = loadIndex();
+  if (index.length === 0) {
+    return true;
+  }
+  return false;
+}
+function showEmptyBackpackMessage(){
+  const $emptyModalText = $('<div>Your bag is empty</div>');
+  $('#backpack-list').append($emptyModalText);
+}
 function addPokemonButton(pokemon) {
   const $pokemonList = $('#backpack-list');
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
@@ -112,6 +109,18 @@ function addPokemonButton(pokemon) {
   });
   $pokemonList.append($pokemonButton);
   $pokemonList.append($removeButton);
+}
+function loadBackpack() {
+  if (isBackpackEmpty()) {
+    showEmptyBackpackMessage();
+    disableEmptyBackpackButton();
+    return;
+  }
+  enableEmptyBackpackButton();
+  loadIndex().forEach((pokemonName) => {
+    const pokemon = loadPokemon(pokemonName);
+    addPokemonButton(pokemon);
+  });
 }
 export function toggleCaptured() {
   const index = loadIndex();
