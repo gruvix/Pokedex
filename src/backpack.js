@@ -146,7 +146,7 @@ export function toggleCaptured() {
     if (!hasIndexFreeSlot(index)) {
       $('#full-backpack-warning').show();
       $('#full-backpack-warning').delay(1500).fadeOut();
-      throw new Error('Index is full');
+      return;
     }
     toggleAttributeOn();
     toggleIconOn();
