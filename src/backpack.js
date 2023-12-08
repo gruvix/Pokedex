@@ -60,11 +60,6 @@ function disableEmptyBackpackButton() {
 function enableEmptyBackpackButton() {
   $('#empty-backpack-button').removeAttr('disabled');
 }
-export function launchBackpack() {
-  emptyBackpack();
-  loadBackpack();
-  showBackpack();
-}
 function removeEachCaptured() {
   loadIndex().forEach((pokemonName) => {
     unStorePokemon(pokemonName);
@@ -89,7 +84,7 @@ function isBackpackEmpty() {
   }
   return false;
 }
-function showEmptyBackpackMessage(){
+function showEmptyBackpackMessage() {
   const $emptyModalText = $('<div>Your bag is empty</div>');
   $('#backpack-list').append($emptyModalText);
 }
@@ -125,6 +120,11 @@ function loadBackpack() {
     const pokemon = loadPokemon(pokemonName);
     addPokemonButton(pokemon);
   });
+}
+export function launchBackpack() {
+  emptyBackpack();
+  loadBackpack();
+  showBackpack();
 }
 export function toggleCaptured() {
   const index = loadIndex();
