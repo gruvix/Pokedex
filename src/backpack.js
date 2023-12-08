@@ -103,9 +103,13 @@ function addPokemonButton(pokemon) {
   const $removeButton = $('<button class="btn btn-primary" style="padding: 0.5%;">X</button><div></div>');
   $removeButton.on('click', () => {
     removePokemon(pokemon.name);
-    emptyBackpack();
-    loadBackpack();
     checkForBackpackedAndToggle(pokemon.name);
+    $removeButton.remove();
+    $pokemonButton.remove();
+    if (isBackpackEmpty()) {
+      showEmptyBackpackMessage();
+      disableEmptyBackpackButton();
+    }
   });
   $pokemonList.append($pokemonButton);
   $pokemonList.append($removeButton);
