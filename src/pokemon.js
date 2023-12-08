@@ -3,7 +3,7 @@ import fakePokemon from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 import { setCurrentPokemon } from './currentPokemon.js';
-import { checkForBackpackedAndToggle } from './backpack.js';
+import { updateBackpackIndicator } from './backpack.js';
 import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
 
 function showPokemonInfo() {
@@ -56,7 +56,7 @@ function pokemonHandler(pokemon) {
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites.other);
   setCurrentPokemon(pokemon);
-  checkForBackpackedAndToggle(pokemon.name);
+  updateBackpackIndicator();
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();

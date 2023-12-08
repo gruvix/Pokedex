@@ -41,9 +41,10 @@ function removePokemonFromIndex(pokemonName, index) {
   index.splice(index.indexOf(pokemonName), 1);
   saveIndex(index);
 }
-export function checkForBackpackedAndToggle(pokemonName) {
+export function updateBackpackIndicator() {
+  const currentPokemon = $('#pokemon-name').text().toLowerCase();
   const index = loadIndex();
-  if (index.includes(pokemonName)) {
+  if (index.includes(currentPokemon)) {
     toggleAttributeOn();
     toggleIconOn();
   } else {
@@ -98,7 +99,7 @@ function addPokemonButton(pokemon) {
   const $removeButton = $('<button class="btn btn-primary" style="padding: 0.5%;">X</button><div></div>');
   $removeButton.on('click', () => {
     removePokemon(pokemon.name);
-    checkForBackpackedAndToggle(pokemon.name);
+    updateBackpackIndicator();
     $removeButton.remove();
     $pokemonButton.remove();
     if (isBackpackEmpty()) {
