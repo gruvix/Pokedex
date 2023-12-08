@@ -26,6 +26,11 @@ function showBackpack() {
 export function hideBackpack() {
   $('#pokemon-backpack-modal').modal('hide');
 }
+export function updateBackpackAmountIndicators() {
+  const amount = loadIndex().length;
+  $('#backpack-title-amount-indicator').text(`${amount}/5`);
+  $('#backpack-button-amount-indicator').text(`${amount}/5`);
+}
 function hasIndexFreeSlot(index) {
   const MAXIMUN_BACKPACK_POKEMON = 5;
   if (index.length >= MAXIMUN_BACKPACK_POKEMON) {
@@ -61,7 +66,7 @@ function disableEmptyBackpackButton() {
 function enableEmptyBackpackButton() {
   $('#empty-backpack-button').removeAttr('disabled');
 }
-function removeEachCaptured() {
+function removeEachPokemon() {
   loadIndex().forEach((pokemonName) => {
     unStorePokemon(pokemonName);
     removePokemonFromIndex(pokemonName, loadIndex());
@@ -72,11 +77,12 @@ function removePokemon(pokemonName) {
   removePokemonFromIndex(pokemonName, loadIndex());
 }
 export function wipeCapturedPokemon() {
-  removeEachCaptured();
+  removeEachPokemon();
   toggleAttributeOff();
   toggleIconOff();
   emptyBackpack();
   hideBackpack();
+  updateBackpackAmountIndicators();
 }
 function isBackpackEmpty() {
   const index = loadIndex();
@@ -89,7 +95,7 @@ function showEmptyBackpackMessage() {
   const $emptyModalText = $('<div>Your bag is empty</div>');
   $('#backpack-list').append($emptyModalText);
 }
-function addPokemonButton(pokemon) {
+function addPokemonButtons(pokemon) {
   const $pokemonList = $('#backpack-list');
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
   $pokemonButton.on('click', () => {
@@ -102,6 +108,7 @@ function addPokemonButton(pokemon) {
     updateBackpackIndicator();
     $removeButton.remove();
     $pokemonButton.remove();
+    updateBackpackAmountIndicators();
     if (isBackpackEmpty()) {
       showEmptyBackpackMessage();
       disableEmptyBackpackButton();
@@ -116,11 +123,13 @@ function loadBackpack() {
     disableEmptyBackpackButton();
     return;
   }
+  const index = loadIndex();
   enableEmptyBackpackButton();
-  loadIndex().forEach((pokemonName) => {
+  index.forEach((pokemonName) => {
     const pokemon = loadPokemon(pokemonName);
-    addPokemonButton(pokemon);
+    addPokemonButtons(pokemon);
   });
+  updateBackpackAmountIndicators();
 }
 export function launchBackpack() {
   emptyBackpack();
@@ -148,4 +157,5 @@ export function toggleCaptured() {
     removePokemonFromIndex(pokemon.name, index);
     unStorePokemon(pokemon.name);
   }
+  updateBackpackAmountIndicators();
 }

@@ -7,6 +7,7 @@ import {
   launchBackpack,
   hideBackpack,
   wipeCapturedPokemon,
+  updateBackpackAmountIndicators,
 } from './backpack.js';
 
 $('#random-pokemon-button').on('click', () => {
@@ -43,7 +44,12 @@ $('#close-pokemon-backpack-button').on('click', () => {
 $('#pokemon-catch-button').on('click', () => {
   toggleCaptured();
 });
-pokeList.updatePokemons();
+
+function initialize() {
+  pokeList.updatePokemons();
+  updateBackpackAmountIndicators();
+}
+initialize();
 // ## construir un pokedex
 // Documentacion https://pokeapi.co/
 // listar pokemons y poder cambiar de página
