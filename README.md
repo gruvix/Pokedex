@@ -12,6 +12,7 @@ El código se lintea con ESLint para garantizar que cumpla con los estándares d
 ## Funciones
 Permite buscar Pokémon por nombre ó por ID, ó ver el listado completo de Pokémon
 Elegír un Pokémon y ver imagenes, su tipo, habilidades y movimientos
+Atrapar Pokemones y liberarlos
 
 ## Instalación
 para comenzar debes clonar el repositorio y luego instalar las dependencias:
