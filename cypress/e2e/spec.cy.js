@@ -100,7 +100,7 @@ describe('tests the pokedex', () => {
     cy.get('#backpack-list').children().should('have.length', EMPTY_BACKPACK_ELEMENTS);
   });
 
-  it('should get a random pokemon from the list', () => {
+  it('should get a random pokemon from the list and loop through its sprites', () => {
     const POKEMON_LIST_AMOUNT = 15;
     cy.intercept('https://pokeapi.co/api/v2/pokemon/**').as('GETpokemons').then(() => {
       cy.get('#random-pokemon-button').click().wait('@GETpokemons')
