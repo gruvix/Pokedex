@@ -144,8 +144,9 @@ export function toggleCaptured() {
 
   if (isFavorite === 'false') {
     if (!hasIndexFreeSlot(index)) {
+      $('#full-backpack-warning').show();
+      $('#full-backpack-warning').delay(1500).fadeOut();
       throw new Error('Index is full');
-      //  here it shows a message to the user telling that there is no space left in the pokedex
     }
     toggleAttributeOn();
     toggleIconOn();
