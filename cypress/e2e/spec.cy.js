@@ -89,13 +89,15 @@ describe('tests the pokedex', () => {
   });
 
   it('should catch a pokemon and then empty the backpack', () => {
+    const ELEMENTS_PER_STORED_POKEMON = 3;
+    const EMPTY_BACKPACK_ELEMENTS = 0;
     cy.intercept('https://pokeapi.co/api/v2/pokemon/**').as('GETpokemon');
     cy.get('#pokemon-list li').children().first().click();
     cy.get('#pokemon-catch-button').click();
     cy.get('#launch-pokemon-backpack-button').click();
-    cy.get('#backpack-list').children().should('have.length', 1);
+    cy.get('#backpack-list').children().should('have.length', ELEMENTS_PER_STORED_POKEMON);
     cy.get('#empty-backpack-button').click();
-    cy.get('#backpack-list').children().should('have.length', 0);
+    cy.get('#backpack-list').children().should('have.length', EMPTY_BACKPACK_ELEMENTS);
   });
 
   it('should get a random pokemon from the list', () => {
