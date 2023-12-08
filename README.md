@@ -28,6 +28,8 @@ http://localhost:8000/
 [Curso de Argentina Programa](https://argentinaprograma.com/)
 
 [Clase N#12 de Argentina Programa](https://www.youtube.com/watch?v=lGZAkNLtTkE&list=PLs73pLtDNXD893LSF8fP-EfZbGWMECmnc&index=12)
+[Clase N#13 de Argentina Programa](https://www.youtube.com/watch?v=cY-OQERZBR0&list=PLs73pLtDNXD893LSF8fP-EfZbGWMECmnc&index=14)
+[Clase N#14 de Argentina Programa](https://www.youtube.com/watch?v=yQxobcVFj7w&list=PLs73pLtDNXD893LSF8fP-EfZbGWMECmnc&index=15)
 
 ## Documentacion
 [PokeAPI](https://pokeapi.co/)
