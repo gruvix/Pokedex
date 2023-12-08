@@ -99,6 +99,24 @@ describe('tests the pokedex', () => {
     cy.get('#backpack-list').children().should('have.length', EMPTY_BACKPACK_ELEMENTS);
   });
 
+  it.only('should catch first three pokemons and then remove them one by one', () => {
+    cy.get('#pokemon-list li').children().eq(0).click();
+    cy.get('#pokemon-catch-button').click();
+    cy.get('#pokemon-list li').children().eq(2).click();
+    cy.get('#pokemon-catch-button').click();
+    cy.get('#pokemon-list li').children().eq(4).click();
+    cy.get('#pokemon-catch-button').click();
+    cy.get('#launch-pokemon-backpack-button').click();
+    const ELEMENTS_PER_STORED_POKEMON = 3;
+    const STORED_POKEMONS = 3;
+    cy.get('#backpack-list').children().should('have.length', ELEMENTS_PER_STORED_POKEMON * STORED_POKEMONS);
+    cy.get('#backpack-list').children().eq(1).click();
+    cy.get('#backpack-list').children().eq(1).click();
+    cy.get('#backpack-list').children().eq(1).click();
+    cy.get('#backpack-list').children().first().invoke('text')
+      .should('be.equal', 'Your bag is empty');
+  });
+
   it('should get a random pokemon from the list and loop through its sprites', () => {
     const POKEMON_LIST_AMOUNT = 15;
     cy.intercept('https://pokeapi.co/api/v2/pokemon/**').as('GETpokemons').then(() => {
