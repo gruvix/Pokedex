@@ -1,7 +1,9 @@
-import { hasIndexFreeSlot } from '../backpack.js';
+import { hideBackback } from '../backpack.js';
 /// <reference types="Jest" />
-describe('backpack', () => {
-  it('should test backpack', () => {
-    expect(hasIndexFreeSlot([1, 2, 3, 4, 5, 6])).toBe(false);
+describe('it should test the backpack', () => {
+  it('it should hide the backpack', () => {
+    document.body.innerHTML ='<div id="pokemon-backpack-modal"></div>';
+    hideBackback();
+    expect($('#pokemon-backpack-modal').not.toBeVisible());
   });
 });
