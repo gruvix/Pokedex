@@ -94,6 +94,10 @@ function removeEachCaptured() {
     removePokemonFromIndex(pokemonName, loadIndex());
   });
 }
+function removePokemon(pokemonName) {
+  unStorePokemon(pokemonName);
+  removePokemonFromIndex(pokemonName, loadIndex());
+}
 export function wipeCapturedPokemon() {
   removeEachCaptured();
   toggleAttributeOff();
