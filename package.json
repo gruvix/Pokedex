@@ -7,8 +7,7 @@
     "start-server": "http-server -p 8000 -c-1",
     "cypress-dev": "cypress open",
     "test:cypress": "run-p start-server cypress-dev",
-    "test:jest": "jest --watch"
-
+    "test:jest": "jest --watchAll"
   },
   "repository": {
     "type": "git",
