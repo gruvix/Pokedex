@@ -120,6 +120,22 @@ describe('tests the pokedex', () => {
       .should('be.equal', 'Your bag is empty');
   });
 
+  it.only('should get a warning if the backpack is full', () => {
+    cy.get('#full-backpack-warning').should('not.be.visible');
+    let index = 0;
+    const MAXIMUN_BACKPACK_POKEMONS = 5;
+    const ELEMENTS_PER_LIST_ITEM = 2;
+    const ELEMENTS_PER_STORED_POKEMON = 3;
+    const POKEMONS_OVER_CAPACITY_IN_LIST = (MAXIMUN_BACKPACK_POKEMONS + 1) * ELEMENTS_PER_LIST_ITEM;
+    for (index = 0; index < POKEMONS_OVER_CAPACITY_IN_LIST; index += ELEMENTS_PER_LIST_ITEM) {
+      cy.get('#pokemon-list li').children().eq(index).click();
+      cy.get('#pokemon-catch-button').click();
+    }
+    cy.get('#launch-pokemon-backpack-button').click();
+    cy.get('#backpack-list').children().should('have.length', MAXIMUN_BACKPACK_POKEMONS * ELEMENTS_PER_STORED_POKEMON);
+    cy.get('#full-backpack-warning').should('be.visible');
+  });
+
   it('should get a random pokemon from the list and loop through its sprites', () => {
     const POKEMON_LIST_AMOUNT = 15;
     cy.intercept('https://pokeapi.co/api/v2/pokemon/**').as('GETpokemons').then(() => {
