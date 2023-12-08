@@ -99,12 +99,15 @@ describe('tests the pokedex', () => {
     cy.get('#backpack-list').children().should('have.length', EMPTY_BACKPACK_ELEMENTS);
   });
 
-  it.only('should catch first three pokemons and then remove them one by one', () => {
-    cy.get('#pokemon-list li').children().eq(0).click();
+  it('should catch first three pokemons and then remove them one by one', () => {
+    const FIRST_POKEMON_INDEX = 0;
+    const SECOND_POKEMON_INDEX = 2;
+    const THIRD_POKEMON_INDEX = 4;
+    cy.get('#pokemon-list li').children().eq(FIRST_POKEMON_INDEX).click();
     cy.get('#pokemon-catch-button').click();
-    cy.get('#pokemon-list li').children().eq(2).click();
+    cy.get('#pokemon-list li').children().eq(SECOND_POKEMON_INDEX).click();
     cy.get('#pokemon-catch-button').click();
-    cy.get('#pokemon-list li').children().eq(4).click();
+    cy.get('#pokemon-list li').children().eq(THIRD_POKEMON_INDEX).click();
     cy.get('#pokemon-catch-button').click();
     cy.get('#launch-pokemon-backpack-button').click();
     const ELEMENTS_PER_STORED_POKEMON = 3;
