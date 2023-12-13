@@ -11,11 +11,7 @@ function addImageToCarousel(imageSource) {
   }
 }
 export default function displayPokemon(sprites) {
-  Object.keys(sprites).forEach((spriteCategory) => {
-    Object.keys(sprites[spriteCategory]).forEach((sprite) => {
-      if (sprites[spriteCategory][sprite]) {
-        addImageToCarousel(sprites[spriteCategory][sprite]);
-      }
-    });
+  sprites.forEach((sprite) => {
+    addImageToCarousel(sprite);
   });
 }
