@@ -3,7 +3,6 @@ import fakePokemonRaw from './fakePokemon.js';
 import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 import { setCurrentPokemon } from './currentPokemon.js';
-import { updateBackpackIndicator } from './backpack.js';
 import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
 
 class Pokemon {
@@ -83,7 +82,6 @@ function pokemonHandler(pokemon) {
   updateMoves(pokemon.moves);
   displayPokemon(pokemon.sprites);
   setCurrentPokemon(pokemon);
-  updateBackpackIndicator();
 }
 function clearPokemon() {
   $('#pokemon-carousel .carousel-inner').children().remove();
