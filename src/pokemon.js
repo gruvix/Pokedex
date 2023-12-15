@@ -6,29 +6,12 @@ import { setCurrentPokemon } from './currentPokemon.js';
 import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
 
 class Pokemon {
-  constructor(pokemon) {
-    this.name = pokemon.name;
-    this.abilities = [];
-    pokemon.abilities.forEach((ability) => {
-      this.abilities.push(ability.ability.name);
-    });
-    this.types = [];
-    pokemon.types.forEach((type) => {
-      this.types.push(type.type.name);
-    });
-    this.moves = [];
-    pokemon.moves.forEach((move) => {
-      this.moves.push(move.move.name);
-    });
-    this.sprites = [];
-    const sprites = pokemon.sprites.other;
-    Object.keys(sprites).forEach((spriteCategory) => {
-      Object.keys(sprites[spriteCategory]).forEach((sprite) => {
-        if (sprites[spriteCategory][sprite]) {
-          this.sprites.push(sprites[spriteCategory][sprite]);
-        }
-      });
-    });
+  constructor(pokemonData) {
+    this.name = pokemonData.name;
+    this.abilities = pokemonData.abilities;
+    this.types = pokemonData.types;
+    this.moves = pokemonData.moves;
+    this.sprites = pokemonData.sprites;
   }
 }
 
@@ -91,8 +74,38 @@ function clearPokemon() {
   $('#pokemon-moves-table').children().empty();
   $('#pokemon-info').addClass('hidden');
 }
-function generatePokemon(pokemonRaw) {
-  const pokemon = new Pokemon(pokemonRaw);
+function parseRawPokemon(pokemonRaw) {
+  const abilities = [];
+  pokemonRaw.abilities.forEach((ability) => {
+    abilities.push(ability.ability.name);
+  });
+  const types = [];
+  pokemonRaw.types.forEach((type) => {
+    types.push(type.type.name);
+  });
+  const moves = [];
+  pokemonRaw.moves.forEach((move) => {
+    moves.push(move.move.name);
+  });
+  const sprites = [];
+  Object.keys(pokemonRaw.sprites.other).forEach((spriteCategory) => {
+    Object.keys(pokemonRaw.sprites.other[spriteCategory]).forEach((sprite) => {
+      if (pokemonRaw.sprites.other[spriteCategory][sprite]) {
+        sprites.push(pokemonRaw.sprites.other[spriteCategory][sprite]);
+      }
+    });
+  });
+  const pokemonData = {
+    name: pokemonRaw.name,
+    abilities,
+    types,
+    moves,
+    sprites,
+  };
+  return pokemonData;
+}
+function generatePokemon(pokemonData) {
+  const pokemon = new Pokemon(pokemonData);
   return pokemon;
 }
 export default async function getPokemonHandler(pokemonName) {
@@ -101,13 +114,15 @@ export default async function getPokemonHandler(pokemonName) {
   hideError();
   let pokemon;
   if (pokemonName === 'michelin') {
-    pokemon = generatePokemon(fakePokemonRaw());
+    const pokemonData = parseRawPokemon(fakePokemonRaw());
+    pokemon = generatePokemon(pokemonData);
   } else {
     try {
       pokemon = loadPokemon(pokemonName);
     } catch {
       const pokemonRaw = await getPokemonByIdOrName(pokemonName);
-      pokemon = generatePokemon(pokemonRaw);
+      const pokemonData = parseRawPokemon(pokemonRaw);
+      pokemon = generatePokemon(pokemonData);
     }
   }
   pokemonHandler(pokemon);
