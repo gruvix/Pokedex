@@ -1,6 +1,7 @@
 import * as display from './displayList.js';
 import * as request from './apiRequests.js';
 import * as localStorage from './localStorage.js';
+import { generatePokemon, parseRawPokemon } from './pokemon.js';
 
 function updateTotalPokemon(total) {
   $('#pokemon-now-showing').attr('data-total', total);
@@ -38,12 +39,15 @@ async function addPokemonToList(pokemonFromList, index) {
   try {
     pokemon = localStorage.loadPokemonFromLocalStorage(pokemonName);
   } catch (error) {
-    pokemon = await request.getPokemonByIdOrName(pokemonName);
+    const rawPokemon = await request.getPokemonByIdOrName(pokemonName);
+    const pokemondata = parseRawPokemon(rawPokemon);
+    pokemon = generatePokemon(pokemondata);
     if (!pokemon) {
       throw new Error(`Failed to load ${pokemonName}`);
     }
   }
-  display.addSprite(pokemon.sprites.front_default, li);
+  const FIRST_SPRITE = 0;
+  display.addSprite(pokemon.sprites[FIRST_SPRITE], li);
   display.removeLoadingFromListItem(li);
 }
 function updatePokemonList(pokemonList, offset) {

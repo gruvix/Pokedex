@@ -74,7 +74,7 @@ function clearPokemon() {
   $('#pokemon-moves-table').children().empty();
   $('#pokemon-info').addClass('hidden');
 }
-function parseRawPokemon(pokemonRaw) {
+export function parseRawPokemon(pokemonRaw) {
   const abilities = [];
   pokemonRaw.abilities.forEach((ability) => {
     abilities.push(ability.ability.name);
@@ -104,7 +104,7 @@ function parseRawPokemon(pokemonRaw) {
   };
   return pokemonData;
 }
-function generatePokemon(pokemonData) {
+export function generatePokemon(pokemonData) {
   const pokemon = new Pokemon(pokemonData);
   return pokemon;
 }
