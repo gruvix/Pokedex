@@ -4,16 +4,7 @@ import { hideError } from './error.js';
 import { getPokemonByIdOrName } from './apiRequests.js';
 import { setCurrentPokemon } from './currentPokemon.js';
 import { loadPokemonFromLocalStorage as loadPokemon } from './localStorage.js';
-
-class Pokemon {
-  constructor(pokemonData) {
-    this.name = pokemonData.name;
-    this.abilities = pokemonData.abilities;
-    this.types = pokemonData.types;
-    this.moves = pokemonData.moves;
-    this.sprites = pokemonData.sprites;
-  }
-}
+import Pokemon from './entities/Pokemon.js';
 
 function showPokemonInfo() {
   $('#pokemon-info').removeClass('hidden');

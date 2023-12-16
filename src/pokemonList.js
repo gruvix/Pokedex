@@ -1,7 +1,9 @@
 import * as display from './displayList.js';
 import * as request from './apiRequests.js';
 import * as localStorage from './localStorage.js';
-import { generatePokemon, parseRawPokemon } from './pokemon.js';
+import { parseRawPokemon } from './pokemon.js';
+import Pokemon from './entities/Pokemon.js';
+import PokemonList from './entities/PokemonList.js';
 
 function updateTotalPokemon(total) {
   $('#pokemon-now-showing').attr('data-total', total);
@@ -58,13 +60,7 @@ function updatePokemonList(pokemonList, offset) {
   });
   updatePageIndicator();
 }
-class PokemonList {
-  constructor(data) {
-    this.names = data.names;
-    this.listAmount = data.listAmount;
-    this.total = data.total;
-  }
-}
+
 function parseRawPokemons(rawData) {
   const pokemonData = {
     names: [],
