@@ -74,29 +74,29 @@ function clearPokemon() {
   $('#pokemon-moves-table').children().empty();
   $('#pokemon-info').addClass('hidden');
 }
-export function parseRawPokemon(pokemonRaw) {
+export function parseRawPokemon(rawData) {
   const abilities = [];
-  pokemonRaw.abilities.forEach((ability) => {
+  rawData.abilities.forEach((ability) => {
     abilities.push(ability.ability.name);
   });
   const types = [];
-  pokemonRaw.types.forEach((type) => {
+  rawData.types.forEach((type) => {
     types.push(type.type.name);
   });
   const moves = [];
-  pokemonRaw.moves.forEach((move) => {
+  rawData.moves.forEach((move) => {
     moves.push(move.move.name);
   });
   const sprites = [];
-  Object.keys(pokemonRaw.sprites.other).forEach((spriteCategory) => {
-    Object.keys(pokemonRaw.sprites.other[spriteCategory]).forEach((sprite) => {
-      if (pokemonRaw.sprites.other[spriteCategory][sprite]) {
-        sprites.push(pokemonRaw.sprites.other[spriteCategory][sprite]);
+  Object.keys(rawData.sprites.other).forEach((spriteCategory) => {
+    Object.keys(rawData.sprites.other[spriteCategory]).forEach((sprite) => {
+      if (rawData.sprites.other[spriteCategory][sprite]) {
+        sprites.push(rawData.sprites.other[spriteCategory][sprite]);
       }
     });
   });
   const pokemonData = {
-    name: pokemonRaw.name,
+    name: rawData.name,
     abilities,
     types,
     moves,
