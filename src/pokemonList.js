@@ -28,8 +28,7 @@ function clearPokemonList() {
   const list = $('#pokemon-list');
   list.children().remove();
 }
-async function addPokemonToList(pokemonFromList, index) {
-  const pokemonName = pokemonFromList.name;
+async function addPokemonToList(pokemonName, index) {
   const pokemonButton = $(`<button class="btn btn-link" id="${pokemonName}">${index}. ${pokemonName}</button>`);
   const li = $('<li></li>');
   li.append(pokemonButton);
@@ -53,11 +52,33 @@ async function addPokemonToList(pokemonFromList, index) {
 function updatePokemonList(pokemonList, offset) {
   clearPokemonList();
   let i = 0;
-  pokemonList.forEach((pokemon) => {
+  pokemonList.names.forEach((pokemonName) => {
     i += 1;
-    addPokemonToList(pokemon, offset + i);
+    addPokemonToList(pokemonName, offset + i);
   });
   updatePageIndicator();
+}
+class PokemonList {
+  constructor(data) {
+    this.names = data.names;
+    this.listAmount = data.listAmount;
+    this.total = data.total;
+  }
+}
+function parseRawPokemons(rawData) {
+  const pokemonData = {
+    names: [],
+    listAmount: rawData.results.length,
+    total: rawData.count,
+  };
+  rawData.results.forEach((pokemon) => {
+    pokemonData.names.push(pokemon.name);
+  });
+  return pokemonData;
+}
+function generatePokemons(pokemonsData) {
+  const pokemonList = new PokemonList(pokemonsData);
+  return pokemonList;
 }
 /**
  * Updates the list of Pokemon with the given offset and limit.
@@ -67,11 +88,13 @@ function updatePokemonList(pokemonList, offset) {
 export async function updatePokemons(rawOffset = 0, amount = 15) {
   const LOWEST_POKEMON_OFFSET = 0;
   const offset = Math.max(rawOffset, LOWEST_POKEMON_OFFSET);
-  const pokemons = await request.getPokemons(offset, amount);
-  if (!pokemons) {
-    return;
+  const rawPokemons = await request.getPokemons(offset, amount);
+  if (!rawPokemons) {
+    throw new Error('Failed to load pokemons');
   }
+  const pokemonsData = parseRawPokemons(rawPokemons);
+  const pokemons = generatePokemons(pokemonsData);
   updateFirstPokemonIndex(offset);
-  updateTotalPokemon(pokemons.count);
-  updatePokemonList(pokemons.results, offset);
+  updateTotalPokemon(pokemons.total);
+  updatePokemonList(pokemons, offset);
 }
