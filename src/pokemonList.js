@@ -42,7 +42,7 @@ async function addPokemonToList(pokemonName, index) {
   } catch (error) {
     const rawPokemon = await request.getPokemonByIdOrName(pokemonName);
     const pokemondata = parseRawPokemon(rawPokemon);
-    pokemon = generatePokemon(pokemondata);
+    pokemon = new Pokemon(pokemondata);
     if (!pokemon) {
       throw new Error(`Failed to load ${pokemonName}`);
     }
@@ -72,10 +72,6 @@ function parseRawPokemons(rawData) {
   });
   return pokemonData;
 }
-function generatePokemons(pokemonsData) {
-  const pokemonList = new PokemonList(pokemonsData);
-  return pokemonList;
-}
 /**
  * Updates the list of Pokemon with the given offset and limit.
  * @param {number} [offset=0] - The offset of the first Pokemon to fetch.
@@ -89,7 +85,7 @@ export async function updatePokemons(rawOffset = 0, amount = 15) {
     throw new Error('Failed to load pokemons');
   }
   const pokemonsData = parseRawPokemons(rawPokemons);
-  const pokemons = generatePokemons(pokemonsData);
+  const pokemons = new PokemonList(pokemonsData);
   updateFirstPokemonIndex(offset);
   updateTotalPokemon(pokemons.total);
   updatePokemonList(pokemons, offset);

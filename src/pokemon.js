@@ -95,10 +95,6 @@ export function parseRawPokemon(rawData) {
   };
   return pokemonData;
 }
-export function generatePokemon(pokemonData) {
-  const pokemon = new Pokemon(pokemonData);
-  return pokemon;
-}
 export default async function getPokemonHandler(pokemonName) {
   clearPokemon();
   addLoadingToPokemon();
@@ -106,14 +102,14 @@ export default async function getPokemonHandler(pokemonName) {
   let pokemon;
   if (pokemonName === 'michelin') {
     const pokemonData = parseRawPokemon(fakePokemonRaw());
-    pokemon = generatePokemon(pokemonData);
+    pokemon = new Pokemon(pokemonData);
   } else {
     try {
       pokemon = loadPokemon(pokemonName);
     } catch {
       const pokemonRaw = await getPokemonByIdOrName(pokemonName);
       const pokemonData = parseRawPokemon(pokemonRaw);
-      pokemon = generatePokemon(pokemonData);
+      pokemon = new Pokemon(pokemonData);
     }
   }
   pokemonHandler(pokemon);
