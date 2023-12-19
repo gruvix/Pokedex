@@ -8,15 +8,17 @@ import {
   hideBackpack,
   wipeCapturedPokemon,
   updateBackpackAmountIndicators,
+  updateBackpackIndicator,
 } from './backpack.js';
 
 $('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
   pokeList.updatePokemons(random);
 });
-$('#search-pokemon-button').on('click', () => {
+$('#search-pokemon-button').on('click', async () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
-  getPokemonHandler(pokemon);
+  await getPokemonHandler(pokemon);
+  updateBackpackIndicator();
 });
 $('#previous-page-button').on('click', () => {
   const PREVIOUS_PAGE_OFFSET = 16;
@@ -27,10 +29,11 @@ $('#next-page-button').on('click', () => {
   const nextPage = pokeList.getLastPokemonOnListId();
   pokeList.updatePokemons(nextPage);
 });
-$('#pokemon-list').on('click', (event) => {
+$('#pokemon-list').on('click', async (event) => {
   const pokemon = event.target.id;
   if (!event.target.classList.contains('btn-link')) return;
-  getPokemonHandler(pokemon);
+  await getPokemonHandler(pokemon);
+  updateBackpackIndicator();
 });
 $('#launch-pokemon-backpack-button').on('click', () => {
   launchBackpack();
@@ -50,7 +53,3 @@ function initialize() {
   updateBackpackAmountIndicators();
 }
 initialize();
-// ## construir un pokedex
-// Documentacion https://pokeapi.co/
-// listar pokemons y poder cambiar de página
-// ver detalles de 1 pokemon incluyendo al menos 1 foto

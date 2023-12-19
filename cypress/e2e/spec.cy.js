@@ -120,7 +120,7 @@ describe('tests the pokedex', () => {
       .should('be.equal', 'Your bag is empty');
   });
 
-  it.only('should get a warning if the backpack is full', () => {
+  it('should get a warning if the backpack is full', () => {
     cy.get('#full-backpack-warning').should('not.be.visible');
     let index = 0;
     const MAXIMUN_BACKPACK_POKEMONS = 5;
