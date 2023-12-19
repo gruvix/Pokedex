@@ -15,10 +15,9 @@ $('#random-pokemon-button').on('click', () => {
   const random = generateRandomId();
   pokeList.updatePokemons(random);
 });
-$('#search-pokemon-button').on('click', async () => {
+$('#search-pokemon-button').on('click', () => {
   const pokemon = $('#pokemon-id-input').val().toLowerCase();
-  await getPokemonHandler(pokemon);
-  updateBackpackIndicator();
+  getPokemonHandler(pokemon, updateBackpackIndicator);
 });
 $('#previous-page-button').on('click', () => {
   const PREVIOUS_PAGE_OFFSET = 16;
@@ -29,11 +28,10 @@ $('#next-page-button').on('click', () => {
   const nextPage = pokeList.getLastPokemonOnListId();
   pokeList.updatePokemons(nextPage);
 });
-$('#pokemon-list').on('click', async (event) => {
+$('#pokemon-list').on('click', (event) => {
   const pokemon = event.target.id;
   if (!event.target.classList.contains('btn-link')) return;
-  await getPokemonHandler(pokemon);
-  updateBackpackIndicator();
+  getPokemonHandler(pokemon, updateBackpackIndicator);
 });
 $('#launch-pokemon-backpack-button').on('click', () => {
   launchBackpack();

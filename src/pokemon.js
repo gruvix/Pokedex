@@ -95,7 +95,7 @@ export function parseRawPokemon(rawData) {
   };
   return pokemonData;
 }
-export default async function getPokemonHandler(pokemonName) {
+export default async function getPokemonHandler(pokemonName, callbackFunction = () => {}) {
   clearPokemon();
   addLoadingToPokemon();
   hideError();
@@ -113,4 +113,5 @@ export default async function getPokemonHandler(pokemonName) {
     }
   }
   pokemonHandler(pokemon);
+  callbackFunction();
 }

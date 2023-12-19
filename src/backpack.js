@@ -99,7 +99,7 @@ function addPokemonButtons(pokemon) {
   const $pokemonList = $('#backpack-list');
   const $pokemonButton = $(`<button class="btn btn-link" id="${pokemon.name}">${pokemon.name}</button>`);
   $pokemonButton.on('click', () => {
-    getPokemon(pokemon.name);
+    getPokemon(pokemon.name, updateBackpackIndicator);
     hideBackpack();
   });
   const $removeButton = $('<button class="btn btn-primary" style="padding: 0.5%;">X</button><div></div>');
