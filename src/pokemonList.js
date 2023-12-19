@@ -8,18 +8,14 @@ import PokemonList from './entities/PokemonList.js';
 function updateTotalPokemon(total) {
   $('#pokemon-now-showing').attr('data-total', total);
 }
-function updateFirstPokemonIndex(offset) {
-  $('#pokemon-now-showing').attr('data-index', offset);
-}
-
 export function getFirstPokemonOnListId() {
-  const offset = Number($('#pokemon-now-showing').attr('data-index'));
+  const offset = PokemonList.index;
   return offset + 1;// offset starts in 0, pokemon list starts in 1
 }
 export function getLastPokemonOnListId() {
   const AMOUNT = $('#pokemon-list li').length;
-  const offset = Number($('#pokemon-now-showing').attr('data-index'));
-  const TOTAL = $('#pokemon-now-showing').attr('data-total');
+  const offset = PokemonList.index;
+  const TOTAL = PokemonList.total;
   return Math.min(offset + AMOUNT, TOTAL);
 }
 function updatePageIndicator() {
@@ -86,7 +82,7 @@ export async function updatePokemons(rawOffset = 0, amount = 15) {
   }
   const pokemonsData = parseRawPokemons(rawPokemons);
   const pokemons = new PokemonList(pokemonsData);
-  updateFirstPokemonIndex(offset);
+  PokemonList.index = offset;
   updateTotalPokemon(pokemons.total);
   updatePokemonList(pokemons, offset);
 }
